@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            Intent中关于Activity的Flag | 
+        
+        星家|不会搬砖的码农
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="罗炜光">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="null,Android,Android基础">
+
+    <!-- Site Verification -->
+    
+    <meta name="baidu-site-verification" content="9KipFitrC9" />
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicons.pngg">
+    <link rel="icon" sizes="192x192" href="/img/favicons.png">
+    <link rel="apple-touch-icon" href="/img/favicons.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="星家|不会搬砖的码农">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://luoweiguang.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Intent中关于Activity的Flag | 星家|不会搬砖的码农">
+    <meta property="og:image" content="/img/favicons.png" />
+    <meta property="og:description" content="">
+    <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="Android基础"> 
+
+    
+        <meta property="article:published_time" content="Tue Jul 12 2016 22:00:00 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Nov 15 2017 13:54:09 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="Intent中关于Activity的Flag | 星家|不会搬砖的码农">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="/img/favicons.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://luoweiguang.github.io" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://luoweiguang.github.io/2016/07/12/Intent中关于Activity的Flag/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "星家|不会搬砖的码农",
+        "logo": "/img/favicons.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "罗炜光",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicons.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "Intent中关于Activity的Flag",
+    "url": "https://luoweiguang.github.io/2016/07/12/Intent中关于Activity的Flag/index.html",
+    "datePublished": "Tue Jul 12 2016 22:00:00 GMT+0800",
+    "dateModified": "Wed Nov 15 2017 13:54:09 GMT+0800",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://luoweiguang.github.io"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+            <style>
+    
+    
+    
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    
+</style>
+
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#launchMode启动时默认的Flag"><span class="post-toc-number">1.</span> <span class="post-toc-text">launchMode启动时默认的Flag</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Flag详解"><span class="post-toc-number">2.</span> <span class="post-toc-text">Flag详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-BROUGHT-TO-FRONT"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">FLAG_ACTIVITY_BROUGHT_TO_FRONT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-CLEAR-TASK"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">FLAG_ACTIVITY_CLEAR_TASK</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-CLEAR-TOP"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">FLAG_ACTIVITY_CLEAR_TOP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-CLEAR-WHEN-TASK-RESET-已废弃"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET(已废弃)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-EXCLUDE-FROM-RECENTS"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-FORWARD-RESULT"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">FLAG_ACTIVITY_FORWARD_RESULT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-LAUNCHED-FROM-HISTORY"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-MULTIPLE-TASK"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">FLAG_ACTIVITY_MULTIPLE_TASK</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-NEW-DOCUMENT"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">FLAG_ACTIVITY_NEW_DOCUMENT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-NEW-TASK"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">FLAG_ACTIVITY_NEW_TASK</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-NO-ANIMATION"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">FLAG_ACTIVITY_NO_ANIMATION</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-NO-HISTORY"><span class="post-toc-number">2.12.</span> <span class="post-toc-text">FLAG_ACTIVITY_NO_HISTORY</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-NO-USER-ACTION"><span class="post-toc-number">2.13.</span> <span class="post-toc-text">FLAG_ACTIVITY_NO_USER_ACTION</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-PREVIOUS-IS-TOP"><span class="post-toc-number">2.14.</span> <span class="post-toc-text">FLAG_ACTIVITY_PREVIOUS_IS_TOP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-REORDER-TO-FRONT"><span class="post-toc-number">2.15.</span> <span class="post-toc-text">FLAG_ACTIVITY_REORDER_TO_FRONT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-RESET-TASK-IF-NEEDED"><span class="post-toc-number">2.16.</span> <span class="post-toc-text">FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-RETAIN-IN-RECENTS"><span class="post-toc-number">2.17.</span> <span class="post-toc-text">FLAG_ACTIVITY_RETAIN_IN_RECENTS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-SINGLE-TOP"><span class="post-toc-number">2.18.</span> <span class="post-toc-text">FLAG_ACTIVITY_SINGLE_TOP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FLAG-ACTIVITY-TASK-ON-HOME"><span class="post-toc-number">2.19.</span> <span class="post-toc-text">FLAG_ACTIVITY_TASK_ON_HOME</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">3.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/20160712999999.png)">
+    
+            <p class="article-headline-p">
+                Intent中关于Activity的Flag
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>罗炜光</strong>
+        <span>7月 12, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=https://luoweiguang.github.io/2016/07/12/Intent中关于Activity的Flag/">
+    
+</ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Android/">Android</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Android基础/">Android基础</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Intent中关于Activity的Flag&url=https://luoweiguang.github.io/2016/07/12/Intent中关于Activity的Flag/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Intent中关于Activity的Flag&url=https://luoweiguang.github.io/2016/07/12/Intent中关于Activity的Flag/index.html&via=罗炜光" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://luoweiguang.github.io/2016/07/12/Intent中关于Activity的Flag/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://luoweiguang.github.io/2016/07/12/Intent中关于Activity的Flag/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <a id="more"></a>
+<h2 id="launchMode启动时默认的Flag"><a href="#launchMode启动时默认的Flag" class="headerlink" title="launchMode启动时默认的Flag"></a>launchMode启动时默认的Flag</h2><ul>
+<li>standard 为0，即无Flag</li>
+<li>singleTop 为0，即无Flag</li>
+<li>singleTask 为0x10000000，即FLAG_ACTIVITY_NEW_TASK</li>
+<li>singleInstance 为0x10000000，即FLAG_ACTIVITY_NEW_TASK</li>
+</ul>
+<h2 id="Flag详解"><a href="#Flag详解" class="headerlink" title="Flag详解"></a>Flag详解</h2><h3 id="FLAG-ACTIVITY-BROUGHT-TO-FRONT"><a href="#FLAG-ACTIVITY-BROUGHT-TO-FRONT" class="headerlink" title="FLAG_ACTIVITY_BROUGHT_TO_FRONT"></a>FLAG_ACTIVITY_BROUGHT_TO_FRONT</h3><p>默认标志</p>
+<blockquote>
+<p>This flag is not normally set by application code, but set for you by the system as described in the launchMode documentation for the singleTask mode.</p>
+<p>通常在应用代码中不需要设置这个FLAG，当launchMode为singleTask时系统会默认设置这个标志。</p>
+</blockquote>
+<p>然而在实际的测试中<strong>并没有测试出</strong>，而是在另外两种方式设置了此标志<br>位</p>
+<ol>
+<li>当从launchMode为singleInstance的Activity跳转到standard、singleTop和singleTask的</li>
+<li>当安装或更新一个app后有两个选项，一个为完成一个为打开，点击打开，不管跳多少个Activity,按Home键再从点击桌面图标进入，都会加载一个新的启动的Activity,而不是刚刚执行的，此时的Activity也设有此标志</li>
+</ol>
+<p>解决此问题的方法</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">getIntent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getFlags</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> Intent<span class="token punctuation">.</span>FLAG_ACTIVITY_BROUGHT_TO_FRONT<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">finish</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="FLAG-ACTIVITY-CLEAR-TASK"><a href="#FLAG-ACTIVITY-CLEAR-TASK" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TASK"></a>FLAG_ACTIVITY_CLEAR_TASK</h3><p>清空任务标志</p>
+<blockquote>
+<p>If set in an Intent passed to Context.startActivity(), this flag will cause any existing task that would be associated with the activity to be cleared before the activity is started. That is, the activity becomes the new root of an otherwise empty task, and any old activities are finished. This can only be used in conjunction with FLAG_ACTIVITY_NEW_TASK.</p>
+<p>如果Intent中设置了这个标志，会导致含有待启动Activity的Task在Activity被启动前清空。也就是说，这个Activity会成为一个新的root，并且所有旧的activity都被finish掉。这个标志只能与FLAG_ACTIVITY_NEW_TASK 一起使用。 </p>
+</blockquote>
+<p>standard与singleTop设置此Flag的同时还要设置FLAG_ACTIVITY_NEW_TASK才有效，而singleTask启动时默认会有FLAG_ACTIVITY_NEW_TASK，所以只要添加此Flag即可，而singleInstance因为新建了个Task，所以设置不设置效果一样</p>
+<h3 id="FLAG-ACTIVITY-CLEAR-TOP"><a href="#FLAG-ACTIVITY-CLEAR-TOP" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TOP"></a>FLAG_ACTIVITY_CLEAR_TOP</h3><p>清空任务中在其之上的Activity</p>
+<blockquote>
+<p>If set, and the activity being launched is already running in the current task, then instead of launching a new instance of that activity, all of the other activities on top of it will be closed and this Intent will be delivered to the (now on top) old activity as a new Intent.</p>
+<p>For example, consider a task consisting of the activities: A, B, C, D. If D calls startActivity() with an Intent that resolves to the component of activity B, then C and D will be finished and B receive the given Intent, resulting in the stack now being: A, B.</p>
+<p>The currently running instance of activity B in the above example will either receive the new intent you are starting here in its onNewIntent() method, or be itself finished and restarted with the new intent. If it has declared its launch mode to be “multiple” (the default) and you have not set FLAG_ACTIVITY_SINGLE_TOP in the same intent, then it will be finished and re-created; for all other launch modes or if FLAG_ACTIVITY_SINGLE_TOP is set then this Intent will be delivered to the current instance’s onNewIntent().</p>
+<p>This launch mode can also be used to good effect in conjunction with FLAG_ACTIVITY_NEW_TASK: if used to start the root activity of a task, it will bring any currently running instance of that task to the foreground, and then clear it to its root state. This is especially useful, for example, when launching an activity from the notification manager.</p>
+<p>See Tasks and Back Stack for more information about tasks.</p>
+<p>如果设置了这个标志，并且待启动的Activity已经存在于当前的task中，那就不会再给这个activity新起一个实例，而是将task中在它之上的其它activity全部关闭，然后把Intent作为一个新的Intent传给这个Activity（当前已在栈顶）。</p>
+<p>例如，一个task中存在A,B,C,D四个Activity。如果D调用startActivity() 启动B，那么C和D会被finish掉并且B收到这个Intent，最后栈中只有A，B。</p>
+<p>上面例子中运行的B activity既可以在onNewIntent()中接收新的Intent，也可以将自己finish掉然后使用新的Intent重启。如果在它的launch mode中设置了”multiple”（默认），并且intent中没有设置 FLAG_ACTIVITY_SINGLE_TOP 标志，那它就会被finish掉然后重新创建。如果是其它的launchMode或者是设置了FLAG_ACTIVITY_SINGLE_TOP 属性，那就会使用现有的实例的OnNewIntent()方法来接受Intent。</p>
+<p>这种启动模式也可以与 FLAG_ACTIVITY_NEW_TASK 一起使用：如果用来启动一个任务的root activity，它会将这个任务中现在运行的实例调到前台，然后将任务清空至只有根Activity的状态。这很有用，例如要从通知中心里启动一个Activity时。</p>
+</blockquote>
+<p>总结：</p>
+<ol>
+<li>如果launchMode为standard，且为设置FLAG_ACTIVITY_SINGLE_TOP,则使用此标记打开Activity时，假如栈内已存在此Activity,那么会将栈中此Activity之上包括本身全部销毁，并创建此Activity,如果设置FLAG_ACTIVITY_SINGLE_TOP则与launchMode为singleTop相同</li>
+<li>如果launchMode为singleTop，则使用此标记打开Activity时，假如栈内已存在此Activity,那么会将栈中此Activity之上（但不包括本身）全部销毁，调用onNewIntent()，并恢复此Activity</li>
+<li>如果launchMode为singleTask,则无影响，因为 singleTask本身就是以此方式进行处理</li>
+<li>如果launchMode为singleInstance，无影响</li>
+</ol>
+<h3 id="FLAG-ACTIVITY-CLEAR-WHEN-TASK-RESET-已废弃"><a href="#FLAG-ACTIVITY-CLEAR-WHEN-TASK-RESET-已废弃" class="headerlink" title="FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET(已废弃)"></a>FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET(已废弃)</h3><p>任务重置时将任务中在此标记之后的Activity清空</p>
+<blockquote>
+<p>If set, this marks a point in the task’s activity stack that should be cleared when the task is reset. That is, the next time the task is brought to the foreground with FLAG_ACTIVITY_RESET_TASK_IF_NEEDED (typically as a result of the user re-launching it from home), this activity and all on top of it will be finished so that the user does not return to them, but instead returns to whatever activity preceeded it.</p>
+<p>This is useful for cases where you have a logical break in your application. For example, an e-mail application may have a command to view an attachment, which launches an image view activity to display it. This activity should be part of the e-mail application’s task, since it is a part of the task the user is involved in. However, if the user leaves that task, and later selects the e-mail app from home, we may like them to return to the conversation they were viewing, not the picture attachment, since that is confusing. By setting this flag when launching the image viewer, that viewer and any activities it starts will be removed the next time the user returns to mail.</p>
+<p>设置这个标志意味着在activity栈中做一个标记，在Task重置的时候栈就把从标记往上的activity都清除。也就是说，下次这个Task被通过FLAG_ACTIVITY_RESET_TASK_IF_NEEDED调到前台时（通常是由于用户从桌面重新启动），这个activity和它之上的activity都会被finish掉，这样用户就不会再回到他们，而是直接回到在它们之前的activity。</p>
+<p>这在应用切换时非常有用。比如，Email应用会需要查看附件，就要调用查看图片的Activity来显示，那这个查看图片的Activity就会成为Email应用任务里的一部分。但是，如果用户离开了Email的任务，过了一会儿由通过Home来选择Email应用，我们会希望它回到查看邮件会话的页面，而不是浏览图片附件的页面，不然就感觉太诡异了。如果在启动查看图片Activity时设置了这个标志，那这个Activity及由它启动的Activity在下一次用户返回邮件时都会被清除。</p>
+<p>已经废弃，请使用FLAG_ACTIVITY_NEW_DOCUMENT </p>
+</blockquote>
+<p>当LaunchMode为standard或singleTop此标记在5.0之前与5.0之后有很大差别</p>
+<ul>
+<li>5.0之后使用此标志后，会新建一个task,并且后续的Activity都会在此task中，而在overview screen中（总览画面或者叫最近画面，最近任务表）中可以看到有两个</li>
+<li>5.0之前都在一个task中</li>
+</ul>
+<p>此标记对singleTask无效</p>
+<p>此标记对于singleInstance有效，但5.0后在overview screen中不会产生两个</p>
+<h3 id="FLAG-ACTIVITY-EXCLUDE-FROM-RECENTS"><a href="#FLAG-ACTIVITY-EXCLUDE-FROM-RECENTS" class="headerlink" title="FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS"></a>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</h3><p>不显示在近期任务中</p>
+<blockquote>
+<p>If set, the new activity is not kept in the list of recently launched activities.</p>
+<p>如果设置这个标志，这个Activity就不会在近期任务中显示。<br>等同于android:excludeFromRecents=”true”<br>但似乎没效果？</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-FORWARD-RESULT"><a href="#FLAG-ACTIVITY-FORWARD-RESULT" class="headerlink" title="FLAG_ACTIVITY_FORWARD_RESULT"></a>FLAG_ACTIVITY_FORWARD_RESULT</h3><p>转发结果</p>
+<blockquote>
+<p>If set and this intent is being used to launch a new activity from an existing one, then the reply target of the existing activity will be transfered to the new activity. This way the new activity can call setResult(int) and have that result sent back to the reply target of the original activity.</p>
+<p>如果Activity A 在启动 Activity B时设置了这个标志，那A的答复目标目标会传递给B，这样一来B就可以通过调用setResult(int) 将返回结果返回给A的答复目标。</p>
+<p>简单如下：</p>
+<p>O —-startActivityForResult()—-&gt; A —-FLAG_ACTIVITY_FORWARD_RESULT—-&gt; B</p>
+<p>A的答复目标是O，如果A在启动B时使用了这个标志，A就会把答复目标O的信息传递给B，以便B将O作为它的答复目标。此时B调用setResult()时的结果信息都会传递给O，而不会给A。并且此时在A中调用setResult()的内容不会生效。我还没发现使A中setResult()生效的方法。</p>
+<p>注意：这个标志不能与startActivityForResult()一起使用。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-LAUNCHED-FROM-HISTORY"><a href="#FLAG-ACTIVITY-LAUNCHED-FROM-HISTORY" class="headerlink" title="FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY"></a>FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</h3><p>从近期任务中启动的标志</p>
+<blockquote>
+<p>This flag is not normally set by application code, but set for you by the system if this activity is being launched from history (longpress home key).</p>
+<p>这个标志通常情况下不会通过应用的代码来设置，而是在通过最近任务启动activity时由系统设置的。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-MULTIPLE-TASK"><a href="#FLAG-ACTIVITY-MULTIPLE-TASK" class="headerlink" title="FLAG_ACTIVITY_MULTIPLE_TASK"></a>FLAG_ACTIVITY_MULTIPLE_TASK</h3><p>Activity可在多任务运行的标志</p>
+<blockquote>
+<p>Do not use this flag unless you are implementing your own top-level application launcher. Used in conjunction with FLAG_ACTIVITY_NEW_TASK to disable the behavior of bringing an existing task to the foreground. When set, a new task is always started to host the Activity for the Intent, regardless of whether there is already an existing task running the same thing.</p>
+<p>Because the default system does not include graphical task management, you should not use this flag unless you provide some way for a user to return back to the tasks you have launched.</p>
+<p>This flag is ignored if FLAG_ACTIVITY_NEW_TASK is not set.</p>
+<p>See Tasks and Back Stack for more information about tasks.</p>
+<p>除非你实现了自己的顶级应用启动器，否则不要使用这个标志。与 FLAG_ACTIVITY_NEW_TASK 一起使用可以不再把已存在的任务唤起到前台。 当被设置时，系统总会为Intent的Activity启动一个新的task，而不管是否已经有已存在的任务在做同样的事情。</p>
+<p>因为默认系统不包含图形化的任务管理功能，所以除非你给用户提供了返回到已启动任务的方法，否则就不要用这个标志。</p>
+<p>如果FLAG_ACTIVITY_NEW_TASK没有设置，则这个标志也被忽略。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-NEW-DOCUMENT"><a href="#FLAG-ACTIVITY-NEW-DOCUMENT" class="headerlink" title="FLAG_ACTIVITY_NEW_DOCUMENT"></a>FLAG_ACTIVITY_NEW_DOCUMENT</h3><blockquote>
+<p>api 21之后加入的一个标识，用来在intent启动的activity的task栈中打开一个document，和documentLaunchMode效果相等，有着不同的documents的activity的多个实例，将会出现在最近的task列表中。单独使用效果和documentLaunchMode=”intoExisting”一样，如果和FLAG_ACTIVITY_MULTIPLE_TASK一起使用效果就等同于documentLaunchMode=”always”</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-NEW-TASK"><a href="#FLAG-ACTIVITY-NEW-TASK" class="headerlink" title="FLAG_ACTIVITY_NEW_TASK"></a>FLAG_ACTIVITY_NEW_TASK</h3><p>尝试在新任务中启动Activity的标志（并不一定就会在新的任务中）</p>
+<blockquote>
+<p>If set, this activity will become the start of a new task on this history stack. A task (from the activity that started it to the next task activity) defines an atomic group of activities that the user can move to. Tasks can be moved to the foreground and background; all of the activities inside of a particular task always remain in the same order. See Tasks and Back Stack for more information about tasks.</p>
+<p>This flag is generally used by activities that want to present a “launcher” style behavior: they give the user a list of separate things that can be done, which otherwise run completely independently of the activity launching them.</p>
+<p>When using this flag, if a task is already running for the activity you are now starting, then a new activity will not be started; instead, the current task will simply be brought to the front of the screen with the state it was last in. See FLAG_ACTIVITY_MULTIPLE_TASK for a flag to disable this behavior.</p>
+<p>This flag can not be used when the caller is requesting a result from the activity being launched.</p>
+<p>设置这个标志可以为待启动的Activity创建一个新的任务。一个任务（从启动它的Activity到任务中的下一个Activity）就是用户可以跳转到的Activity的原子群。任务可以在前台与后台之间切换；在某一特定任务之中的所有Activity一直会保持同样的顺序。</p>
+<p>这个标志通常被用来呈现一种”laucher”类型的行为：为用户提供一个可单独解决的事情列表，完全独立于启动他们的Activity之外运行。</p>
+<p>使用这个标志时，如果有一个任务已经运行了你要启动的Activity，那就不会在创建新的Activity，而是将现有的任务保持之前的状态直接唤到前台。参见FLAG_ACTIVITY_MULTIPLE_TASK这个标志，可以禁用掉这个行为。</p>
+<p>这个标志不能在调用者向待启动Activity请求返回结果时使用。</p>
+<p>注意：假设A启动B，如果要让B在新的task中创建，要求这两个Activity的taskAffinity不同。也就是说，设置了这个标志后，新启动的activity并非就一定在新的task中创建，如果A和B在属于同一个package，而且都是使用默认的taskAffinity，那B还是会在A的task中被创建。 所以，只有A和B的taskAffinity不同时，设置了这个标志才会使B被创建到新的task。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-NO-ANIMATION"><a href="#FLAG-ACTIVITY-NO-ANIMATION" class="headerlink" title="FLAG_ACTIVITY_NO_ANIMATION"></a>FLAG_ACTIVITY_NO_ANIMATION</h3><p>禁用切换动画</p>
+<blockquote>
+<p>If set in an Intent passed to Context.startActivity(), this flag will prevent the system from applying an activity transition animation to go to the next activity state. This doesn’t mean an animation will never run – if another activity change happens that doesn’t specify this flag before the activity started here is displayed, then that transition will be used. This flag can be put to good use when you are going to do a series of activity operations but the animation seen by the user shouldn’t be driven by the first activity change but rather a later one.</p>
+<p>禁用掉系统默认的Activity切换动画。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-NO-HISTORY"><a href="#FLAG-ACTIVITY-NO-HISTORY" class="headerlink" title="FLAG_ACTIVITY_NO_HISTORY"></a>FLAG_ACTIVITY_NO_HISTORY</h3><p>不保存Activity的历史状态</p>
+<blockquote>
+<p>If set, the new activity is not kept in the history stack. As soon as the user navigates away from it, the activity is finished. This may also be set with the noHistory attribute.</p>
+<p>如果设置这个标志，新的Activity就不会在历史栈中保存。用户一旦离开，这个Activity就会finish掉。也可以使用noHistory属性设置。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-NO-USER-ACTION"><a href="#FLAG-ACTIVITY-NO-USER-ACTION" class="headerlink" title="FLAG_ACTIVITY_NO_USER_ACTION"></a>FLAG_ACTIVITY_NO_USER_ACTION</h3><blockquote>
+<p>不响应onUserLeaveHint方法</p>
+<p>If set, this flag will prevent the normal onUserLeaveHint() callback from occurring on the current frontmost activity before it is paused as the newly-started activity is brought to the front.</p>
+<p>Typically, an activity can rely on that callback to indicate that an explicit user action has caused their activity to be moved out of the foreground. The callback marks an appropriate point in the activity’s lifecycle for it to dismiss any notifications that it intends to display “until the user has seen them,” such as a blinking LED.</p>
+<p>If an activity is ever started via any non-user-driven events such as phone-call receipt or an alarm handler, this flag should be passed to Context.startActivity, ensuring that the pausing activity does not think the user has acknowledged its notification.</p>
+<p>如果设置了这个标志，可以在避免用户离开当前Activity时回调到 onUserLeaveHint(). 通常，Activity可以通过这个回调表明有明确的用户行为将当前activity切出前台。 这个回调标记了activity生命周期中的一个恰当的点，可以用来“在用户看过通知之后”将它们清除，如闪烁LED灯。</p>
+<p>如果Activity是由非用户驱动的事件（如电话呼入或闹钟响铃）启动的，那这个标志就应该被传入Context.startActivity，以确保被打断的activity不会认为用户已经看过了通知。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-PREVIOUS-IS-TOP"><a href="#FLAG-ACTIVITY-PREVIOUS-IS-TOP" class="headerlink" title="FLAG_ACTIVITY_PREVIOUS_IS_TOP"></a>FLAG_ACTIVITY_PREVIOUS_IS_TOP</h3><blockquote>
+<p>If set and this intent is being used to launch a new activity from an existing one, the current activity will not be counted as the top activity for deciding whether the new intent should be delivered to the top instead of starting a new one. The previous activity will be used as the top, with the assumption being that the current activity will finish itself immediately.</p>
+<p>如果启动Activity时设置了这个标志，那当前这个 Activity 不会被当作顶部的 Activity 来判断是否之后新Intent应该被传给栈顶Activity而不是启动一个新的Activity。之前一个的Activity会被当作栈顶，假定当前的Acitvity会立即自己finish掉。</p>
+<p>即 A—&gt; B —&gt;C，若B启动C时用了这个标志位，那在启动时B并不会被当作栈顶的Activity，而是用A做栈顶来启动C。此过程中B充当一个跳转页面。</p>
+<p>典型的场景是在应用选择页面，如果在文本中点击一个网址要跳转到浏览器，而系统中又装了不止一个浏览器应用，此时会弹出应用选择页面。在应用选择页面选择某一款浏览器启动时，就会用到这个Flag。然后应用选择页面将自己finish，以保证从浏览器返回时不会在回到选择页面。</p>
+<p>经常与FLAG_ACTIVITY_FORWARD_RESULT 一起使用。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-REORDER-TO-FRONT"><a href="#FLAG-ACTIVITY-REORDER-TO-FRONT" class="headerlink" title="FLAG_ACTIVITY_REORDER_TO_FRONT"></a>FLAG_ACTIVITY_REORDER_TO_FRONT</h3><p>任务中的Activity顺序重排</p>
+<blockquote>
+<p>If set in an Intent passed to Context.startActivity(), this flag will cause the launched activity to be brought to the front of its task’s history stack if it is already running.</p>
+<p>For example, consider a task consisting of four activities: A, B, C, D. If D calls startActivity() with an Intent that resolves to the component of activity B, then B will be brought to the front of the history stack, with this resulting order: A, C, D, B. This flag will be ignored if FLAG_ACTIVITY_CLEAR_TOP is also specified.</p>
+<p>如果设置了这个标志，而且被启动的Activity如果已经在运行，那这个Activity会被调到栈顶。</p>
+<p>比如，一个任务中有4个Activity：A，B，C，D。如果D调用了startActivity() 来启动B时使用了这个标志，那B就会被调到历史栈的栈顶，结果顺序：A，C，D，B，否则顺序会是：A，B，C，D，B。 如果使用了标志 FLAG_ACTIVITY_CLEAR_TOP，那这个FLAG_ACTIVITY_REORDER_TO_FRONT标志会被忽略。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-RESET-TASK-IF-NEEDED"><a href="#FLAG-ACTIVITY-RESET-TASK-IF-NEEDED" class="headerlink" title="FLAG_ACTIVITY_RESET_TASK_IF_NEEDED"></a>FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</h3><blockquote>
+<p>If set, and this activity is either being started in a new task or bringing to the top an existing task, then it will be launched as the front door of the task. This will result in the application of any affinities needed to have that task in the proper state (either moving activities to or from it), or simply resetting that task to its initial state if needed.</p>
+<p>这个标记在以下情况下会生效：1.启动Activity时创建新的task来放置Activity实例；2.已存在的task被放置于前台。系统会根据affinity对指定的task进行重置操作，task会压入某些Activity实例或移除某些Activity实例，</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-RETAIN-IN-RECENTS"><a href="#FLAG-ACTIVITY-RETAIN-IN-RECENTS" class="headerlink" title="FLAG_ACTIVITY_RETAIN_IN_RECENTS"></a>FLAG_ACTIVITY_RETAIN_IN_RECENTS</h3><blockquote>
+<p>pi21加入。<br>默认情况下通过FLAG_ACTIVITY_NEW_DOCUMENT启动的activity在关闭之后，task中的记录会相对应的删除。如果为了能够重新启动这个activity你想保留它，就可以使用者个flag，最近的记录将会保留在接口中以便用户去重新启动。接受该flag的activity可以使用autoRemoveFromRecents去复写这个request或者调用Activity.finishAndRemoveTask()方法。 </p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-SINGLE-TOP"><a href="#FLAG-ACTIVITY-SINGLE-TOP" class="headerlink" title="FLAG_ACTIVITY_SINGLE_TOP"></a>FLAG_ACTIVITY_SINGLE_TOP</h3><blockquote>
+<p>If set, the activity will not be launched if it is already running at the top of the history stack.</p>
+<p>设置这个标志之后，如果被启动的Activity已经在栈顶，那它就不会被再次启动。</p>
+</blockquote>
+<h3 id="FLAG-ACTIVITY-TASK-ON-HOME"><a href="#FLAG-ACTIVITY-TASK-ON-HOME" class="headerlink" title="FLAG_ACTIVITY_TASK_ON_HOME"></a>FLAG_ACTIVITY_TASK_ON_HOME</h3><p>直接返回桌面</p>
+<blockquote>
+<p>If set in an Intent passed to Context.startActivity(), this flag will cause a newly launching task to be placed on top of the current home activity task (if there is one). That is, pressing back from the task will always return the user to home even if that was not the last activity they saw. This can only be used in conjunction with FLAG_ACTIVITY_NEW_TASK.</p>
+<p>这个标志可以将一个新启动的任务置于当前的home任务(home activity task)之上（如果有的话）。也就是说，在任务中按back键总是会回到home界面，而不是回到他们之前看到的activity。这个标志只能与FLAG_ACTIVITY_NEW_TASK标志一起用。</p>
+<p>比如，A-&gt;B-&gt;C-&gt;D，如果在C启动D的时候设置了这个标志，那在D中按Back键则是直接回到桌面，而不是C。</p>
+<p>注意：</p>
+<p>只有D是在新的task中被创建时（也就是D的launchMode是singleInstance时，或者是给D指定了与C不同的taskAffinity并且加了FLAG_ACTIVITY_NEW_TASK标志时），使用 FLAG_ACTIVITY_TASK_ON_HOME标志才会生效。</p>
+<p>感觉实际使用效果和用 FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK 的效果一样。</p>
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://blog.csdn.net/javensun/article/details/8700265" target="_blank" rel="external">Android开发——Intent中的各种FLAG</a><br><a href="http://blog.csdn.net/self_study/article/details/48055011" target="_blank" rel="external">android深入解析Activity的launchMode启动模式，Intent Flag，taskAffinity</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://luoweiguang.github.io/2016/07/12/Intent中关于Activity的Flag/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://luoweiguang.github.io/2016/07/12/Intent中关于Activity的Flag/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//https-luoweiguang-github-io.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/07/16/AndroidManifest.xml文件详解/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/07/10/Activity的启动模式/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/head.jpg" alt="罗炜光's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        luo_weiguang@foxmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=luo_weiguang@foxmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">五月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">四月 2016<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/03/">三月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaWeb/">JavaWeb<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tool/">Tool<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/UML/">UML<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/luoweiguang" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>星家|不会搬砖的码农
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

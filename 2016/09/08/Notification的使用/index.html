@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            Notification的使用 | 
+        
+        星家|不会搬砖的码农
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="罗炜光">
+    <meta name="description" itemprop="description" content="一般步骤使用状态栏通知一般有4个步骤：
+1、  通过getSystemService()方法获取NotificationManager服务。
+2、  创建一个Notification.Builder对象，并为其设置各种属性。
+3、  对Notification.Builder对象设置各种属性和事件信息，构造一个对Notification对象。
+4、  通过NotificationManager类的notify()方法将通知发送到状态栏。">
+    <meta name="keywords" content="null,Android,Android基础">
+
+    <!-- Site Verification -->
+    
+    <meta name="baidu-site-verification" content="9KipFitrC9" />
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicons.pngg">
+    <link rel="icon" sizes="192x192" href="/img/favicons.png">
+    <link rel="apple-touch-icon" href="/img/favicons.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="星家|不会搬砖的码农">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://luoweiguang.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Notification的使用 | 星家|不会搬砖的码农">
+    <meta property="og:image" content="/img/favicons.png" />
+    <meta property="og:description" content="一般步骤使用状态栏通知一般有4个步骤：
+1、  通过getSystemService()方法获取NotificationManager服务。
+2、  创建一个Notification.Builder对象，并为其设置各种属性。
+3、  对Notification.Builder对象设置各种属性和事件信息，构造一个对Notification对象。
+4、  通过NotificationManager类的notify()方法将通知发送到状态栏。">
+    <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="Android基础"> 
+
+    
+        <meta property="article:published_time" content="Thu Sep 08 2016 22:00:00 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Nov 15 2017 01:17:19 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="Notification的使用 | 星家|不会搬砖的码农">
+    <meta name="twitter:description" content="一般步骤使用状态栏通知一般有4个步骤：
+1、  通过getSystemService()方法获取NotificationManager服务。
+2、  创建一个Notification.Builder对象，并为其设置各种属性。
+3、  对Notification.Builder对象设置各种属性和事件信息，构造一个对Notification对象。
+4、  通过NotificationManager类的notify()方法将通知发送到状态栏。">
+    <meta name="twitter:image" content="/img/favicons.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://luoweiguang.github.io" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://luoweiguang.github.io/2016/09/08/Notification的使用/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "星家|不会搬砖的码农",
+        "logo": "/img/favicons.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "罗炜光",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicons.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "Notification的使用",
+    "url": "https://luoweiguang.github.io/2016/09/08/Notification的使用/index.html",
+    "datePublished": "Thu Sep 08 2016 22:00:00 GMT+0800",
+    "dateModified": "Wed Nov 15 2017 01:17:19 GMT+0800",
+    "description": "一般步骤使用状态栏通知一般有4个步骤：
+1、  通过getSystemService()方法获取NotificationManager服务。
+2、  创建一个Notification.Builder对象，并为其设置各种属性。
+3、  对Notification.Builder对象设置各种属性和事件信息，构造一个对Notification对象。
+4、  通过NotificationManager类的notify()方法将通知发送到状态栏。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://luoweiguang.github.io"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+            <style>
+    
+    
+    
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    
+</style>
+
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一般步骤"><span class="post-toc-number">1.</span> <span class="post-toc-text">一般步骤</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#NotificationManager"><span class="post-toc-number">2.</span> <span class="post-toc-text">NotificationManager</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Builder对象的方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">Builder对象的方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#notification-flags参数介绍"><span class="post-toc-number">4.</span> <span class="post-toc-text">notification.flags参数介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PendingIntent"><span class="post-toc-number">5.</span> <span class="post-toc-text">PendingIntent</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自定义Notification"><span class="post-toc-number">6.</span> <span class="post-toc-text">自定义Notification</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RemoteViews"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">RemoteViews</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#支持类型"><span class="post-toc-number">6.1.1.</span> <span class="post-toc-text">支持类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常用方法"><span class="post-toc-number">6.1.2.</span> <span class="post-toc-text">常用方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#内部机制"><span class="post-toc-number">6.1.3.</span> <span class="post-toc-text">内部机制</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TaskStackBuilder-API16"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">TaskStackBuilder(API16)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常见Notification类型"><span class="post-toc-number">7.</span> <span class="post-toc-text">常见Notification类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#普通Notification"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">普通Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#点击取消显示的Notification"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">点击取消显示的Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无法滑动删除的Notification"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">无法滑动删除的Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#拥有按钮的Notification"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">拥有按钮的Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#折叠式Notification"><span class="post-toc-number">7.5.</span> <span class="post-toc-text">折叠式Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#横幅式Notification"><span class="post-toc-number">7.6.</span> <span class="post-toc-text">横幅式Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#进度条Notification"><span class="post-toc-number">7.7.</span> <span class="post-toc-text">进度条Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BigTextStyle样式的Notification"><span class="post-toc-number">7.8.</span> <span class="post-toc-text">BigTextStyle样式的Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BigPictureStyle样式的Notification"><span class="post-toc-number">7.9.</span> <span class="post-toc-text">BigPictureStyle样式的Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#InboxStyle样式的Notification"><span class="post-toc-number">7.10.</span> <span class="post-toc-text">InboxStyle样式的Notification</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MediaStyle样式的Notification"><span class="post-toc-number">7.11.</span> <span class="post-toc-text">MediaStyle样式的Notification</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">8.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/20160908999999.png)">
+    
+            <p class="article-headline-p">
+                Notification的使用
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>罗炜光</strong>
+        <span>9月 08, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=https://luoweiguang.github.io/2016/09/08/Notification的使用/">
+    
+</ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Android/">Android</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Android基础/">Android基础</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Notification的使用&url=https://luoweiguang.github.io/2016/09/08/Notification的使用/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Notification的使用&url=https://luoweiguang.github.io/2016/09/08/Notification的使用/index.html&via=罗炜光" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://luoweiguang.github.io/2016/09/08/Notification的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://luoweiguang.github.io/2016/09/08/Notification的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="一般步骤"><a href="#一般步骤" class="headerlink" title="一般步骤"></a>一般步骤</h2><p>使用状态栏通知一般有4个步骤：</p>
+<p>1、  通过getSystemService()方法获取NotificationManager服务。</p>
+<p>2、  创建一个Notification.Builder对象，并为其设置各种属性。</p>
+<p>3、  对Notification.Builder对象设置各种属性和事件信息，构造一个对Notification对象。</p>
+<p>4、  通过NotificationManager类的notify()方法将通知发送到状态栏。</p>
+<a id="more"></a>
+<h2 id="NotificationManager"><a href="#NotificationManager" class="headerlink" title="NotificationManager"></a>NotificationManager</h2><p>NotificationManager ：  是状态栏通知的管理类，负责发通知、清除通知等。<br>NotificationManager 是一个系统Service，必须通过 getSystemService()方法来获取。</p>
+<pre class=" language-java"><code class="language-java">NotificationManager manager <span class="token operator">=</span> <span class="token punctuation">(</span>NotificationManager<span class="token punctuation">)</span> <span class="token function">getSystemService</span><span class="token punctuation">(</span>Context<span class="token punctuation">.</span>NOTIFICATION_SERVICE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>public void cancel (int id)<br>取消通知</li>
+<li>public void cancel (String tag, int id)<br>取消通知</li>
+<li>public void cancelAll ()<br>取消所有通知</li>
+<li>public void notify (int id, Notification notification)<br>发布通知</li>
+<li>public void notify (String tag, int id, Notification notification)<br>发布通知</li>
+</ul>
+<h2 id="Builder对象的方法"><a href="#Builder对象的方法" class="headerlink" title="Builder对象的方法"></a>Builder对象的方法</h2><ul>
+<li><p>getNotification()<br>API小于16时使用此方法构造一个Notification对象</p>
+</li>
+<li><p>build ()<br>API大于等于16时使用此方法构造一个Notification对象</p>
+</li>
+<li><p>addAction (int icon, CharSequence title, PendingIntent intent)(在API23过时)<br>添加按钮</p>
+</li>
+<li><p>addAction (Notification.Action action)(API20)<br>添加按钮</p>
+</li>
+<li><p>setAutoCancel(boolean autoCancel)<br>设置点击通知后，状态栏自动删除通知</p>
+</li>
+<li><p>setCategory(String category)(API21)<br>设置通知类别</p>
+</li>
+<li><p>setColor(int argb)(API21)<br>设置颜色</p>
+</li>
+<li><p>setContent(RemoteViews views)<br>设置自定义视图</p>
+</li>
+<li><p>setContentInfo(CharSequence info)<br>设置信息(即右下方显示的内容)</p>
+</li>
+<li><p>setContentIntent(PendingIntent intent)<br>设置点击后意图，即打开哪个组件</p>
+</li>
+<li><p>setContentText(CharSequence text)<br>设置内容</p>
+</li>
+<li><p>setContentTitle(CharSequence title)<br>设置标题</p>
+</li>
+<li><p>setDefaults(int defaults)<br>向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合,如：<code>setDefaults(Notification.DEFAULT_SOUND|Notification.DEFAULT_VIBRATE)</code></p>
+<ul>
+<li>Notification.DEFAULT_VIBRATE    //添加默认震动提醒  需要 VIBRATE permission</li>
+<li>Notification.DEFAULT_SOUND    // 添加默认声音提醒</li>
+<li>Notification.DEFAULT_LIGHTS// 添加默认三色灯提醒</li>
+<li>Notification.DEFAULT_ALL// 添加默认以上3种全部提醒</li>
+</ul>
+</li>
+<li><p>setDeleteIntent(PendingIntent intent)<br>设置删除时的意图</p>
+</li>
+<li><p>setExtras(Bundle extras)(API19)<br>设置数据</p>
+</li>
+<li><p>setFullScreenIntent(PendingIntent intent, boolean highPriority)<br>设置悬挂式Notification </p>
+</li>
+<li><p>setGroup(String groupKey)(API20)<br>设置该通知组的密匙，即确认为哪一组</p>
+</li>
+<li><p>setGroupSummary(boolean isGroupSummary)(API20)<br>设置是否为一组通知的汇总</p>
+</li>
+<li><p>setLargeIcon(Icon icon)(API23)<br>设置大图标</p>
+</li>
+<li><p>setLargeIcon(Bitmap b)<br>设置大图标</p>
+</li>
+<li><p>setLights(int argb, int onMs, int offMs)<br>设置三色灯，ledARGB 表示灯光颜色、 ledOnMS 亮持续时间、ledOffMS 暗的时间</p>
+</li>
+<li><p>setLocalOnly(boolean localOnly)(API20)<br>设置该通知是否应不桥接至其它设备。</p>
+</li>
+<li><p>setNumber(int number)<br>设置一个数(即右下方显示的内容)</p>
+</li>
+<li><p>setOngoing(boolean ongoing)<br>设置为true时就不能滑动删除 </p>
+</li>
+<li><p>setOnlyAlertOnce(boolean onlyAlertOnce)<br>设置仅提醒一次</p>
+</li>
+<li><p>setPriority(int pri)(API16)<br>设置优先级</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>用户</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAX</td>
+<td>重要而紧急的通知，通知用户这个事件是时间上紧迫的或者需要立即处理的。</td>
+</tr>
+<tr>
+<td>HIGH</td>
+<td>高优先级用于重要的通信内容，例如短消息或者聊天，这些都是对用户来说比较有兴趣的。</td>
+</tr>
+<tr>
+<td>DEFAULT</td>
+<td>默认优先级用于没有特殊优先级分类的通知。</td>
+</tr>
+<tr>
+<td>LOW</td>
+<td>低优先级可以通知用户但又不是很紧急的事件。</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>用于后台消息(例如天气或者位置信息)。最低优先级通知将只在状态栏显示图标，只有用户下拉通知抽屉才能看到内容。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>setProgress(int max, int progress, boolean indeterminate)(API14)<br>设置进度条</p>
+</li>
+<li><p>setPublicVersion(Notification n)<br>设置安全锁屏下的通知</p>
+</li>
+<li><p>setShowWhen(boolean show)(API17)<br>是否显示时间</p>
+</li>
+<li><p>setSmallIcon(int icon, int level)<br>设置小图标</p>
+</li>
+<li><p>setSmallIcon(int icon)<br>设置小图标.</p>
+</li>
+<li><p>setSmallIcon(Icon icon)<br>设置小图标</p>
+</li>
+<li><p>setSortKey(String sortKey)(API20)<br>设置排序键</p>
+</li>
+<li><p>setSound(Uri sound, AudioAttributes audioAttributes)(API21)<br>设置铃声</p>
+</li>
+<li><p>setSound(Uri sound)<br>设置铃声</p>
+</li>
+<li><p>setSound(Uri sound, int streamType)(在API21废弃)<br>设置铃声</p>
+</li>
+<li><p>setStyle(Notification.Style style)(API16)<br>设置样式</p>
+</li>
+<li><p>setSubText(CharSequence text)(API16)<br>设置第三行的文本</p>
+</li>
+<li><p>setTicker(CharSequence tickerText, RemoteViews views)<br>设置显示在状态栏的提醒内容（5.0及之后没有效果）</p>
+</li>
+<li><p>setTicker(CharSequence tickerText)<br>设置显示在状态栏的提醒内容（5.0及之后没有效果）</p>
+</li>
+<li><p>setUsesChronometer(boolean b)(API16)<br>使用计时器</p>
+</li>
+<li><p>setVibrate(long[] pattern)<br>设置震动，其中数组的奇数位为暂停时间，偶数位为震动时间</p>
+</li>
+<li><p>setVisibility(int visibility)(API21)<br>设置可达性</p>
+<ul>
+<li>VISIBILITY_PUBLIC 只有在没有锁屏时会显示通知</li>
+<li>VISIBILITY_PRIVATE 任何情况都会显示通知</li>
+<li>VISIBILITY_SECRET 在安全锁和没有锁屏的情况下显示通知</li>
+</ul>
+</li>
+<li><p>setWhen(long when)<br>设置显示通知的时间，不设置默认获取系统时间，这个值会在Notification上面显示出来</p>
+</li>
+</ul>
+<p><strong>如果不设置LargeIcon，那么系统会默认将上面的SmallIcon显示在通知选项的最左侧，右下角的小图标将不再显示  </strong></p>
+<h2 id="notification-flags参数介绍"><a href="#notification-flags参数介绍" class="headerlink" title="notification.flags参数介绍"></a>notification.flags参数介绍</h2><p>Notification.FLAG_SHOW_LIGHTS //三色灯提醒，在使用三色灯提醒时候必须加该标志符</p>
+<p>Notification.FLAG_ONGOING_EVENT //发起正在运行事件（活动中）</p>
+<p>Notification.FLAG_INSISTENT //让声音、振动无限循环，直到用户响应 （取消或者打开）</p>
+<p>Notification.FLAG_ONLY_ALERT_ONCE //发起Notification后，铃声和震动均只执行一次</p>
+<p>Notification.FLAG_AUTO_CANCEL //用户单击通知后自动消失</p>
+<p>Notification.FLAG_NO_CLEAR //只有全部清除时，Notification才会清除 ，不清楚该通知(QQ的通知无法清除，就是用的这个)</p>
+<p>Notification.FLAG_FOREGROUND_SERVICE //表示正在运行的服务</p>
+<h2 id="PendingIntent"><a href="#PendingIntent" class="headerlink" title="PendingIntent"></a>PendingIntent</h2><p>PendingIntent是一个Intent的描述、包装，给予了这个PendingIntent 的组件在指定的事件发生或指定的时间到达时启动Activty、Service或者Broadcast。</p>
+<pre class=" language-xml"><code class="language-xml">PendingIntent contentIntent = PendingIntent.getActivity(context,
+requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+</code></pre>
+<pre class=" language-xml"><code class="language-xml">PendingIntent contentIntent = PendingIntent.getBroadcast(context,
+requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+</code></pre>
+<pre class=" language-xml"><code class="language-xml">PendingIntent contentIntent = PendingIntent.getService(context,
+requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+</code></pre>
+<ul>
+<li><p><strong>FLAG_ONE_SHOT</strong><br>当前描述的PendingIntent只能被使用一次，然后它就会被自动cancel，如果后续还有相同的PendingIntent，那么他们的send方法就会调用失败。对于通知栏消息来说，如果采用此标记，那么同类的通知只能使用一次，后续的通知单击后将无法打开</p>
+</li>
+<li><p><strong>FLAG_NO_CREATE</strong><br>当前描述的PendingIntent不会主动创建，如果当前PendingIntent之前不存在，那么getActivity、getService、getBroadcast方法会直接返回null，即获取PendingIntent失败。这个标记很少见，它无法单独使用，因此在日常开发中它并没有太多的使用意义</p>
+</li>
+<li><p><strong>FLAG_CANCEL_CURRENT</strong><br>如果描述的PendingIntent已经存在，那么它们都会被cancel，然后系统会创建一个新的PendingIntent。对于通知栏消息来说，那些cancel的消息单击后将无法打开。</p>
+</li>
+<li><p><strong>FLAG_UPDATE_CURRENT</strong><br>当前描述的PendingIntent如果已经存在，那么它们都会被更新，即它们的Intent中的Extras会被替换成最新的</p>
+</li>
+</ul>
+<p>上面4个flag中最经常使用的是FLAG_UPDATE_CURRENT，因为描述的Intent有 更新的时候需要用到这个flag去更新你的描述，否则组件在下次事件发生或时间到达的时候extras永远是第一次Intent的extras。<br>使用 FLAG_CANCEL_CURRENT也能做到更新extras，只不过是先把前面的extras清除，另外FLAG_CANCEL_CURRENT和 FLAG_UPDATE_CURRENT的区别在于能否新new一个Intent，FLAG_UPDATE_CURRENT能够新new一个 Intent，而FLAG_CANCEL_CURRENT则不能，只能使用第一次的Intent。</p>
+<p>此外还需要注意参数： <strong>int requestCode</strong></p>
+<p>对于FLAG_UPDATE_CURRENT,如果上面的requestCode 为常量，则对于先后出现的若干Notification,则所有对应的Intent里面的extra被更新为最新的，就是全部同一为最后一次的。<br>相反，如果requestCode每次不一样，则里面的Inent的数据没被更新。<br>对于FLAG_CANCEL_CURRENT,则只响应最前面的第一条Notifiacation,后面所有的不响应….</p>
+<h2 id="自定义Notification"><a href="#自定义Notification" class="headerlink" title="自定义Notification"></a>自定义Notification</h2><p>实现自定义Notification的步骤</p>
+<ul>
+<li>创建RemoteViews对象</li>
+<li>Notification.Builder对象中使用setContent(RemoteViews views)方法</li>
+</ul>
+<h3 id="RemoteViews"><a href="#RemoteViews" class="headerlink" title="RemoteViews"></a>RemoteViews</h3><p>RemoteViews表示的是一个view结构，它可以在其他进程中显示。由于它在其他进程中显示，为了能够更新它的界面，RemoteViews提供了一组基础的操作用于跨进程更新它的界面</p>
+<h4 id="支持类型"><a href="#支持类型" class="headerlink" title="支持类型"></a>支持类型</h4><p>在RemoteViews并不支持所有的View类型，支持的所有类型如下:<br>Layout:<br>    FrameLayout, LinearLayout, RelativeLayout,GridLayout</p>
+<p>View:<br>  AnalogClock, Button, Chronometer, ImageButton, ImageView, ProgressBar, TextView, ViewFlipper, ListView, GridView, StackView, AdapterViewFlipper,ViewStub</p>
+<p>  上面说描述的RemoteViews所支持的所有的View类型，RemoteViews不支持它们的子类以及其他View类型。也就是说RemoteViews中不能使用除了上述列表中以外的View，也无法使用自定义View</p>
+<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><ul>
+<li><p>setTextViewText(int viewId,Charsequence text)<br>设置TextView的文本</p>
+</li>
+<li><p>setTextViewTextSize(int viewId, int units, float size)<br>设置TextView的字体大小</p>
+</li>
+<li><p>setTextColor(int viewId, int color)<br>设置TextView的字体颜色</p>
+</li>
+<li><p>setImageViewResource(int viewId, int srcId)<br>设置ImageView的图片资源</p>
+</li>
+<li><p>setInt(int viewId, String methodName, int value)<br>反射调用View对象的参数类型为int的方法</p>
+</li>
+<li><p>setLong(int viewId, String methodName, long value)<br>反射调用View对象的参数类型为long的方法</p>
+</li>
+<li><p>setBoolean(int viewId, String methodName, boolean value)<br>反射调用View对象的参数类型为boolean的方法</p>
+</li>
+<li><p>setOnClickPendingIntent(int viewId, PendingIntent pendingIntent)<br>为View添加单击事件，事件类型只能为PendingIntent</p>
+</li>
+</ul>
+<h4 id="内部机制"><a href="#内部机制" class="headerlink" title="内部机制"></a>内部机制</h4><ul>
+<li><p>RemoteViews的构造方法 public RemoteViews(String packageName, int layoutId)，第一个参数是当前应用的包名，第二个参数是待加载的布局文件。</p>
+</li>
+<li><p>RemoteViews提供了一系列的set方法完成view的设置，这是通过反射完成的调用的。例如方法setInt(int viewId, String methodName, int value)就是反射调用view对象的名称为methodName的方法，传入参数value，同样的还有setBoolean、setLong等。方法setOnClickPendingIntent(int viewId, PendingIntent pi)用来为view添加单击事件，事件类型只能为PendingIntent。</p>
+</li>
+<li><p>系统对View界面执行一系列的更新操作，即通过set方法提交的，但更新操作不是立即执行(在RemoteViews内部会记录所有的更新操作)，而是到RemoteViews被加载后执行</p>
+</li>
+<li><p>通知和小部件分别由NotificationManager和AppWidgetManager管理，而它们通过Binder分别和SystemServer进程中的NotificationManagerService和AppWidgetManagerService进行通信。所以，布局文件实际上是两个Service加载的，运行在SystemServer进程中。</p>
+</li>
+<li><p>RemoteViews实现了Parcelable接口，它会通过Binder传递到SystemServer进程，系统会根据RemoteViews中的包名信息获取到应用中的资源，从而完成布局文件的加载。</p>
+</li>
+<li><p>系统将view操作封装成Action对象，Action同样实现了Parcelable接口，通过Binder传递到SystemServer进程。远程进程通过RemoteViews的apply方法来进行view的更新操作，RemoteViews的apply方法内部则会去遍历所有的action对象并调用它们的apply方法来进行view的更新操作。这样做的好处是不需要定义大量的Binder接口，其次批量执行RemoteViews中的更新操作提高了程序性能。</p>
+</li>
+<li><p>RemoteViews的apply和reapply方法的区别：apply方法会加载布局并更新界面，而reapply方法则只会更新界面。</p>
+</li>
+<li><p>setOnClickPendingIntent、setPendingIntentTemplate和setOnClickFillIntent的区别，setOnClickPendingIntent用于给普通的view添加点击事件，但是不能给集合(ListView和StackView)中的view设置点击事件，因为开销太大了。如果需要给ListView和StackView中的item添加点击事件，需要结合setPendingIntentTemplate和setOnClickFillIntent一起使用。</p>
+</li>
+</ul>
+<p><strong>假如报了android.app.RemoteServiceException: Bad notification posted from package ****: Couldn’t expand RemoteViews for:****问题，那么可能不一定是写错了，而是使用了Install Run功能，关闭此功能或每次修改自定义Notification的xml布局文件都要在运行前删除应用 *</strong></p>
+<h3 id="TaskStackBuilder-API16"><a href="#TaskStackBuilder-API16" class="headerlink" title="TaskStackBuilder(API16)"></a>TaskStackBuilder(API16)</h3><p>当我们想要跳转的Activity按返回时返回的是应用的主界面或其他界面，而不是桌面时，可以使用此类来构建一个任务栈</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li>创建TaskStackBuilder对象</li>
+<li>通过addNextIntent (Intent nextIntent)添加跳转的intent</li>
+<li>重复第二步，直到完成任务栈的创建</li>
+<li>通过getPendingIntent()方法获得PendingIntent</li>
+<li>设置跳转的PendingIntent</li>
+</ol>
+<p><strong>创建TaskStackBuilder对象</strong></p>
+<pre class=" language-java"><code class="language-java">TaskStackBuilder taskStackBuilder <span class="token operator">=</span> TaskStackBuilder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>当Activity设置了<strong>android:parentActivityName</strong>属性时，使用<strong>addParentStack()</strong>方法可以直接创建其指定的所有上级进栈（但不包括自己），使用<strong>addNextIntentWithParentStack()</strong>包括自己及所有上级进栈</p>
+<p><strong>例子</strong></p>
+<pre class=" language-java"><code class="language-java">TaskStackBuilder taskStackBuilder <span class="token operator">=</span> TaskStackBuilder<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Intent intent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span>MainActivity<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+taskStackBuilder<span class="token punctuation">.</span><span class="token function">addNextIntent</span><span class="token punctuation">(</span>intent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Intent intent2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span>SecondActivity<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+taskStackBuilder<span class="token punctuation">.</span><span class="token function">addNextIntent</span><span class="token punctuation">(</span>intent2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Intent intent3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span>ThirdActivity<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+taskStackBuilder<span class="token punctuation">.</span><span class="token function">addNextIntent</span><span class="token punctuation">(</span>intent3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> requestCode <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> SystemClock<span class="token punctuation">.</span><span class="token function">uptimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+remoteViews<span class="token punctuation">.</span><span class="token function">setOnClickPendingIntent</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>test<span class="token punctuation">,</span>
+                                    taskStackBuilder<span class="token punctuation">.</span><span class="token function">getPendingIntent</span><span class="token punctuation">(</span>requestCode<span class="token punctuation">,</span>
+                                    PendingIntent<span class="token punctuation">.</span>FLAG_UPDATE_CURRENT<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="常见Notification类型"><a href="#常见Notification类型" class="headerlink" title="常见Notification类型"></a>常见Notification类型</h2><h3 id="普通Notification"><a href="#普通Notification" class="headerlink" title="普通Notification"></a>普通Notification</h3><p>略</p>
+<h3 id="点击取消显示的Notification"><a href="#点击取消显示的Notification" class="headerlink" title="点击取消显示的Notification"></a>点击取消显示的Notification</h3><ul>
+<li>builder中调用setAutoCancel(true)(Notification需要设置ContentIntent才有效)</li>
+</ul>
+<h3 id="无法滑动删除的Notification"><a href="#无法滑动删除的Notification" class="headerlink" title="无法滑动删除的Notification"></a>无法滑动删除的Notification</h3><ul>
+<li>builder中调用setOngoing(true)</li>
+</ul>
+<h3 id="拥有按钮的Notification"><a href="#拥有按钮的Notification" class="headerlink" title="拥有按钮的Notification"></a>拥有按钮的Notification</h3><ul>
+<li>builder中使用addAction()添加按钮</li>
+</ul>
+<h3 id="折叠式Notification"><a href="#折叠式Notification" class="headerlink" title="折叠式Notification"></a>折叠式Notification</h3><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//设置展开后的视图</span>
+notification<span class="token punctuation">.</span>bigContentView <span class="token operator">=</span> remoteViews<span class="token punctuation">;</span>
+</code></pre>
+<h3 id="横幅式Notification"><a href="#横幅式Notification" class="headerlink" title="横幅式Notification"></a>横幅式Notification</h3><ul>
+<li>builder对象调用setFullScreenIntent()方法</li>
+</ul>
+<h3 id="进度条Notification"><a href="#进度条Notification" class="headerlink" title="进度条Notification"></a>进度条Notification</h3><ul>
+<li>builder对象调用setProgress()方法</li>
+</ul>
+<h3 id="BigTextStyle样式的Notification"><a href="#BigTextStyle样式的Notification" class="headerlink" title="BigTextStyle样式的Notification"></a>BigTextStyle样式的Notification</h3><ul>
+<li>创建Notification.BigTextStyle对象</li>
+<li>使用setBigContentTitle()设置标题</li>
+<li>使用bigText()设置正文</li>
+<li>使用setSummaryText()设置末尾行文本</li>
+<li>使用setStyle()设置此style对象</li>
+</ul>
+<h3 id="BigPictureStyle样式的Notification"><a href="#BigPictureStyle样式的Notification" class="headerlink" title="BigPictureStyle样式的Notification"></a>BigPictureStyle样式的Notification</h3><ul>
+<li>创建Notification.BigPictureStyle对象</li>
+<li>使用setBigContentTitle()设置标题</li>
+<li>使用setSummaryText()设置文本</li>
+<li>使用bigPicture()设置大图，但是太大会造成OOM</li>
+<li>使用bigLargeIcon()设置图标</li>
+<li>使用setStyle()设置此style对象</li>
+</ul>
+<h3 id="InboxStyle样式的Notification"><a href="#InboxStyle样式的Notification" class="headerlink" title="InboxStyle样式的Notification"></a>InboxStyle样式的Notification</h3><ul>
+<li>创建Notification.InboxStyle对象</li>
+<li>使用setBigContentTitle()设置标题</li>
+<li>使用addLine()添加行文本，调用n次则生成n行文本</li>
+<li>使用setSummaryText()设置末尾行文本</li>
+<li>使用setStyle()设置此style对象</li>
+</ul>
+<h3 id="MediaStyle样式的Notification"><a href="#MediaStyle样式的Notification" class="headerlink" title="MediaStyle样式的Notification"></a>MediaStyle样式的Notification</h3><ul>
+<li>builder中使用addAction()添加按钮</li>
+<li>使用setMediaSession()设置MediaSession.Token对象</li>
+<li>使用setShowActionsInCompactView()方法设置显示在通知右方的图标 最多三个</li>
+<li>使用setStyle()设置此style对象</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://book.douban.com/subject/26599538/" target="_blank" rel="external">Android开发艺术探索</a><br><a href="http://blog.csdn.net/feng88724/article/details/6259071" target="_blank" rel="external">【Android】状态栏通知Notification、NotificationManager详解</a><br><a href="http://blog.sina.com.cn/s/blog_5da93c8f01011w5j.html" target="_blank" rel="external">Notification中PendingIntent.Flag的应用 </a><br><a href="http://blog.csdn.net/vipzjyno1/article/details/25248021" target="_blank" rel="external">Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它）</a><br><a href="http://blog.csdn.net/w804518214/article/details/51231946" target="_blank" rel="external">Android Notification常见样式总结</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://luoweiguang.github.io/2016/09/08/Notification的使用/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://luoweiguang.github.io/2016/09/08/Notification的使用/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//https-luoweiguang-github-io.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/09/12/Serializable与Parcelable/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/08/27/BroadcastReceiver的使用/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/head.jpg" alt="罗炜光's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        luo_weiguang@foxmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=luo_weiguang@foxmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">五月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">四月 2016<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/03/">三月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaWeb/">JavaWeb<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tool/">Tool<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/UML/">UML<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/luoweiguang" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>星家|不会搬砖的码农
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            Android Studio的使用 | 
+        
+        星家|不会搬砖的码农
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="罗炜光">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="null,Android Studio,IDE,Tool">
+
+    <!-- Site Verification -->
+    
+    <meta name="baidu-site-verification" content="9KipFitrC9" />
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicons.pngg">
+    <link rel="icon" sizes="192x192" href="/img/favicons.png">
+    <link rel="apple-touch-icon" href="/img/favicons.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="星家|不会搬砖的码农">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://luoweiguang.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Android Studio的使用 | 星家|不会搬砖的码农">
+    <meta property="og:image" content="/img/favicons.png" />
+    <meta property="og:description" content="">
+    <meta property="og:article:tag" content="Android Studio"> <meta property="og:article:tag" content="IDE"> <meta property="og:article:tag" content="Tool"> 
+
+    
+        <meta property="article:published_time" content="Wed Aug 10 2016 22:00:00 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Nov 15 2017 01:44:56 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="Android Studio的使用 | 星家|不会搬砖的码农">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="/img/favicons.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://luoweiguang.github.io" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://luoweiguang.github.io/2016/08/10/Android Studio的使用/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "星家|不会搬砖的码农",
+        "logo": "/img/favicons.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "罗炜光",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicons.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "Android Studio的使用",
+    "url": "https://luoweiguang.github.io/2016/08/10/Android Studio的使用/index.html",
+    "datePublished": "Wed Aug 10 2016 22:00:00 GMT+0800",
+    "dateModified": "Wed Nov 15 2017 01:44:56 GMT+0800",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://luoweiguang.github.io"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+            <style>
+    
+    
+    
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    
+</style>
+
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#快捷键"><span class="post-toc-number">1.</span> <span class="post-toc-text">快捷键</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IDE"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">IDE</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编辑"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">编辑</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查找"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">查找</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重构"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">重构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#调试"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">调试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#VCS"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">VCS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标签"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">标签</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他设置"><span class="post-toc-number">2.</span> <span class="post-toc-text">其他设置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用Eclipse的快捷键方案"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">使用Eclipse的快捷键方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置界面的字体和大小"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">设置界面的字体和大小</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置编辑器的字体和大小"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">设置编辑器的字体和大小</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置行宽"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">设置行宽</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置代码格式化风格"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">设置代码格式化风格</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置LogCat颜色"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">设置LogCat颜色</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LogCat换行显示"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">LogCat换行显示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#显示行号"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">显示行号</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建自己的模板缩写"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">创建自己的模板缩写</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#插件推荐"><span class="post-toc-number">3.</span> <span class="post-toc-text">插件推荐</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用小技巧"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用小技巧</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常用模板缩写"><span class="post-toc-number">5.</span> <span class="post-toc-text">常用模板缩写</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">6.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/20160810999999.png)">
+    
+            <p class="article-headline-p">
+                Android Studio的使用
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>罗炜光</strong>
+        <span>8月 10, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=https://luoweiguang.github.io/2016/08/10/Android Studio的使用/">
+    
+</ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Android-Studio/">Android Studio</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/IDE/">IDE</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Tool/">Tool</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Android Studio的使用&url=https://luoweiguang.github.io/2016/08/10/Android Studio的使用/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Android Studio的使用&url=https://luoweiguang.github.io/2016/08/10/Android Studio的使用/index.html&via=罗炜光" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://luoweiguang.github.io/2016/08/10/Android Studio的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://luoweiguang.github.io/2016/08/10/Android Studio的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <a id="more"></a>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>帮助</td>
+<td>F1</td>
+</tr>
+<tr>
+<td>查找文件所在目录位置</td>
+<td>Alt+F1</td>
+</tr>
+<tr>
+<td>快速打开或隐藏工程面板</td>
+<td>Alt+1</td>
+</tr>
+<tr>
+<td>打开设置对话框</td>
+<td>Ctrl+Alt+S</td>
+</tr>
+<tr>
+<td>跳转到导航栏</td>
+<td>Alt+Home</td>
+</tr>
+<tr>
+<td>光标返回编辑框</td>
+<td>Esc</td>
+</tr>
+<tr>
+<td>光标返回编辑框,关闭无用的窗口</td>
+<td>Shift+Esc</td>
+</tr>
+<tr>
+<td>关闭标签页</td>
+<td>Shift+Click</td>
+</tr>
+<tr>
+<td>把焦点从编辑框移到最近使用的工具窗口</td>
+<td>F12</td>
+</tr>
+<tr>
+<td>同步</td>
+<td>Ctrl+Alt+Y</td>
+</tr>
+<tr>
+<td>打开或关闭列选择模式</td>
+<td>Alt+Shift+Insert</td>
+</tr>
+<tr>
+<td>打开当前项目/模块属性</td>
+<td>Ctrl+Alt+Shift+S</td>
+</tr>
+<tr>
+<td>查看文件的变更历史</td>
+<td>Alt+Shift+C</td>
+</tr>
+<tr>
+<td>运行</td>
+<td>Ctrl+Shift+F10</td>
+</tr>
+<tr>
+<td>debug运行</td>
+<td>Ctrl+Shift+F9</td>
+</tr>
+<tr>
+<td>资源管理器打开文件夹</td>
+<td>Ctrl+Alt+F12</td>
+</tr>
+<tr>
+<td>切换器</td>
+<td>Ctrl+Tab</td>
+</tr>
+<tr>
+<td>版本控制操作弹窗</td>
+<td>Alt+`</td>
+</tr>
+</tbody>
+</table>
+<h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>复制当前行或选中的内容</td>
+<td>Ctrl+C</td>
+</tr>
+<tr>
+<td>粘贴当前行或选中的内容</td>
+<td>Ctrl+D</td>
+</tr>
+<tr>
+<td>剪切当前行或选中的内容</td>
+<td>Ctrl+X</td>
+</tr>
+<tr>
+<td>删除行</td>
+<td>Ctrl+Y</td>
+</tr>
+<tr>
+<td>倒退</td>
+<td>Ctrl+Z</td>
+</tr>
+<tr>
+<td>向前</td>
+<td>Ctrl+Shift+Z</td>
+</tr>
+<tr>
+<td>自动修正</td>
+<td>Alt+Enter</td>
+</tr>
+<tr>
+<td>格式化代码</td>
+<td>Ctrl+Alt+L</td>
+</tr>
+<tr>
+<td>将选中的代码进行自动缩进编排</td>
+<td>Ctrl+Alt+I</td>
+</tr>
+<tr>
+<td>优化导入的类和包</td>
+<td>Ctrl+Alt+O</td>
+</tr>
+<tr>
+<td>自动生成代码</td>
+<td>Alt+Insert</td>
+</tr>
+<tr>
+<td>选最近使用的剪贴板内容并插入</td>
+<td>Ctrl+Shift+V</td>
+</tr>
+<tr>
+<td>简单粘贴</td>
+<td>Ctrl+Alt+Shift+V</td>
+</tr>
+<tr>
+<td>选最近使用的剪贴板内容并插入</td>
+<td>Ctrl+Shift+Insert</td>
+</tr>
+<tr>
+<td>在当前行的上面插入新行，并移动光标到新行</td>
+<td>Ctrl+Enter</td>
+</tr>
+<tr>
+<td>在当前行的下面插入新行，并移动光标到新行</td>
+<td>Shift+Enter</td>
+</tr>
+<tr>
+<td>自动代码</td>
+<td>Ctrl+J</td>
+</tr>
+<tr>
+<td>把选中的代码放在try{}、if{}、else{}里</td>
+<td>Ctrl+Alt+T</td>
+</tr>
+<tr>
+<td>竖编辑模式</td>
+<td>Shift+Alt+Insert</td>
+</tr>
+<tr>
+<td>注释 //</td>
+<td>Ctrl+ /</td>
+</tr>
+<tr>
+<td>注释 /…/</td>
+<td>Ctrl+Shift+ /</td>
+</tr>
+<tr>
+<td>合并成一行</td>
+<td>Ctrl+Shift+J</td>
+</tr>
+<tr>
+<td>跳转到下/上一个错误语句处</td>
+<td>F2/Shift+F2</td>
+</tr>
+<tr>
+<td>跳转到上次编辑的地方</td>
+<td>Ctrl+Shift+Back</td>
+</tr>
+<tr>
+<td>类名自动完成</td>
+<td>Ctrl+Alt+Space</td>
+</tr>
+<tr>
+<td>内容向上/下移动</td>
+<td>Shift+Alt+Up/Down</td>
+</tr>
+<tr>
+<td>方法向上/下移动</td>
+<td>Ctrl+Shift+Up/Down</td>
+</tr>
+<tr>
+<td>大小写切换</td>
+<td>Ctrl+Shift+U</td>
+</tr>
+<tr>
+<td>代码标签输入完成后，按Tab，生成代码</td>
+<td>Tab</td>
+</tr>
+<tr>
+<td>按单词删除</td>
+<td>Ctrl+Backspace</td>
+</tr>
+<tr>
+<td>语句完成</td>
+<td>Ctrl+Shift+Enter</td>
+</tr>
+<tr>
+<td>用动态模板环绕</td>
+<td>Ctrl+Alt+J</td>
+</tr>
+<tr>
+<td>展开所有方法</td>
+<td>Ctrl+Shift++</td>
+</tr>
+<tr>
+<td>收缩所有方法</td>
+<td>Ctrl+Shift+-</td>
+</tr>
+<tr>
+<td>展开当前方法</td>
+<td>Ctrl+Alt++</td>
+</tr>
+<tr>
+<td>收缩当前方法</td>
+<td>Ctrl+Alt+-</td>
+</tr>
+<tr>
+<td>最近剪贴板的内容列表</td>
+<td>Ctrl+Shift+V</td>
+</tr>
+<tr>
+<td>查看当前方法的申明</td>
+<td>Alt+Q</td>
+</tr>
+<tr>
+<td>查看当前类的申明</td>
+<td>连续两次Alt+Q</td>
+</tr>
+<tr>
+<td>根据选中内容，选择多行</td>
+<td>Alt+J</td>
+</tr>
+<tr>
+<td>列选择模式</td>
+<td>Alt+Mouse</td>
+</tr>
+<tr>
+<td>移除包裹代码</td>
+<td>Ctrl+Shift+Delete</td>
+</tr>
+</tbody>
+</table>
+<h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>显示当前文件的结构</td>
+<td>Ctrl+F12</td>
+</tr>
+<tr>
+<td>显示类继承结构图</td>
+<td>Ctrl+H</td>
+</tr>
+<tr>
+<td>显示注释文档</td>
+<td>Ctrl+Q</td>
+</tr>
+<tr>
+<td>方法参数提示</td>
+<td>Ctrl+P</td>
+</tr>
+<tr>
+<td>打开当前类的父类或者实现的接口</td>
+<td>Ctrl+U</td>
+</tr>
+<tr>
+<td>切换代码视图</td>
+<td>Alt+Left/Righ</td>
+</tr>
+<tr>
+<td>返回上次编辑的位置</td>
+<td>Ctrl+Alt+Left/Right</td>
+</tr>
+<tr>
+<td>在方法间快速移动定位</td>
+<td>Alt+Up/Down</td>
+</tr>
+<tr>
+<td>快速打开光标处的类或方法</td>
+<td>Ctrl+B</td>
+</tr>
+<tr>
+<td>选中代码，连续按会有其他效果</td>
+<td>Ctrl+W</td>
+</tr>
+<tr>
+<td>取消选择光标所在词</td>
+<td>Ctrl+Shift+W</td>
+</tr>
+<tr>
+<td>高亮错误或警告快速定位</td>
+<td>F2或Shift+F2</td>
+</tr>
+<tr>
+<td>在方法间快速移动定位</td>
+<td>Alt+Up/Down</td>
+</tr>
+<tr>
+<td>代码行级移动</td>
+<td>Alt+Shift++Up/Down</td>
+</tr>
+<tr>
+<td>复制引用，必须选择类名</td>
+<td>Ctrl+Alt+Shift+C</td>
+</tr>
+<tr>
+<td>复制路径</td>
+<td>Ctrl+Shift+C</td>
+</tr>
+<tr>
+<td>定位行</td>
+<td>Ctrl+G</td>
+</tr>
+<tr>
+<td>方法调用层级弹窗</td>
+<td>Ctrl+Alt+H</td>
+</tr>
+<tr>
+<td>定义快速查找</td>
+<td>Ctrl+Shift+I</td>
+</tr>
+</tbody>
+</table>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在当前窗口查找文本</td>
+<td>Ctrl+F</td>
+</tr>
+<tr>
+<td>在指定环境下查找文本</td>
+<td>Ctrl+Shift+F</td>
+</tr>
+<tr>
+<td>向下查找关键字出现位置</td>
+<td>F3</td>
+</tr>
+<tr>
+<td>向上一个关键字出现位置</td>
+<td>Shift+F3</td>
+</tr>
+<tr>
+<td>在当前窗口替换文本</td>
+<td>Ctrl+R</td>
+</tr>
+<tr>
+<td>在指定窗口替换文本</td>
+<td>Ctrl+Shift+R</td>
+</tr>
+<tr>
+<td>查找类</td>
+<td>Ctrl+N</td>
+</tr>
+<tr>
+<td>查找文件</td>
+<td>Ctrl+Shift+N</td>
+</tr>
+<tr>
+<td>查找项目中的方法或变量</td>
+<td>Ctrl+Shift+Alt+N</td>
+</tr>
+<tr>
+<td>查找变量的来源</td>
+<td>Ctrl+B</td>
+</tr>
+<tr>
+<td>快速打开光标处的类或方法</td>
+<td>Ctrl+Alt+B</td>
+</tr>
+<tr>
+<td>跳转到类或方法实现处</td>
+<td>Ctrl+Shift+B</td>
+</tr>
+<tr>
+<td>最近打开的文件列表</td>
+<td>Ctrl+E</td>
+</tr>
+<tr>
+<td>快速查找，效果和Ctrl+F相同</td>
+<td>Alt+F3</td>
+</tr>
+<tr>
+<td>跳转至定义变量的位置</td>
+<td>F4</td>
+</tr>
+<tr>
+<td>查询当前元素在工程中的引用</td>
+<td>Alt+F7</td>
+</tr>
+<tr>
+<td>查询当前元素在当前文件中的引用，然后按F3可以选择</td>
+<td>Ctrl+F7</td>
+</tr>
+<tr>
+<td>选中查询当前元素在工程中的引用</td>
+<td>Ctrl+Alt+F7</td>
+</tr>
+<tr>
+<td>高亮显示匹配的字符，按Esc高亮消失</td>
+<td>Ctrl+Shift+F7</td>
+</tr>
+<tr>
+<td>弹出显示查找内容</td>
+<td>Ctrl+Shift+O</td>
+</tr>
+<tr>
+<td>快速跳转搜索结果</td>
+<td>Ctrl+Alt+Up/Down</td>
+</tr>
+<tr>
+<td>高级搜索、搜索结构</td>
+<td>Ctrl+Shift+S</td>
+</tr>
+<tr>
+<td>查找Android Studio的菜单选项</td>
+<td>Ctrl+Shift+A</td>
+</tr>
+</tbody>
+</table>
+<h3 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>复制</td>
+<td>F5</td>
+</tr>
+<tr>
+<td>移动</td>
+<td>F6</td>
+</tr>
+<tr>
+<td>安全删除</td>
+<td>Alt+Delete</td>
+</tr>
+<tr>
+<td>转到父类</td>
+<td>Ctrl+U</td>
+</tr>
+<tr>
+<td>重写父类的方法</td>
+<td>Ctrl+O</td>
+</tr>
+<tr>
+<td>实现方法</td>
+<td>Ctrl+I</td>
+</tr>
+<tr>
+<td>内联</td>
+<td>Ctrl+Alt+N</td>
+</tr>
+<tr>
+<td>弹出重构菜单</td>
+<td>Ctrl+Alt+Shift+T</td>
+</tr>
+<tr>
+<td>重构-重命名</td>
+<td>Shift+F6</td>
+</tr>
+<tr>
+<td>提取代码组成方法</td>
+<td>Ctrl+Alt+M</td>
+</tr>
+<tr>
+<td>将变量更改为常量</td>
+<td>Ctrl+Alt+C</td>
+</tr>
+<tr>
+<td>定义变量引用当前对象或者方法的返回值</td>
+<td>Ctrl+Alt+V</td>
+</tr>
+<tr>
+<td>将局部变量更改为类的成员变量</td>
+<td>Ctrl+Alt+F</td>
+</tr>
+<tr>
+<td>将变量更改为方法的参数</td>
+<td>Ctrl+Alt+P</td>
+</tr>
+</tbody>
+</table>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>跳到下一步</td>
+<td>F8</td>
+</tr>
+<tr>
+<td>跳出函数、跳到下一个断点</td>
+<td>Shift+F8</td>
+</tr>
+<tr>
+<td>强制跳出函数</td>
+<td>Alt+Shift+F8</td>
+</tr>
+<tr>
+<td>进入代码</td>
+<td>F7</td>
+</tr>
+<tr>
+<td>智能进入代码</td>
+<td>Shift+F7</td>
+</tr>
+<tr>
+<td>强制进入代码</td>
+<td>Alt+Shift+F7</td>
+</tr>
+<tr>
+<td>运行至光标处</td>
+<td>Alt+F9</td>
+</tr>
+<tr>
+<td>强制运行至光标处</td>
+<td>Ctrl+Alt+F9</td>
+</tr>
+<tr>
+<td>停止运行</td>
+<td>Ctrl+F2</td>
+</tr>
+<tr>
+<td>计算变量值</td>
+<td>Alt+F8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="VCS"><a href="#VCS" class="headerlink" title="VCS"></a>VCS</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCS操作菜单</td>
+<td>Alt+ ~</td>
+</tr>
+<tr>
+<td>提交更改</td>
+<td>Ctrl+K</td>
+</tr>
+<tr>
+<td>更新项目</td>
+<td>Ctrl+T</td>
+</tr>
+<tr>
+<td>显示变化</td>
+<td>Ctrl+Alt+Shift+D</td>
+</tr>
+</tbody>
+</table>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>按键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>打上或取消标签</td>
+<td>F11</td>
+</tr>
+<tr>
+<td>带字母或者数字的标签</td>
+<td>Ctrl+F11</td>
+</tr>
+<tr>
+<td>展示标签</td>
+<td>Shift+F11</td>
+</tr>
+<tr>
+<td>如果设置数字标签则跳转到指定标志行</td>
+<td>Ctrl+数字</td>
+</tr>
+</tbody>
+</table>
+<h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><h3 id="使用Eclipse的快捷键方案"><a href="#使用Eclipse的快捷键方案" class="headerlink" title="使用Eclipse的快捷键方案"></a>使用Eclipse的快捷键方案</h3><p>设置 File-&gt;Settings 或Ctrl + Alt + S 找到keymap ，右侧找到 keymaps，选择Eclipse</p>
+<h3 id="设置界面的字体和大小"><a href="#设置界面的字体和大小" class="headerlink" title="设置界面的字体和大小"></a>设置界面的字体和大小</h3><p>设置 File-&gt;Settings 或Ctrl + Alt + S 找到Appearance &amp; Behavior -&gt;Appearance ,右侧勾选Override default fonts by(not recommended),再选择字体大小即可</p>
+<h3 id="设置编辑器的字体和大小"><a href="#设置编辑器的字体和大小" class="headerlink" title="设置编辑器的字体和大小"></a>设置编辑器的字体和大小</h3><p>设置 File-&gt;Settings 或Ctrl + Alt + S 找到Editor ——&gt;Colors&amp;Fonts——&gt;Font，右侧点击Save As新建一份自己的设置Editor Font即可</p>
+<h3 id="设置行宽"><a href="#设置行宽" class="headerlink" title="设置行宽"></a>设置行宽</h3><p>设置 File-&gt;Settings 或Ctrl + Alt + S 找到Editor-&gt;Code Style, 右侧找到Right margin (columns)，默认是100</p>
+<h3 id="设置代码格式化风格"><a href="#设置代码格式化风格" class="headerlink" title="设置代码格式化风格"></a>设置代码格式化风格</h3><p>设置 File-&gt;Settings 或Ctrl + Alt + S 找到Editor-&gt;Code Style-&gt;java,右侧找到Wrapping and Brances设置</p>
+<p>以下为个人使用的设置(大括号换行且if有括号)</p>
+<p><img src="/img/20160810000001.png" alt=""></p>
+<h3 id="设置LogCat颜色"><a href="#设置LogCat颜色" class="headerlink" title="设置LogCat颜色"></a>设置LogCat颜色</h3><p>设置 File-&gt;Settings 或Ctrl + Alt + S 找到 Editor -&gt; Colors &amp;Fonts -&gt; Android Logcat 或在上面的搜索框中输入Logcat 点中Verbose , Info, Debug等选项，然后在后面将Use Inberited attributes 去掉勾选 再将 Foreground 前的复选框选上，就可以双击后面的颜色</p>
+<p>对应色值（自用）</p>
+<table>
+<thead>
+<tr>
+<th>Log级别</th>
+<th>色值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VERBOSE</td>
+<td>BBBBBB</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td>0070BB</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>48BB31</td>
+</tr>
+<tr>
+<td>WARN</td>
+<td>BBBB23</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>FF4157</td>
+</tr>
+<tr>
+<td>ASSERT</td>
+<td>FF0006</td>
+</tr>
+</tbody>
+</table>
+<h3 id="LogCat换行显示"><a href="#LogCat换行显示" class="headerlink" title="LogCat换行显示"></a>LogCat换行显示</h3><p>点击右边图标第五个Use Soft Wraps即可</p>
+<h3 id="显示行号"><a href="#显示行号" class="headerlink" title="显示行号"></a>显示行号</h3><p>行号位置右击点选Show Line Numbers</p>
+<h3 id="创建自己的模板缩写"><a href="#创建自己的模板缩写" class="headerlink" title="创建自己的模板缩写"></a>创建自己的模板缩写</h3><p>设置 File-&gt;Settings 或Ctrl + Alt + S 找到 Editor-&gt;Live Templates，<br>右边找到一个绿色加号的图标，点击选择&gt;Live Template，这时有三个输入框，Abbreviation是模板的缩写，Description是描述，Template text输入要生成的模板代码，其中变量使用<code>$变量的名称$</code></p>
+<p>例如</p>
+<pre><code>Intent intent = new Intent($MainActivity$.this,$SecondActivity$.class);
+startActivity(intent);
+</code></pre><h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><ul>
+<li>ADB IDEA<br>使用快捷键ctrl + Shift + Alt + A</li>
+<li>ECTranslation</li>
+<li>Material Theme UI</li>
+<li>GsonFormat<br>使用快捷键Alt + S 或者Code -&gt; Generate -&gt; GsonFormat</li>
+<li>Android Material Design Icon Generator<br>File -&gt; New -&gt; Material Design Icon</li>
+<li>Android Parcelable code generator<br>Code -&gt; Generate -&gt; parcelable</li>
+<li>CodeGlance</li>
+<li>Android Layout Id Converter<br>在layout文件右键点击Convert Android layout xml</li>
+</ul>
+<h2 id="使用小技巧"><a href="#使用小技巧" class="headerlink" title="使用小技巧"></a>使用小技巧</h2><ol>
+<li><p>与分支比对（Compare With Branch (Git)）<br>● 描述：假如你的项目是使用git来管理的，你可以将当前文件或者文件夹与其他的分支进行比对。比较有用的是可以让你了解到你与主分支有多少差别。<br>● 调用：Menu → VCS → Git → Compare With Branch</p>
+</li>
+<li><p>与剪切板比对（Compare With Clipboard）<br>● 描述：将当前选中的部分与剪切板上的内容进行比对。<br>● 调用：右键选中的部分，在右键菜单中选择“Compare With Clipboard”</p>
+</li>
+<li><p>分析传入数据流（Analyze data flow to here）<br>● 描述：这个操作将会根据当前选中的变量、参数或者字段，分析出其传递到此处的路径。 当你进入某段陌生的代码，试图明白某个参数是怎么传递到此处的时候，这是一个非常有用的操作。<br>● 调用：Menu → Analyze → Analyze Data Flow to Here<br>● 快捷键：无，可以在设置中指定。<br>● 相反的操作：分析传出数据流（Analyze data flow from here），这个将会分析当前选中的变量往下传递的路径，直到结束。</p>
+</li>
+<li><p>堆栈追踪分析（Analyze Stacktrace）<br>● 描述： 这个操作读取一份堆栈追踪信息，并且使它像logcat中那样可以点击。当你从bug报告中或者终端复制了一份堆栈追踪，使用该操作可以很方便地调试。<br>● 调用：Menu → Analyze → Analyze Stacktrace<br>● 快捷键：无，可以在设置中指定。<br>● 更多：通过使用“ProGuard Unscramble Plugin”插件，也可以分析混淆过的堆栈追踪。</p>
+</li>
+<li><p>条件断点（Conditional Breakpoints）<br>● 描述：简单说，就是当设定的条件满足时，才会触发断点。你可以基于当前范围输入一个java布尔表达式，并且条件输入框内是支持代码补全的。<br>● 调用：右键需要填写表达式的断点，然后输入布尔表达式。</p>
+</li>
+<li><p>禁用断点（Disable Breakpoints）<br>● 这个操作将使得断点。当你有一个设置过复杂条件的断点或者是日志断点，当前不需要，但是下次又不用重新创建，该操作是很方便的。<br>● 调用：按住Alt，然后单击断点即可。</p>
+</li>
+<li><p>计算表达式（Evaluate Expression）<br>● 描述：这个操作可以用来查看变量的内容并且计算几乎任何有效的java表达式。需要注意的是，如果你修改了变量的状态，这个状态在你恢复代码执行后依然会保留。<br>● 快捷键：处在断点状态时，光标放在变量处，按Alt + F8，即可显示计算表达式对话框。</p>
+</li>
+<li><p>审查变量（Inspect Variable）<br>● 描述：该操作可以在不打开计算表达式对话框就能审查表达式的值。<br>● 快捷键：调试状态下，按住Alt键，然后单击表达式即可。</p>
+</li>
+<li><p>日志断点（Logging Breakpoints）<br>● 描述：这是一种打印日志而不是暂停的断点，当你想打印一些日志信息但是不想添加log代码后重新部署项目，这是一个非常有用的操作。<br>● 调用：在断点上右键，取消Suspend的勾选，然后勾选上Log evaluated Expression，并在输入框中输入你要打印的日志信息。</p>
+</li>
+<li><p>标记对象（Mark Object）<br>● 描述：当你在调试的时候，这个操作可以让你给某个特殊的对象添加一个标签，方便你后面很快地辨认。在调试时，当你从一堆相似的对象中查看某个对象是否和之前是一样的，这就是一个非常有用的操作。<br>● 调用：右键你需要标记的对象，选中Mark Object，输入标签；<br>● 快捷键：选中对象时，按F3(OS X)、F11(Windows/Linux)；</p>
+</li>
+<li><p>显示当前运行点（Show Execution Point）<br>● 描述：该操作会立刻把你的光标移回到当前debug处。<br>通常的情况是： 1. 你在某处触发了断点 2. 然后在文件中随意浏览 3. 直接调用这个快捷键，快速返回之前逐步调试的地方。<br>● 快捷键：（Debug时) Alt + F10；</p>
+</li>
+<li><p>终止进程（Stop Process）<br>● 描述：该操作会终止当前正在运行的任务。如果任务数量大于一，则显示一个列表供你选择。在终止调试或者中止编译的时候特别有用！<br>● 快捷键：Cmd + F2(OS X)、Ctrl + F2（Windows、Linux）；</p>
+</li>
+<li><p>临时断点（Temporary Breakpoints）<br>● 描述：通过该操作可以添加一个断点，这个断点会在第一次被命中的时候自动移除。<br>● 快捷键：Alt + 鼠标左键 点击代码左侧（鼠标）、Cmd + Alt + Shift + F8(OS X)、Ctrl + Alt + Shift + F8(Windows/Linux)</p>
+</li>
+<li><p>调用层级树弹窗（The Call Hierarchy Popup）<br>● 描述：该操作会给你展示 在一个方法的声明和调用之间所有可能的路径。<br>● 快捷键：Ctrl + Alt + H</p>
+</li>
+</ol>
+<h2 id="常用模板缩写"><a href="#常用模板缩写" class="headerlink" title="常用模板缩写"></a>常用模板缩写</h2><p>key</p>
+<pre><code>private static final String KEY_$value$ = &quot;$value$&quot;;
+</code></pre><p>toast</p>
+<pre><code>android.widget.Toast.makeText($className$.this, &quot;$text$&quot;, Toast.LENGTH_SHORT).show();
+</code></pre><p>logd</p>
+<pre><code>android.util.Log.d(TAG, &quot;$METHOD_NAME$: $content$&quot;);
+</code></pre><p>loge</p>
+<pre><code>android.util.Log.e(TAG, &quot;$METHOD_NAME$: $content$&quot;, $exception$);
+</code></pre><p>logi</p>
+<pre><code>android.util.Log.i(TAG, &quot;$METHOD_NAME$: $content$&quot;);
+</code></pre><p>logr</p>
+<pre><code>android.util.Log.d(TAG, &quot;$METHOD_NAME$() returned: &quot; +  $result$);
+</code></pre><p>logt</p>
+<pre><code>private static final String TAG = &quot;$className$&quot;;
+</code></pre><p>wtf</p>
+<pre><code>android.util.Log.wtf(TAG, &quot;$METHOD_NAME$: $content$&quot;, $exception$);
+</code></pre><p>appNs</p>
+<pre><code>xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+</code></pre><p>toolsNs</p>
+<pre><code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+</code></pre><p>psf</p>
+<pre><code>public static final
+</code></pre><p>fori</p>
+<pre><code>for(int $INDEX$ = 0; $INDEX$ &lt; $LIMIT$; $INDEX$++) {
+  $END$
+}
+</code></pre><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.androidchina.net/2143.html" target="_blank" rel="external">Android Studio快捷键</a><br><a href="http://jaeger.itscoder.com/android/2016/02/14/android-studio-tips.html" target="_blank" rel="external">Android Studio 小技巧合集</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://luoweiguang.github.io/2016/08/10/Android Studio的使用/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://luoweiguang.github.io/2016/08/10/Android Studio的使用/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//https-luoweiguang-github-io.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/08/23/ContentProvider的使用/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/08/09/ViewGrop及其子类属性的总结/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/head.jpg" alt="罗炜光's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        luo_weiguang@foxmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=luo_weiguang@foxmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">五月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">四月 2016<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/03/">三月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaWeb/">JavaWeb<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tool/">Tool<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/UML/">UML<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/luoweiguang" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>星家|不会搬砖的码农
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

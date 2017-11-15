@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            系统属性 | 
+        
+        星家|不会搬砖的码农
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="罗炜光">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="null,Android,Android基础">
+
+    <!-- Site Verification -->
+    
+    <meta name="baidu-site-verification" content="9KipFitrC9" />
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicons.pngg">
+    <link rel="icon" sizes="192x192" href="/img/favicons.png">
+    <link rel="apple-touch-icon" href="/img/favicons.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="星家|不会搬砖的码农">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://luoweiguang.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="系统属性 | 星家|不会搬砖的码农">
+    <meta property="og:image" content="/img/favicons.png" />
+    <meta property="og:description" content="">
+    <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="Android基础"> 
+
+    
+        <meta property="article:published_time" content="Thu Aug 04 2016 22:00:00 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Nov 15 2017 01:59:52 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="系统属性 | 星家|不会搬砖的码农">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="/img/favicons.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://luoweiguang.github.io" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://luoweiguang.github.io/2016/08/04/系统属性/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "星家|不会搬砖的码农",
+        "logo": "/img/favicons.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "罗炜光",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicons.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "系统属性",
+    "url": "https://luoweiguang.github.io/2016/08/04/系统属性/index.html",
+    "datePublished": "Thu Aug 04 2016 22:00:00 GMT+0800",
+    "dateModified": "Wed Nov 15 2017 01:59:52 GMT+0800",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://luoweiguang.github.io"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+            <style>
+    
+    
+    
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    
+</style>
+
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#android-os-Build"><span class="post-toc-number">1.</span> <span class="post-toc-text">android.os.Build</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Build"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Build</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Build-VERSION"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Build.VERSION</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Build-VERSION-CODES"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Build.VERSION_CODES</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#android-os-SystemProperty"><span class="post-toc-number">2.</span> <span class="post-toc-text">android.os.SystemProperty</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#java中的System-getProperty"><span class="post-toc-number">3.</span> <span class="post-toc-text">java中的System.getProperty()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#proc目录"><span class="post-toc-number">4.</span> <span class="post-toc-text">/proc目录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#proc目录中进程N的信息"><span class="post-toc-number">5.</span> <span class="post-toc-text">/proc目录中进程N的信息</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/20160804999999.png)">
+    
+            <p class="article-headline-p">
+                系统属性
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>罗炜光</strong>
+        <span>8月 04, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=https://luoweiguang.github.io/2016/08/04/系统属性/">
+    
+</ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Android/">Android</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Android基础/">Android基础</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=系统属性&url=https://luoweiguang.github.io/2016/08/04/系统属性/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=系统属性&url=https://luoweiguang.github.io/2016/08/04/系统属性/index.html&via=罗炜光" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://luoweiguang.github.io/2016/08/04/系统属性/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://luoweiguang.github.io/2016/08/04/系统属性/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <a id="more"></a>
+<h2 id="android-os-Build"><a href="#android-os-Build" class="headerlink" title="android.os.Build"></a>android.os.Build</h2><h3 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h3><table>
+<thead>
+<tr>
+<th>说明</th>
+<th>字段方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无线电固件版本（API14已废弃）</td>
+<td>Build.RADIO</td>
+</tr>
+<tr>
+<td>获取无线电固件版本（API14新增）</td>
+<td>Build.getRadioVersion()</td>
+</tr>
+<tr>
+<td>cpu指令集(API21废弃)</td>
+<td>SBuild.CPU_ABI</td>
+</tr>
+<tr>
+<td>cpu指令集(API21废弃)</td>
+<td>Build.CPU_ABI2</td>
+</tr>
+<tr>
+<td>主板</td>
+<td>Build.BOARD</td>
+</tr>
+<tr>
+<td>系统启动程序版本号</td>
+<td>Build.BOOTLOADER</td>
+</tr>
+<tr>
+<td>系统定制商</td>
+<td>Build.BRAND</td>
+</tr>
+<tr>
+<td>设备参数</td>
+<td>Build.DEVICE</td>
+</tr>
+<tr>
+<td>显示屏参数</td>
+<td>Build.DISPLAY</td>
+</tr>
+<tr>
+<td>唯一编号</td>
+<td>Build.FINGERPRINT</td>
+</tr>
+<tr>
+<td>硬件名称</td>
+<td>Build.HARDWARE</td>
+</tr>
+<tr>
+<td>Host值</td>
+<td>Build.HOST</td>
+</tr>
+<tr>
+<td>修订版本列表</td>
+<td>Build.ID</td>
+</tr>
+<tr>
+<td>硬件制造商</td>
+<td>Build.MANUFACTURER</td>
+</tr>
+<tr>
+<td>版本(最终用户可见的名称)</td>
+<td>Build.MODEL</td>
+</tr>
+<tr>
+<td>手机产品名</td>
+<td>Build.PRODUCT</td>
+</tr>
+<tr>
+<td>硬件序列号(API9新增)</td>
+<td>Build.SERIAL</td>
+</tr>
+<tr>
+<td>支持的32位指令集(API21新增)</td>
+<td>Build.SUPPORTED_32_BIT_ABIS</td>
+</tr>
+<tr>
+<td>支持的64位指令集(API21新增)</td>
+<td>Build.SUPPORTED_64_BIT_ABIS</td>
+</tr>
+<tr>
+<td>支持的指令集(API21新增)</td>
+<td>Build.SUPPORTED_ABIS</td>
+</tr>
+<tr>
+<td>描述Build的标签</td>
+<td>Build.TAGS</td>
+</tr>
+<tr>
+<td>编译时间</td>
+<td>Build.TIME</td>
+</tr>
+<tr>
+<td>Builder类型</td>
+<td>Build.TYPE</td>
+</tr>
+<tr>
+<td>即字符串”unknown”</td>
+<td>Build.UNKNOWN</td>
+</tr>
+<tr>
+<td>User名</td>
+<td>Build.USER</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Build-VERSION"><a href="#Build-VERSION" class="headerlink" title="Build.VERSION"></a>Build.VERSION</h3><table>
+<thead>
+<tr>
+<th>说明</th>
+<th>字段方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统(API23新增)</td>
+<td>Build.VERSION.BASE_OS</td>
+</tr>
+<tr>
+<td>目前的开发代号</td>
+<td>Build.VERSION.CODENAME</td>
+</tr>
+<tr>
+<td>源码控制版本号</td>
+<td>Build.VERSION.INCREMENTAL</td>
+</tr>
+<tr>
+<td>预发行的SDK版本(API23新增)</td>
+<td>Build.VERSION.PREVIEW_SDK_INT</td>
+<td></td>
+</tr>
+<tr>
+<td>版本字符串</td>
+<td>Build.VERSION.RELEASE</td>
+</tr>
+<tr>
+<td>SDK版本(已废弃)</td>
+<td>Build.VERSION.SDK</td>
+</tr>
+<tr>
+<td>SDK版本</td>
+<td>Build.VERSION.SDK_INT</td>
+</tr>
+<tr>
+<td>安全补丁(API23新增)</td>
+<td>Build.VERSION.SECURITY_PATCH</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Build-VERSION-CODES"><a href="#Build-VERSION-CODES" class="headerlink" title="Build.VERSION_CODES"></a>Build.VERSION_CODES</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>编号</th>
+<th>Android对应的版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build.VERSION_CODES.CUR_DEVELOPMENT</td>
+<td>10000</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.BASE</td>
+<td>1</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.BASE_1_1</td>
+<td>2</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.CUPCAKE</td>
+<td>3</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.DONUT</td>
+<td>4</td>
+<td>1.6</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.ECLAIR</td>
+<td>5</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.ECLAIR_0_1</td>
+<td>6</td>
+<td>2.0.1</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.ECLAIR_MR1</td>
+<td>7</td>
+<td>2.1x</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.FROYO</td>
+<td>8</td>
+<td>2.2x</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.GINGERBREAD</td>
+<td>9</td>
+<td>2.3,2.3.1,2.3.2</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.GINGERBREAD_MR1</td>
+<td>10</td>
+<td>2.3.3,2.3.4</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.HONEYCOMB</td>
+<td>11</td>
+<td>3.0x</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.HONEYCOMB_MR1</td>
+<td>12</td>
+<td>3.1x</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.HONEYCOMB_MR2</td>
+<td>13</td>
+<td>3.2</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.ICE_CREAM_SANDWICH</td>
+<td>14</td>
+<td>4.0, 4.0.1, 4.0.2</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1</td>
+<td>15</td>
+<td>4.0.3, 4.0.4</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.JELLY_BEAN</td>
+<td>16</td>
+<td>4.1-4.1.1</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.JELLY_BEAN_MR1</td>
+<td>17</td>
+<td>4.2, 4.2.2</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.JELLY_BEAN_MR2</td>
+<td>18</td>
+<td>4.3</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.KITKAT</td>
+<td>19</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.KITKAT_WATCH</td>
+<td>20</td>
+<td>4.4W</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.LOLLIPOP</td>
+<td>21</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.LOLLIPOP_MR</td>
+<td>22</td>
+<td>5.1</td>
+</tr>
+<tr>
+<td>Build.VERSION_CODES.M</td>
+<td>23</td>
+<td>6.0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="android-os-SystemProperty"><a href="#android-os-SystemProperty" class="headerlink" title="android.os.SystemProperty"></a>android.os.SystemProperty</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dalvik.vm.heapsize</td>
+<td>虚拟内存大小</td>
+</tr>
+<tr>
+<td>dalvik.vm.heapgrowthlimit</td>
+<td>单个应用程序最大内存限制，超过将被Kill</td>
+</tr>
+<tr>
+<td>dalvik.vm.heapstartsize</td>
+<td>应用程序分配的初始内存</td>
+</tr>
+<tr>
+<td>dalvik.vm.stack-trace-file</td>
+<td>堆栈记录调试文件</td>
+</tr>
+<tr>
+<td>debug.sf.hw</td>
+<td>强制使用GPU渲染</td>
+</tr>
+<tr>
+<td>keyguard.no_require_sim</td>
+<td>无需SIM卡也可操作手机</td>
+</tr>
+<tr>
+<td>net.bt.name</td>
+<td>蓝牙网络中显示的名称</td>
+</tr>
+<tr>
+<td>persist.sys.timezone</td>
+<td>强制时区</td>
+</tr>
+<tr>
+<td>ro.build.display.id</td>
+<td>显示的标识</td>
+</tr>
+<tr>
+<td>ro.build.id</td>
+<td>修订版本列表</td>
+</tr>
+<tr>
+<td>ro.board.platform</td>
+<td>主板平台</td>
+</tr>
+<tr>
+<td>ro.build.version.incremental</td>
+<td>版本增量</td>
+</tr>
+<tr>
+<td>ro.build.version.sdk</td>
+<td>sdk版本</td>
+</tr>
+<tr>
+<td>ro.build.version.codename</td>
+<td>版本代号</td>
+</tr>
+<tr>
+<td>ro.build.version.release</td>
+<td>系统版本</td>
+</tr>
+<tr>
+<td>ro.build.date</td>
+<td>系统编译的时间</td>
+</tr>
+<tr>
+<td>ro.build.date.utc</td>
+<td>系统编译的时间(数字版)</td>
+</tr>
+<tr>
+<td>ro.build.user</td>
+<td>编译账户</td>
+</tr>
+<tr>
+<td>ro.build.host</td>
+<td>编译主机系统</td>
+</tr>
+<tr>
+<td>ro.build.tags</td>
+<td>编译标签</td>
+</tr>
+<tr>
+<td>ro.com.android.dataroaming</td>
+<td>漫游设置</td>
+</tr>
+<tr>
+<td>ro.com.android.dateformat</td>
+<td>默认时间格式</td>
+</tr>
+<tr>
+<td>ro.com.google.clientidbase</td>
+<td>谷歌客户身份</td>
+</tr>
+<tr>
+<td>ro.config.alarm_alert</td>
+<td>默认闹铃</td>
+</tr>
+<tr>
+<td>ro.config.notification_sound</td>
+<td>默认提示音</td>
+</tr>
+<tr>
+<td>ro.config.ringtone</td>
+<td>默认铃声设置</td>
+</tr>
+<tr>
+<td>ro.opengles.version</td>
+<td>开放式绘图介面参数</td>
+</tr>
+<tr>
+<td>ro.product.model</td>
+<td>手机代号</td>
+</tr>
+<tr>
+<td>ro.product.brand</td>
+<td>手机品牌</td>
+</tr>
+<tr>
+<td>ro.product.board</td>
+<td>采用的处理器</td>
+</tr>
+<tr>
+<td>ro.product.cpu.abi</td>
+<td>cpu的指令集版本</td>
+</tr>
+<tr>
+<td>ro.product.cpu.abilist</td>
+<td>cpu支持的指令集版本列表</td>
+</tr>
+<tr>
+<td>ro.product.cpu.abilist32</td>
+<td>cpu支持的32位指令集版本列表</td>
+</tr>
+<tr>
+<td>ro.product.cpu.abilist64</td>
+<td>cpu支持的64位指令集版本列表</td>
+</tr>
+<tr>
+<td>ro.product.device</td>
+<td>采用的设备</td>
+</tr>
+<tr>
+<td>ro.product.manufacturer</td>
+<td>手机制造商</td>
+</tr>
+<tr>
+<td>ro.product.name</td>
+<td>手机正式名称</td>
+</tr>
+<tr>
+<td>ro.product.locale</td>
+<td>语言</td>
+</tr>
+<tr>
+<td>ro.ril.gprsclass</td>
+<td>GPRS设置</td>
+</tr>
+<tr>
+<td>ro.setupwizard.mode</td>
+<td>安装向导模式</td>
+</tr>
+<tr>
+<td>ro.sf.lcd_density</td>
+<td>显示屏分辨率</td>
+</tr>
+<tr>
+<td>ro.telephony.default_network</td>
+<td>默认的网络类型</td>
+</tr>
+<tr>
+<td>ro.wifi.channels</td>
+<td>无线局域网络的通信信道,空白表示自动识别</td>
+</tr>
+<tr>
+<td>wifi.interface</td>
+<td>WIFI界面</td>
+</tr>
+</tbody>
+</table>
+<h2 id="java中的System-getProperty"><a href="#java中的System-getProperty" class="headerlink" title="java中的System.getProperty()"></a>java中的System.getProperty()</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java.version</td>
+<td>Java 运行时环境版本</td>
+</tr>
+<tr>
+<td>java.vendorJava</td>
+<td>运行时环境供应商</td>
+</tr>
+<tr>
+<td>java.vendor.url</td>
+<td>Java 供应商的URL</td>
+</tr>
+<tr>
+<td>java.home</td>
+<td>Java安装目录</td>
+</tr>
+<tr>
+<td>java.vm.specification.version</td>
+<td>Java虚拟机规范版本</td>
+</tr>
+<tr>
+<td>java.vm.specification.vendor</td>
+<td>Java虚拟机规范供应商</td>
+</tr>
+<tr>
+<td>java.vm.specification.name</td>
+<td>Java虚拟机规范名称</td>
+</tr>
+<tr>
+<td>java.vm.version</td>
+<td>Java虚拟机实现版本</td>
+</tr>
+<tr>
+<td>java.vm.vendor</td>
+<td>Java虚拟机实现供应商</td>
+</tr>
+<tr>
+<td>java.vm.name</td>
+<td>Java虚拟机实现名称</td>
+</tr>
+<tr>
+<td>java.specification.version</td>
+<td>Java运行时环境规范版本</td>
+</tr>
+<tr>
+<td>java.specification.vendor</td>
+<td>Java运行时环境规范供应商</td>
+</tr>
+<tr>
+<td>java.specification.name</td>
+<td>Java运行时环境规范名称</td>
+</tr>
+<tr>
+<td>java.class.version</td>
+<td>Java类格式版本号</td>
+</tr>
+<tr>
+<td>java.class.path</td>
+<td>Java类路径</td>
+</tr>
+<tr>
+<td>java.library.path</td>
+<td>加载库时搜索的路径列表</td>
+</tr>
+<tr>
+<td>java.io.tmpdir</td>
+<td>默认的临时文件路径</td>
+</tr>
+<tr>
+<td>java.compiler</td>
+<td>要使用的 JIT 编译器的名称</td>
+</tr>
+<tr>
+<td>java.ext.dirs</td>
+<td>一个或多个扩展目录的路径</td>
+</tr>
+<tr>
+<td>os.name</td>
+<td>操作系统的名称</td>
+</tr>
+<tr>
+<td>os.arch</td>
+<td>操作系统的架构</td>
+</tr>
+<tr>
+<td>os.version</td>
+<td>操作系统的版本</td>
+</tr>
+<tr>
+<td>file.separator</td>
+<td>文件分隔符</td>
+</tr>
+<tr>
+<td>path.separator</td>
+<td>路径分隔符）</td>
+</tr>
+<tr>
+<td>line.separator</td>
+<td>行分隔符</td>
+</tr>
+<tr>
+<td>user.name</td>
+<td>用户的账户名称</td>
+</tr>
+<tr>
+<td>user.home</td>
+<td>用户的主目录</td>
+</tr>
+<tr>
+<td>user.dir</td>
+<td>用户的当前工作目录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="proc目录"><a href="#proc目录" class="headerlink" title="/proc目录"></a>/proc目录</h2><table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>acpi</td>
+<td>高级配置和电源管理接口</td>
+</tr>
+<tr>
+<td>asound</td>
+<td>声卡相关的信息</td>
+</tr>
+<tr>
+<td>buddyinfo</td>
+<td>每个内存区中每个order有多少块可用，和内存碎片问题有关</td>
+</tr>
+<tr>
+<td>bus</td>
+<td>输入设备信息</td>
+</tr>
+<tr>
+<td>cgroups</td>
+<td>cgroups子系统信息</td>
+</tr>
+<tr>
+<td>cmdline</td>
+<td>内核启动的命令行</td>
+</tr>
+<tr>
+<td>cpuinfo</td>
+<td>系统cpu的信息</td>
+</tr>
+<tr>
+<td>crypto</td>
+<td>内核使用的所有已安装的加密密码及细节</td>
+</tr>
+<tr>
+<td>devices</td>
+<td>当前挂载的所有软硬件设备(字符设备和块设备)，包括主设备号和设备名称</td>
+</tr>
+<tr>
+<td>diskstats</td>
+<td>用于显示磁盘、分区和统计信息</td>
+</tr>
+<tr>
+<td>dma</td>
+<td>驱动程序保留的DMA通道和保留它们的驱动程序名称</td>
+</tr>
+<tr>
+<td>execdomains</td>
+<td>安全相关的信息</td>
+</tr>
+<tr>
+<td>fb</td>
+<td>帧缓冲设备信息</td>
+</tr>
+<tr>
+<td>filesystems</td>
+<td>当前注册了的文件系统列表</td>
+<td></td>
+</tr>
+<tr>
+<td>fs</td>
+<td>文件系统信息</td>
+</tr>
+<tr>
+<td>interrupts</td>
+<td>当前系统的中断信息</td>
+</tr>
+<tr>
+<td>iomem</td>
+<td>记录物理地址的分配情况</td>
+</tr>
+<tr>
+<td>ioports</td>
+<td>被占用的输入/输出地址范围列表</td>
+</tr>
+<tr>
+<td>irq</td>
+<td>中断请求设备信息</td>
+</tr>
+<tr>
+<td>kallsyms</td>
+<td>内核符号表信息</td>
+</tr>
+<tr>
+<td>kcore</td>
+<td>内核核心印象</td>
+</tr>
+<tr>
+<td>kmsg</td>
+<td>输出内核消息日志</td>
+</tr>
+<tr>
+<td>kpagecount</td>
+<td>这个文件包含一个64位值，该值表示每个page被映射的次数，通过PFN索引</td>
+</tr>
+<tr>
+<td>kpageflags</td>
+<td>这个文件包含每一个page的64位的标记集，通过PFN索引。</td>
+</tr>
+<tr>
+<td>loadavg</td>
+<td>监控cpu平均负载</td>
+</tr>
+<tr>
+<td>locks</td>
+<td>打开文件上的加锁信息</td>
+</tr>
+<tr>
+<td>meminfo</td>
+<td>显示物理及虚拟内存使用情况</td>
+</tr>
+<tr>
+<td>misc</td>
+<td>内核函数misc_register登记的设备驱动程序</td>
+</tr>
+<tr>
+<td>modules</td>
+<td>加载的内核模块列表</td>
+</tr>
+<tr>
+<td>mounts</td>
+<td>当前系统所安装的文件系统信息（包括手动安装的）</td>
+</tr>
+<tr>
+<td>mtrr</td>
+<td>系统使用的Memory Type Range Registers (MTRRs)</td>
+</tr>
+<tr>
+<td>net</td>
+<td>网卡设备信息</td>
+</tr>
+<tr>
+<td>pagetypeinfo</td>
+<td>内存分页信息</td>
+</tr>
+<tr>
+<td>partitions</td>
+<td>分区信息</td>
+</tr>
+<tr>
+<td>sched_debug</td>
+<td>cpu调度信息</td>
+</tr>
+<tr>
+<td>schedstat</td>
+<td>kernel调度器的统计信息</td>
+</tr>
+<tr>
+<td>slabinfo</td>
+<td>Slab池信息</td>
+</tr>
+<tr>
+<td>softirqs</td>
+<td>软中断情况</td>
+</tr>
+<tr>
+<td>stat</td>
+<td>系统简要信息</td>
+</tr>
+<tr>
+<td>swaps</td>
+<td>对换空间的利用情况</td>
+</tr>
+<tr>
+<td>sys</td>
+<td>报告各种不同的内核参数</td>
+</tr>
+<tr>
+<td>tty</td>
+<td>tty设备信息</td>
+</tr>
+<tr>
+<td>uptime</td>
+<td>系统启动时间和系统空闲时间</td>
+</tr>
+<tr>
+<td>version</td>
+<td>系统内核版本</td>
+</tr>
+<tr>
+<td>vmallocinfo</td>
+<td>vmalloc内存分配信息</td>
+</tr>
+<tr>
+<td>vmstat</td>
+<td>统计虚拟内存信息</td>
+</tr>
+<tr>
+<td>zoneinfo</td>
+<td>显示内存空间的统计信息，对分析虚拟内存行为很有用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="proc目录中进程N的信息"><a href="#proc目录中进程N的信息" class="headerlink" title="/proc目录中进程N的信息"></a>/proc目录中进程N的信息</h2><table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/proc/N/cmdline</td>
+<td>进程启动命令</td>
+</tr>
+<tr>
+<td>/proc/N/cwd</td>
+<td>链接到进程当前工作目录</td>
+</tr>
+<tr>
+<td>/proc/N/environ</td>
+<td>进程环境变量列表</td>
+</tr>
+<tr>
+<td>/proc/N/exe</td>
+<td>链接到进程的执行命令文件</td>
+</tr>
+<tr>
+<td>/proc/N/fd</td>
+<td>包含进程相关的所有的文件描述符</td>
+</tr>
+<tr>
+<td>/proc/N/limits</td>
+<td>当前进程所使用的每一个受限资源的软限制、硬限制和管理单元；此文件仅可由实际启动当前进程的UID用户读取</td>
+</tr>
+<tr>
+<td>/proc/N/maps</td>
+<td>与进程相关的内存映射信息</td>
+</tr>
+<tr>
+<td>/proc/N/mem</td>
+<td>指代进程持有的内存，不可读</td>
+</tr>
+<tr>
+<td>/proc/N/oom_adj</td>
+<td>oom_adj相当于一个因子，它值越大，在OOM时更容易被系统kill掉</td>
+</tr>
+<tr>
+<td>/proc/N/oom_score</td>
+<td>由oom_adj计算出的，用于决定在OOM时是否被kill的是</td>
+</tr>
+<tr>
+<td>/proc/N/pagemap</td>
+<td>这个文件允许一个用户态的进程查看到每个虚拟页映射到的物理页，每一个虚拟页都包含了一个64位的值</td>
+</tr>
+<tr>
+<td>/proc/N/root</td>
+<td>链接到进程的根目录</td>
+</tr>
+<tr>
+<td>/proc/N/stat</td>
+<td>进程的状态</td>
+</tr>
+<tr>
+<td>/proc/N/statm</td>
+<td>进程使用的内存的状态</td>
+</tr>
+<tr>
+<td>/proc/N/status</td>
+<td>进程状态信息，比stat/statm更具可读性</td>
+</tr>
+<tr>
+<td>/proc/N/task</td>
+<td>目录文件，包含由当前进程所运行的每一个线程的相关信息，每个线程的相关信息文件均保存在一个由线程号（tid）命名的目录中，这类似于其内容类似于每个进程目录中的内容；</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://book.douban.com/subject/26599539/" target="_blank" rel="external">android群英传</a><br><a href="http://my.oschina.net/chaselinfo/blog/213393" target="_blank" rel="external">Android应用获取系统属性</a><br><a href="http://blog.csdn.net/anlegor/article/details/38317305" target="_blank" rel="external">Android系统/proc目录详解</a><br><a href="http://blog.csdn.net/virus026/article/details/8474359" target="_blank" rel="external">android /proc/meminfo内存信息</a><br><a href="http://blog.csdn.net/testcs_dn/article/details/43056051" target="_blank" rel="external">Java:System.getProperty()方法大全</a><br><a href="http://blog.csdn.net/zdwzzu2006/article/details/7747977" target="_blank" rel="external">Linux下/proc目录简介</a></p>
+<p>MemTotal:        2052488 kB         所有可用RAM大小<br>MemFree:         1439916 kB         LowFree与HighFree的总和，被系统留着未使用的内存<br>Buffers:            5924 kB         用来给文件做缓冲大小<br>Cached:           350720 kB         被高速缓冲存储器（cache memory）用的内存的大小（等于diskcache minus SwapCache）。<br>SwapCached:            0 kB         被高速缓冲存储器（cache memory）用的交换空间的大小。已经被交换出来的内存，仍然被存放在swapfile中，用来在需要的时候很快的被替换而不需要再次打开I/O端口<br>Active:           280524 kB         在活跃使用中的缓冲或高速缓冲存储器页面文件的大小，除非非常必要，否则不会被移作他用。<br>Inactive:         276248 kB         在不经常使用中的缓冲或高速缓冲存储器页面文件的大小，可能被用于其他途径。<br>Active(anon):     200140 kB<br>Inactive(anon):    14604 kB<br>Active(file):      80384 kB<br>Inactive(file):   261644 kB<br>Unevictable:           0 kB<br>Mlocked:               0 kB<br>SwapTotal:             0 kB         交换空间的总大小<br>SwapFree:              0 kB         未被使用交换空间的大小<br>Dirty:                 0 kB         等待被写回到磁盘的内存大小<br>Writeback:             0 kB         正在被写回到磁盘的内存大小<br>AnonPages:        199868 kB         未映射页的内存大小<br>Mapped:           123448 kB         设备和文件等映射的大小<br>Shmem:             14636 kB<br>Slab:              33084 kB         内核数据结构缓存的大小，可以减少申请和释放内存带来的消耗。<br>SReclaimable:      11608 kB         可收回Slab的大小。<br>SUnreclaim:        21476 kB         不可收回Slab的大小（SUnreclaim+SReclaimable＝Slab）。<br>KernelStack:        4280 kB<br>PageTables:         9732 kB         管理内存分页页面的索引表的大小。<br>NFS_Unstable:          0 kB         不稳定页表的大小。<br>Bounce:                0 kB<br>WritebackTmp:          0 kB<br>CommitLimit:     1026244 kB<br>Committed_AS:   13825784 kB<br>VmallocTotal:   34359738367 kB<br>VmallocUsed:       47400 kB<br>VmallocChunk:   34359624708 kB<br>HugePages_Total:       0<br>HugePages_Free:        0<br>HugePages_Rsvd:        0<br>HugePages_Surp:        0<br>Hugepagesize:       2048 kB<br>DirectMap4k:       16320 kB<br>DirectMap2M:     2080768 kB</p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://luoweiguang.github.io/2016/08/04/系统属性/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://luoweiguang.github.io/2016/08/04/系统属性/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//https-luoweiguang-github-io.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/08/08/View概述/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/08/01/资源详解/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/head.jpg" alt="罗炜光's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        luo_weiguang@foxmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=luo_weiguang@foxmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">五月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">四月 2016<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/03/">三月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaWeb/">JavaWeb<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tool/">Tool<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/UML/">UML<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/luoweiguang" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>星家|不会搬砖的码农
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            init进程 | 
+        
+        星家|不会搬砖的码农
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="罗炜光">
+    <meta name="description" itemprop="description" content="本篇基于android2.2.3
+init进程是Android启动后，由内核启动的第一份用户级进程。">
+    <meta name="keywords" content="null,Android,Android Framework">
+
+    <!-- Site Verification -->
+    
+    <meta name="baidu-site-verification" content="9KipFitrC9" />
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicons.pngg">
+    <link rel="icon" sizes="192x192" href="/img/favicons.png">
+    <link rel="apple-touch-icon" href="/img/favicons.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="星家|不会搬砖的码农">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://luoweiguang.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="init进程 | 星家|不会搬砖的码农">
+    <meta property="og:image" content="/img/favicons.png" />
+    <meta property="og:description" content="本篇基于android2.2.3
+init进程是Android启动后，由内核启动的第一份用户级进程。">
+    <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="Android Framework"> 
+
+    
+        <meta property="article:published_time" content="Sun Sep 25 2016 22:00:00 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Nov 15 2017 00:45:39 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="init进程 | 星家|不会搬砖的码农">
+    <meta name="twitter:description" content="本篇基于android2.2.3
+init进程是Android启动后，由内核启动的第一份用户级进程。">
+    <meta name="twitter:image" content="/img/favicons.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://luoweiguang.github.io" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://luoweiguang.github.io/2016/09/25/init进程/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "星家|不会搬砖的码农",
+        "logo": "/img/favicons.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "罗炜光",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicons.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "init进程",
+    "url": "https://luoweiguang.github.io/2016/09/25/init进程/index.html",
+    "datePublished": "Sun Sep 25 2016 22:00:00 GMT+0800",
+    "dateModified": "Wed Nov 15 2017 00:45:39 GMT+0800",
+    "description": "本篇基于android2.2.3
+init进程是Android启动后，由内核启动的第一份用户级进程。",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://luoweiguang.github.io"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+            <style>
+    
+    
+    
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    
+</style>
+
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内核启动过程"><span class="post-toc-number">1.</span> <span class="post-toc-text">内核启动过程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#init执行"><span class="post-toc-number">2.</span> <span class="post-toc-text">init执行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析及运行init-rc文件"><span class="post-toc-number">3.</span> <span class="post-toc-text">分析及运行init.rc文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析init-rc文件"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">分析init.rc文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Android-init脚本语言的规范"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">Android init脚本语言的规范</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Actions（行为）"><span class="post-toc-number">3.1.1.1.</span> <span class="post-toc-text">Actions（行为）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Triggers（触发器）"><span class="post-toc-number">3.1.1.2.</span> <span class="post-toc-text">Triggers（触发器）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Services（服务）"><span class="post-toc-number">3.1.1.3.</span> <span class="post-toc-text">Services（服务）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Options（选项）"><span class="post-toc-number">3.1.1.4.</span> <span class="post-toc-text">Options（选项）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Commands（命令）"><span class="post-toc-number">3.1.1.5.</span> <span class="post-toc-text">Commands（命令）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Properties（属性）"><span class="post-toc-number">3.1.1.6.</span> <span class="post-toc-text">Properties（属性）</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#init-rc文件分析函数"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">init.rc文件分析函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行early-init动作列表"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">执行early-init动作列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行init动作列表"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">执行init动作列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#动作列表的运行"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">动作列表的运行</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#服务列表的运行"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">服务列表的运行</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成设备驱动节点"><span class="post-toc-number">4.</span> <span class="post-toc-text">生成设备驱动节点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建静态设备节点"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">创建静态设备节点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建动态设备节点"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">创建动态设备节点</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#处理子进程终止"><span class="post-toc-number">5.</span> <span class="post-toc-text">处理子进程终止</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#属性服务"><span class="post-toc-number">6.</span> <span class="post-toc-text">属性服务</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">7.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/20160925999999.png)">
+    
+            <p class="article-headline-p">
+                init进程
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>罗炜光</strong>
+        <span>9月 25, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=https://luoweiguang.github.io/2016/09/25/init进程/">
+    
+</ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Android/">Android</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Android-Framework/">Android Framework</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=init进程&url=https://luoweiguang.github.io/2016/09/25/init进程/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=init进程&url=https://luoweiguang.github.io/2016/09/25/init进程/index.html&via=罗炜光" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://luoweiguang.github.io/2016/09/25/init进程/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://luoweiguang.github.io/2016/09/25/init进程/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>本篇基于android2.2.3</p>
+<p>init进程是Android启动后，由内核启动的第一份用户级进程。</p>
+<a id="more"></a>
+<h2 id="内核启动过程"><a href="#内核启动过程" class="headerlink" title="内核启动过程"></a>内核启动过程</h2><p>init进程是在顺序执行完start_kernel()函数，init_post()函数，run_init_process()函数后，最后启动执行的</p>
+<p><a href="http://androidxref.com/kernel_2.6.39/xref/init/main.c#738" target="_blank" rel="external">init/main.c</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> noinline <span class="token keyword">int</span> <span class="token function">init_post</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>execute_command<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">run_init_process</span><span class="token punctuation">(</span>execute_command<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">run_init_process</span><span class="token punctuation">(</span><span class="token string">"/sbin/init"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">run_init_process</span><span class="token punctuation">(</span><span class="token string">"/etc/init"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">run_init_process</span><span class="token punctuation">(</span><span class="token string">"/bin/init"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">run_init_process</span><span class="token punctuation">(</span><span class="token string">"/bin/sh"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>init_post()函数调用run_init_process()函数，获取注册在exxecute_command中的进程文件路径，执行execve()系统调用。execve()函数执行由参数传递过来的文件路径下的进程。</p>
+<h2 id="init执行"><a href="#init执行" class="headerlink" title="init执行"></a>init执行</h2><p><a href="http://androidxref.com/2.3.7/xref/system/core/init/init.c/#652" target="_blank" rel="external">init/init.c</a></p>
+<p>1.init进程注册信号处理器(即指定信号对应的处理函数)(2.3版本后没有这步)</p>
+<pre class=" language-c"><code class="language-c">    act<span class="token punctuation">.</span>sa_handler <span class="token operator">=</span> sigchld_handler<span class="token punctuation">;</span>
+    act<span class="token punctuation">.</span>sa_flags <span class="token operator">=</span> SA_NOCLDSTOP<span class="token punctuation">;</span>
+    act<span class="token punctuation">.</span>sa_mask <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    act<span class="token punctuation">.</span>sa_restorer <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    <span class="token function">sigaction</span><span class="token punctuation">(</span>SIGCHLD<span class="token punctuation">,</span> <span class="token operator">&amp;</span>act<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>2.对umask进行清零（umask设置了用户创建文件的默认权限）</p>
+<blockquote>
+<p>umask命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来说，umask中各个数字最大可以到7。</p>
+</blockquote>
+<pre class=" language-c"><code class="language-c">    <span class="token function">umask</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>3.创建linux中根文件系统的目录，并挂载分区</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token string">"/dev"</span><span class="token punctuation">,</span> <span class="token number">0755</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token string">"/proc"</span><span class="token punctuation">,</span> <span class="token number">0755</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token string">"/sys"</span><span class="token punctuation">,</span> <span class="token number">0755</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"tmpfs"</span><span class="token punctuation">,</span> <span class="token string">"/dev"</span><span class="token punctuation">,</span> <span class="token string">"tmpfs"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"mode=0755"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token string">"/dev/pts"</span><span class="token punctuation">,</span> <span class="token number">0755</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token string">"/dev/socket"</span><span class="token punctuation">,</span> <span class="token number">0755</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"devpts"</span><span class="token punctuation">,</span> <span class="token string">"/dev/pts"</span><span class="token punctuation">,</span> <span class="token string">"devpts"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"proc"</span><span class="token punctuation">,</span> <span class="token string">"/proc"</span><span class="token punctuation">,</span> <span class="token string">"proc"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">mount</span><span class="token punctuation">(</span><span class="token string">"sysfs"</span><span class="token punctuation">,</span> <span class="token string">"/sys"</span><span class="token punctuation">,</span> <span class="token string">"sysfs"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>4.生成/dev/_null_节点文件，标准输入，标准输出，标准错误文件描述符重定向到_null_</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">open_devnull_stdio</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>5.生成/dev/_kmsg_节点文件记录log</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">log_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>6.解析init.rc文件(init.rc文件在Android系统运行过程中用于通用的环境设置及与进程相关的定义)</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">parse_config_file</span><span class="token punctuation">(</span><span class="token string">"/init.rc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>7.初始化QEMU设备，设置模拟器环境(2.3版本后没有这步)</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">qemu_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>8.从”/proc/cmdline”中读取内核命令行参数，并在读取完后修改此文件的权限，禁止非授权用户操作此文件</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">import_kernel_cmdline</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>9.从”/proc/cpuinfo”中读取系统的CPU硬件信息。 </p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">get_hardware_name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>10.根据读取的硬件信息来解析特定于硬件的配置信息</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">snprintf</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"/init.%s.rc"</span><span class="token punctuation">,</span> hardware<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">parse_config_file</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>11.触发在init脚本文件中名字为early-init的action，并且执行其commands，其实是: on early-init</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">action_for_each_trigger</span><span class="token punctuation">(</span><span class="token string">"early-init"</span><span class="token punctuation">,</span> action_add_queue_tail<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">drain_action_queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>12.初始化动态设备管理，设备文件有变化时反应给内核</p>
+<pre class=" language-c"><code class="language-c">    device_fd <span class="token operator">=</span> <span class="token function">device_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>13.加载启动动画，如果动画打开失败，则在屏幕上打印： A N D R O I D字样。</p>
+<pre class=" language-c"><code class="language-c">    <span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token function">load_565rle_image</span><span class="token punctuation">(</span>INIT_IMAGE_FILE<span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"/dev/tty0"</span><span class="token punctuation">,</span> O_WRONLY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>fd <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>msg<span class="token punctuation">;</span>
+        msg <span class="token operator">=</span> <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"\n"</span>
+    <span class="token string">"             A N D R O I D "</span><span class="token punctuation">;</span>
+    <span class="token function">write</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>14.触发在init脚本文件中名字为init的action，并且执行其commands，其实是：on init</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">action_for_each_trigger</span><span class="token punctuation">(</span><span class="token string">"init"</span><span class="token punctuation">,</span> action_add_queue_tail<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">drain_action_queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>15.启动系统属性服务： system property service</p>
+<pre class=" language-c"><code class="language-c">property_set_fd <span class="token operator">=</span> <span class="token function">start_property_service</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>16.创建socket用来处理进程信号</p>
+<pre class=" language-c"><code class="language-c">    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">socketpair</span><span class="token punctuation">(</span>AF_UNIX<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        signal_fd <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        signal_recv_fd <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">fcntl</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> F_SETFD<span class="token punctuation">,</span> FD_CLOEXEC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">fcntl</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> F_SETFL<span class="token punctuation">,</span> O_NONBLOCK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">fcntl</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> F_SETFD<span class="token punctuation">,</span> FD_CLOEXEC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">fcntl</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> F_SETFL<span class="token punctuation">,</span> O_NONBLOCK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+</code></pre>
+<p>17.触发在init脚本文件中名字为early-boot和boot的action，并且执行其commands</p>
+<pre class=" language-c"><code class="language-c">    <span class="token function">action_for_each_trigger</span><span class="token punctuation">(</span><span class="token string">"early-boot"</span><span class="token punctuation">,</span> action_add_queue_tail<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">action_for_each_trigger</span><span class="token punctuation">(</span><span class="token string">"boot"</span><span class="token punctuation">,</span> action_add_queue_tail<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">drain_action_queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>18.启动所有属性变化触发命令，其实是： on property:ro.xx.xx=xx</p>
+<pre><code>    queue_all_property_triggers();
+    drain_action_queue();
+</code></pre><p>19.事件处理循环</p>
+<pre><code>    for(;;) {
+    int nr, i, timeout = -1;
+    for (i = 0; i &lt; fd_count; i++)
+        ufds[i].revents = 0;
+    drain_action_queue();
+    restart_processes();
+    if (process_needs_restart) {
+        timeout = (process_needs_restart - gettime()) * 1000;
+        if (timeout &lt; 0)
+            timeout = 0;
+    }
+</code></pre><h2 id="分析及运行init-rc文件"><a href="#分析及运行init-rc文件" class="headerlink" title="分析及运行init.rc文件"></a>分析及运行init.rc文件</h2><h3 id="分析init-rc文件"><a href="#分析init-rc文件" class="headerlink" title="分析init.rc文件"></a>分析init.rc文件</h3><p>动作列表用于创建所需目录，以及为某些特定文件指定权限。</p>
+<p>服务列表用于记录初始化程序需要启动的一些程序</p>
+<h4 id="Android-init脚本语言的规范"><a href="#Android-init脚本语言的规范" class="headerlink" title="Android init脚本语言的规范"></a>Android init脚本语言的规范</h4><p>Android初始化语言包含了四种类型的声明：</p>
+<ul>
+<li>Actions（动作）</li>
+<li>Commands（命令）</li>
+<li>Services（服务）</li>
+<li><p>Options（选项）</p>
+</li>
+<li><p>初始化语言以行为单位，以空格间隔的语言符号组成。</p>
+</li>
+<li>C风格的反斜杠转义符可以用来在语言符号中插入空格。</li>
+<li>双引号也可以用来防止文本被空格分成多个语言符号。</li>
+<li>当反斜杠在行末时，作为折行符。</li>
+<li>以#开始的行为注释行</li>
+<li>Actions和Service隐含声明一个新的段落，所有该段落下的Command与Option的声明皆属于该段落</li>
+<li>Actions和Service的名称是唯一的。在它们之后声明相同命名的类将被视为无效</li>
+</ul>
+<h5 id="Actions（行为）"><a href="#Actions（行为）" class="headerlink" title="Actions（行为）"></a>Actions（行为）</h5><p>Actions其实就是一系列的Commands（命令）。Actions都有一个trigger（触发器），它被用于决定action的执行时间。当一个符合action触发条件的事件发生时，action会被加入到执行队列的末尾，除非它已经在队列里了。队列中的每一个action都被依次提取出，而这个action中的每个command（命令）都将被依次执行。<br>Actions的形式如下： </p>
+<pre class=" language-xml"><code class="language-xml">        on <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>trigger</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>command1</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>command2</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>command3</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>on后面跟着一个触发器，当trigger被触发时，command1，command2，command3，会依次执行，直到下一个Action或下一个Service。<br>简单来说，Actions就是Android在启动时定义的一个启动脚本，当条件满足时，会执行该脚本，脚本里都是一些命令commands，不同的脚本用on来区分。</p>
+<h5 id="Triggers（触发器）"><a href="#Triggers（触发器）" class="headerlink" title="Triggers（触发器）"></a>Triggers（触发器）</h5><p>Triggers（触发器）是一个用于匹配特定事件类型的字符串，用于使Actions发生。</p>
+<ul>
+<li><p><code>boot</code><br>当init程序执行，并载入/init.conf文件时触发.</p>
+</li>
+<li><p><code>&lt;name&gt;=&lt;value&gt;</code><br>当改变属性值时触发</p>
+</li>
+<li><p><code>device-added-&lt;path&gt;</code><br>当添加设备时触发.</p>
+</li>
+<li><p><code>device-removed-&lt;path&gt;</code><br>当设备移除时触发.</p>
+</li>
+<li><p><code>service-exited-&lt;name&gt;</code><br>当指定的服务退出时触发.</p>
+</li>
+</ul>
+<h5 id="Services（服务）"><a href="#Services（服务）" class="headerlink" title="Services（服务）"></a>Services（服务）</h5><p>Services（服务）是一个程序，它在初始化时启动，并在退出时可选择让其重启。Services（服务）的形式如下： </p>
+<pre><code>service &lt;name&gt; &lt;pathname&gt; [ &lt;argument&gt; ]*
+           &lt;option&gt;
+           &lt;option&gt;
+           ...
+</code></pre><ul>
+<li>name:服务名</li>
+<li>pathname:当前服务对应的程序位置</li>
+<li>option：当前服务设置的选项</li>
+</ul>
+<h5 id="Options（选项）"><a href="#Options（选项）" class="headerlink" title="Options（选项）"></a>Options（选项）</h5><p>Options（选项）是一个Services（服务）的修饰。他们影响Services（服务）在何时，并以何种方式运行。</p>
+<ul>
+<li><code>critical</code><br>据设备相关的关键服务，如果在4分钟内，此服务重复启动了4次，那么设备将会重启进入还原模式。</li>
+<li><code>disabled</code><br>服务不会自动运行，必须按照名称明确指定后才可以启动</li>
+<li><code>setenv &lt;name&gt; &lt;value&gt;</code><br>设置环境变量</li>
+<li><code>socket &lt;name&gt; &lt;type&gt; &lt;perm&gt; [ &lt;user&gt; [ &lt;group&gt; ] ]</code><br>在/dev/socket/下创建一个unix domain的socket，并传递创建的文件描述符fd给服务进程.其中type必须为dgram或stream,seqpacket.用户名和组名默认为0</li>
+<li><code>user &lt;username&gt;</code><br>在执行此服务之前先切换用户名。当前默认为root.</li>
+<li><code>group &lt;groupname&gt; [ &lt;groupname&gt; ]*</code><br>类似于user,切换组名，默认组名为root</li>
+<li><code>oneshot</code><br>当此服务退出时不会自动重启.</li>
+<li><code>class &lt;name&gt;</code><br>给服务指定一个类属,这样方便操作多个服务同时启动或停止.默认情况下为default.</li>
+<li><code>onrestart</code><br>当服务重启时执行一条指令，</li>
+</ul>
+<h5 id="Commands（命令）"><a href="#Commands（命令）" class="headerlink" title="Commands（命令）"></a>Commands（命令）</h5><ul>
+<li><code>exec &lt;path&gt; [ &lt;argument&gt; ]*</code><br>fork并执行指定路径下的程序，并传递参数.这将阻塞init进程直到程序执行完毕</li>
+<li><code>export &lt;name&gt; &lt;value&gt;</code><br>设置全局环境参数，此参数被设置后对所有进程都有效.</li>
+<li><code>ifup &lt;interface&gt;</code><br>使指定的网络接口”上线”,相当激活指定的网络接口</li>
+<li><code>import &lt;filename&gt;</code><br>导入一个额外的init配置文件.</li>
+<li><code>hostname &lt;name&gt;</code><br>设置主机名</li>
+<li><code>chdir &lt;directory&gt;</code><br>改变工作目录.</li>
+<li><code>chmod &lt;octal-mode&gt; &lt;path&gt;</code><br>改变指定文件的读取权限.</li>
+<li><code>chown &lt;owner&gt; &lt;group&gt; &lt;path&gt;</code><br>改变指定文件的拥有都和组名的属性.</li>
+<li><code>chroot &lt;directory&gt;</code><br>改变进行的根目录.</li>
+<li><code>class_start &lt;serviceclass&gt;</code><br>启动所有指定服务类下的未运行服务</li>
+<li><code>class_stop &lt;serviceclass&gt;</code><br>停止指定服务类下的所有已运行的服务</li>
+<li><code>domainname &lt;name&gt;</code><br>设置域名</li>
+<li><code>insmod &lt;path&gt;</code><br>安装指定路径的模块.</li>
+<li><code>mkdir &lt;path&gt; [mode] [owner] [group]</code><br>用指定参数创建一个目录，在默认情况下，创建的目录读取权限为755.用户名为root,组名为root.</li>
+<li><code>mount &lt;type&gt; &lt;device&gt; &lt;dir&gt; [ &lt;mountoption&gt; ]*</code>    类似于linux的mount(挂载)指令</li>
+<li><code>setkey</code><br>TBD(To Be Determined),待定.</li>
+<li><code>setprop &lt;name&gt; &lt;value&gt;</code><br>设置属性及对应的值.</li>
+<li><code>setrlimit &lt;resource&gt; &lt;cur&gt; &lt;max&gt;</code><br>设置资源的rlimit(资源限制）</li>
+<li><code>start &lt;service&gt;</code><br>如果指定的服务未启动，则启动它.</li>
+<li><code>stop &lt;service&gt;</code><br>如果指定的服务当前正在运行，则停止它.</li>
+<li><code>symlink &lt;target&gt; &lt;path&gt;</code><br>创建一个符号链接.</li>
+<li><code>sysclktz &lt;mins_west_of_gmt&gt;</code><br>设置系统基准时间.</li>
+<li><code>trigger &lt;event&gt;</code><br>触发一个事件。用于将一个action与另一个 action排列</li>
+<li><code>write &lt;path&gt; &lt;string&gt; [ &lt;string&gt; ]*</code><br>往指定的文件写字符串.</li>
+</ul>
+<h5 id="Properties（属性）"><a href="#Properties（属性）" class="headerlink" title="Properties（属性）"></a>Properties（属性）</h5><p>Init更新一些系统属性以提供对正在发生的事件的监控能力: </p>
+<ul>
+<li><code>init.action</code><br>当前正在执行的动作，如果没有则为空字符串””</li>
+<li><code>init.command</code><br>当前正在执行的命令.没有则为空字符串.</li>
+<li><code>init.svc.&lt;name&gt;</code><br>当前某个服务的状态，可为”stopped”, “running”, “restarting”</li>
+</ul>
+<h4 id="init-rc文件分析函数"><a href="#init-rc文件分析函数" class="headerlink" title="init.rc文件分析函数"></a>init.rc文件分析函数</h4><p><a href="http://androidxref.com/kernel_2.6.39/xref/init/main.c#738" target="_blank" rel="external">init/main.c</a>调用<a href="http://androidxref.com/2.2.3/xref/system/core/init/parser.c#399" target="_blank" rel="external">parse_config_file(const char *fn)</a>函数来分析init.rc脚本文件</p>
+<pre class=" language-c"><code class="language-c">    <span class="token keyword">int</span> <span class="token function">parse_config_file</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>fn<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">char</span> <span class="token operator">*</span>data<span class="token punctuation">;</span>
+        data <span class="token operator">=</span> <span class="token function">read_file</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//读取文件</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>data<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token function">parse_config</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//分析读入的字符串</span>
+        <span class="token function">DUMP</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>parse_config()函数会分析read_file()函数返回的字符串，并生成动作列表(Action List)与服务列表(Service List)</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">parse_config</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>fn<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>s<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span><span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span><span class="token function">next_token</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>state<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//以行为单位分割参数传递过来的字符串</span>
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+            <span class="token keyword">case</span> T_NEWLINE<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>nargs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">int</span> kw <span class="token operator">=</span> <span class="token function">lookup_keyword</span><span class="token punctuation">(</span>args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//返回init.rc脚本中每行首个单词在keyword_list结构体数组中的数组编号</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">kw_is</span><span class="token punctuation">(</span>kw<span class="token punctuation">,</span> SECTION<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//判断是否为SECTION</span>
+                    state<span class="token punctuation">.</span><span class="token function">parse_line</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>state<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">parse_new_section</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>state<span class="token punctuation">,</span> kw<span class="token punctuation">,</span> nargs<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    state<span class="token punctuation">.</span><span class="token function">parse_line</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>state<span class="token punctuation">,</span> nargs<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            nargs <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/keywords.h#35" target="_blank" rel="external">KEYWORD</a>宏转换为keyword_info结构体数组形成的列表，其形式为:【“列表编号”】={“关键字”，“组”，“参数个数”，“映射函数”}</p>
+<p>parse_new_section()函数将kw_is()宏筛选出的命令，分别注册动动作列表或服务列表中。在parse_new_section()函数会将服务列表与动作列表分别保存到全局变量<a href="http://androidxref.com/2.2.3/xref/system/core/init/parser.c#18" target="_blank" rel="external">service_list</a>与<a href="http://androidxref.com/2.2.3/xref/system/core/init/parser.c#19" target="_blank" rel="external">action_list</a>中</p>
+<h3 id="执行early-init动作列表"><a href="#执行early-init动作列表" class="headerlink" title="执行early-init动作列表"></a>执行early-init动作列表</h3><p>Android 中的ueventd是一个守护进程，主要作用是接收uevent来创建或删除/dev/xxx(设备节点)</p>
+<h3 id="执行init动作列表"><a href="#执行init动作列表" class="headerlink" title="执行init动作列表"></a>执行init动作列表</h3><p>在“on init”根文件系统挂载部分，主要挂载/system与/data两个目录。两个目录挂载完毕后，Android的根文件系统就准备好了</p>
+<h3 id="动作列表的运行"><a href="#动作列表的运行" class="headerlink" title="动作列表的运行"></a>动作列表的运行</h3><pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">drain_action_queue</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> listnode <span class="token operator">*</span>node<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> command <span class="token operator">*</span>cmd<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> action <span class="token operator">*</span>act<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ret<span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>act <span class="token operator">=</span> <span class="token function">action_remove_queue_head</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">INFO</span><span class="token punctuation">(</span><span class="token string">"processing action %p (%s)\n"</span><span class="token punctuation">,</span> act<span class="token punctuation">,</span> act<span class="token operator">-></span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">list_for_each</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> <span class="token operator">&amp;</span>act<span class="token operator">-></span>commands<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cmd <span class="token operator">=</span> <span class="token function">node_to_item</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> <span class="token keyword">struct</span> command<span class="token punctuation">,</span> clist<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//从action_queue中取出动作列表，并转换成command结构体</span>
+            ret <span class="token operator">=</span> cmd<span class="token operator">-></span><span class="token function">func</span><span class="token punctuation">(</span>cmd<span class="token operator">-></span>nargs<span class="token punctuation">,</span> cmd<span class="token operator">-></span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">INFO</span><span class="token punctuation">(</span><span class="token string">"command '%s' r=%d\n"</span><span class="token punctuation">,</span> cmd<span class="token operator">-></span>args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>action_remove_queue_head()函数用来获取全局链表action_queue的head,action_queue保存有由待执行的命令构成的动作列表</p>
+<p>command结构体的func变量指定与动作列表中的命令相对应的函数，即各命令的映射函数</p>
+<h3 id="服务列表的运行"><a href="#服务列表的运行" class="headerlink" title="服务列表的运行"></a>服务列表的运行</h3><p>on boot段落中，最后一行命令为class_start，init进程通过该命令运行“service”段落中的所有程序。class_start命令对应的执行函数为<a href="http://androidxref.com/2.2.3/xref/system/core/init/builtins.c#146" target="_blank" rel="external">do_class_start()</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">do_class_start</span><span class="token punctuation">(</span><span class="token keyword">int</span> nargs<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>args<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">service_for_each_class</span><span class="token punctuation">(</span>args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> service_start_if_not_disabled<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>do_class_start调用<a href="http://androidxref.com/2.2.3/xref/system/core/init/parser.c#473" target="_blank" rel="external">service_for_each_class</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">service_for_each_class</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>classname<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>func<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">struct</span> service <span class="token operator">*</span>svc<span class="token punctuation">)</span><span class="token punctuation">)</span>  
+<span class="token punctuation">{</span>  
+    <span class="token keyword">struct</span> listnode <span class="token operator">*</span>node<span class="token punctuation">;</span>  
+    <span class="token keyword">struct</span> service <span class="token operator">*</span>svc<span class="token punctuation">;</span>  
+    <span class="token function">list_for_each</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> <span class="token operator">&amp;</span>service_list<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 遍历service的结构体</span>
+        svc <span class="token operator">=</span> <span class="token function">node_to_item</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> <span class="token keyword">struct</span> service<span class="token punctuation">,</span> slist<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 从slist里取出每一个结构体  </span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">strcmp</span><span class="token punctuation">(</span>svc<span class="token operator">-></span>classname<span class="token punctuation">,</span> classname<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 如果名字是匹配的话，就会进入这个判断  </span>
+            <span class="token function">func</span><span class="token punctuation">(</span>svc<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 执行service_start_if_not_disable, 并且将当前的service结构体给传递进去  </span>
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>service_for_each_class()会遍历service_list链表，找到所有和classname匹配的service节点，如果这个节点没有被disabled的话，那么就启动其对应的服务</p>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/builtins.c#127" target="_blank" rel="external">service_start_if_not_disabled</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">service_start_if_not_disabled</span><span class="token punctuation">(</span><span class="token keyword">struct</span> service <span class="token operator">*</span>svc<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>svc<span class="token operator">-></span>flags <span class="token operator">&amp;</span> SVC_DISABLED<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">service_start</span><span class="token punctuation">(</span>svc<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/init.c#158" target="_blank" rel="external">service_start</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">service_start</span><span class="token punctuation">(</span><span class="token keyword">struct</span> service <span class="token operator">*</span>svc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>dynamic_args<span class="token punctuation">)</span>  
+<span class="token punctuation">{</span>  
+    <span class="token keyword">struct</span> stat s<span class="token punctuation">;</span>  
+    pid_t pid<span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> needs_console<span class="token punctuation">;</span>  
+    <span class="token keyword">int</span> n<span class="token punctuation">;</span>  
+
+
+    <span class="token comment" spellcheck="true">// 这个service即将被启动，将其从disable或reset的状态给移除掉，置其为重新运行的状态  </span>
+    svc<span class="token operator">-></span>flags <span class="token operator">&amp;</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">~</span><span class="token punctuation">(</span>SVC_DISABLED<span class="token operator">|</span>SVC_RESTARTING<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    svc<span class="token operator">-></span>time_started <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+
+
+    <span class="token comment" spellcheck="true">// 如果这个service仍然是运行态的话，即return  </span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>svc<span class="token operator">-></span>flags <span class="token operator">&amp;</span> SVC_RUNNING<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">return</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+
+    needs_console <span class="token operator">=</span> <span class="token punctuation">(</span>svc<span class="token operator">-></span>flags <span class="token operator">&amp;</span> SVC_CONSOLE<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>needs_console <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token operator">!</span>have_console<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token function">ERROR</span><span class="token punctuation">(</span><span class="token string">"service '%s' requires console\n"</span><span class="token punctuation">,</span> svc<span class="token operator">-></span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        svc<span class="token operator">-></span>flags <span class="token operator">|</span><span class="token operator">=</span> SVC_DISABLED<span class="token punctuation">;</span>  
+        <span class="token keyword">return</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// 如果这个service的flags是初始console，但是这个已经启动了的话，就会设置当前的flags为disabled  </span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">stat</span><span class="token punctuation">(</span>svc<span class="token operator">-></span>args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>s<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 如果要执行的这个service的start的command不存在的话，返回error  </span>
+        <span class="token function">ERROR</span><span class="token punctuation">(</span><span class="token string">"cannot find '%s', disabling '%s'\n"</span><span class="token punctuation">,</span> svc<span class="token operator">-></span>args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> svc<span class="token operator">-></span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        svc<span class="token operator">-></span>flags <span class="token operator">|</span><span class="token operator">=</span> SVC_DISABLED<span class="token punctuation">;</span>  
+        <span class="token keyword">return</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token function">NOTICE</span><span class="token punctuation">(</span><span class="token string">"starting '%s'\n"</span><span class="token punctuation">,</span> svc<span class="token operator">-></span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+    <span class="token comment" spellcheck="true">// fork一个子进程，即所有从init.rc启动的service，都是一个子进程</span>
+    pid <span class="token operator">=</span> <span class="token function">fork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pid <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// pid = 0, 进入到子进程中  </span>
+        <span class="token keyword">struct</span> socketinfo <span class="token operator">*</span>si<span class="token punctuation">;</span>  
+        <span class="token keyword">struct</span> svcenvinfo <span class="token operator">*</span>ei<span class="token punctuation">;</span>  
+        <span class="token keyword">char</span> tmp<span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+        <span class="token keyword">int</span> fd<span class="token punctuation">,</span> sz<span class="token punctuation">;</span>  
+
+
+        <span class="token comment" spellcheck="true">// 得到属性存储空间的信息并加入到环境变量中  </span>
+        <span class="token function">get_property_workspace</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>fd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>sz<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token function">sprintf</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> <span class="token string">"%d,%d"</span><span class="token punctuation">,</span> <span class="token function">dup</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">,</span> sz<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token function">add_environment</span><span class="token punctuation">(</span><span class="token string">"ANDROID_PROPERTY_WORKSPACE"</span><span class="token punctuation">,</span> tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+
+        <span class="token comment" spellcheck="true">// 将service自己声明的envvars加入到环境变量中  </span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>ei <span class="token operator">=</span> svc<span class="token operator">-></span>envvars<span class="token punctuation">;</span> ei<span class="token punctuation">;</span> ei <span class="token operator">=</span> ei<span class="token operator">-></span>next<span class="token punctuation">)</span>  
+            <span class="token function">add_environment</span><span class="token punctuation">(</span>ei<span class="token operator">-></span>name<span class="token punctuation">,</span> ei<span class="token operator">-></span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+        <span class="token comment" spellcheck="true">// 根据socket info设置socket  </span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>si <span class="token operator">=</span> svc<span class="token operator">-></span>sockets<span class="token punctuation">;</span> si<span class="token punctuation">;</span> si <span class="token operator">=</span> si<span class="token operator">-></span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">int</span> s <span class="token operator">=</span> <span class="token function">create_socket</span><span class="token punctuation">(</span>si<span class="token operator">-></span>name<span class="token punctuation">,</span>
+                                <span class="token operator">!</span><span class="token function">strcmp</span><span class="token punctuation">(</span>si<span class="token operator">-></span>type<span class="token punctuation">,</span> <span class="token string">"dgram"</span><span class="token punctuation">)</span> <span class="token operator">?</span>
+                                SOCK_DGRAM <span class="token punctuation">:</span> SOCK_STREAM<span class="token punctuation">,</span>
+                                si<span class="token operator">-></span>perm<span class="token punctuation">,</span> si<span class="token operator">-></span>uid<span class="token punctuation">,</span> si<span class="token operator">-></span>gid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>s <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                <span class="token function">publish_socket</span><span class="token punctuation">(</span>si<span class="token operator">-></span>name<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span>  
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>svc<span class="token operator">-></span>ioprio_class <span class="token operator">!=</span> IoSchedClass_NONE<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">android_set_ioprio</span><span class="token punctuation">(</span><span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> svc<span class="token operator">-></span>ioprio_class<span class="token punctuation">,</span> svc<span class="token operator">-></span>ioprio_pri<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                <span class="token function">ERROR</span><span class="token punctuation">(</span><span class="token string">"Failed to set pid %d ioprio = %d,%d: %s\n"</span><span class="token punctuation">,</span>  
+                      <span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> svc<span class="token operator">-></span>ioprio_class<span class="token punctuation">,</span> svc<span class="token operator">-></span>ioprio_pri<span class="token punctuation">,</span> <span class="token function">strerror</span><span class="token punctuation">(</span>errno<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span>  
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>needs_console<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token function">setsid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token function">open_console</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  
+            <span class="token function">zap_stdio</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+
+<span class="token macro property">#<span class="token directive keyword">if</span> 0  </span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> svc<span class="token operator">-></span>args<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span> n<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token function">INFO</span><span class="token punctuation">(</span><span class="token string">"args[%d] = '%s'\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> svc<span class="token operator">-></span>args<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> ENV<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span> n<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token function">INFO</span><span class="token punctuation">(</span><span class="token string">"env[%d] = '%s'\n"</span><span class="token punctuation">,</span> n<span class="token punctuation">,</span> ENV<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+<span class="token macro property">#<span class="token directive keyword">endif</span>  </span>
+
+        <span class="token function">setpgid</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">getpid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>svc<span class="token operator">-></span>gid<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 设置gid  </span>
+             <span class="token function">setgid</span><span class="token punctuation">(</span>svc<span class="token operator">-></span>gid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>  
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>svc<span class="token operator">-></span>nr_supp_gids<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+           <span class="token function">setgroups</span><span class="token punctuation">(</span>svc<span class="token operator">-></span>nr_supp_gids<span class="token punctuation">,</span> svc<span class="token operator">-></span>supp_gids<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>  
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>svc<span class="token operator">-></span>uid<span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">// 设置uid  </span>
+             <span class="token function">setuid</span><span class="token punctuation">(</span>svc<span class="token operator">-></span>uid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>  
+
+        <span class="token comment" spellcheck="true">// 因为dynamic_args设置的为null，我们在第一次从init.rc启动的时候，一定会进入到这个判断。  </span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>dynamic_args<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+            <span class="token comment" spellcheck="true">//执行当前的service的启动的命令，也就是说从这边开始，我们就可以理解为已经从init进程中，去像kernel执行init一样，就去执行各个service所对应的启动函数了！  </span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">execve</span><span class="token punctuation">(</span>svc<span class="token operator">-></span>args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span> svc<span class="token operator">-></span>args<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span> ENV<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+                <span class="token function">ERROR</span><span class="token punctuation">(</span><span class="token string">"cannot execve('%s'): %s\n"</span><span class="token punctuation">,</span> svc<span class="token operator">-></span>args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token function">strerror</span><span class="token punctuation">(</span>errno<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">char</span> <span class="token operator">*</span>arg_ptrs<span class="token punctuation">[</span>INIT_PARSER_MAXARGS<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+            <span class="token keyword">int</span> arg_idx <span class="token operator">=</span> svc<span class="token operator">-></span>nargs<span class="token punctuation">;</span>  
+            <span class="token keyword">char</span> <span class="token operator">*</span>tmp <span class="token operator">=</span> <span class="token function">strdup</span><span class="token punctuation">(</span>dynamic_args<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token keyword">char</span> <span class="token operator">*</span>next <span class="token operator">=</span> tmp<span class="token punctuation">;</span>  
+            <span class="token keyword">char</span> <span class="token operator">*</span>bword<span class="token punctuation">;</span>  
+
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="生成设备驱动节点"><a href="#生成设备驱动节点" class="headerlink" title="生成设备驱动节点"></a>生成设备驱动节点</h2><p>init进程通过两种方式创建设备节点。第一种，以预先定义的设备信息为基础，当init进程被启动运行时，同一创建设备节点文件，这种连接已定义的设备的方法，称为“<strong>冷拔插</strong>”，第二种，在系统运行时，当有设备插入USB端口时，init经常就会接收到这一事件，为插入的设备动态创建设备节点文件，这种在系统运行的状态下连接设备，称为“<strong>热拔插</strong>”</p>
+<p>从内核2.6X开始引入udev(userspace device)实用程序。udev以守护进程的形式运行，当设备驱动被加载时，它会掌握主设备号，次设备号，以及设备类型，而后在“/dev”目录下自动创建设备节点文件</p>
+<p>在系统运行中，若某个设备被插入，内核就会加载与该设备相关的驱动程序。而后驱动程序会调用启动函数probe()，将主设备号，次设备号，以及设备类型保存到“/sys”文件系统中。然后发出uevent，并传递给udev守护进程</p>
+<p>uevent是内核向用户空间进程传递信息的信号系统，即在添加或删除设备时，内核使用uevent将设备信息传递给用户空间。uevent包含设备名称、类别、主设备号、次设备号、设备节点文件创建的目录等信息，并将这些信息传递给udev守护进程</p>
+<p>系统内核启动后，udev进程运行在用户空间内，它无法处理内核启动过程中发生的uevent。虽然内核空间内的设备驱动程序可以正常运行，但由于未创建访问设备驱动所需的设备节点文件，将会出现应用程序无法使用相关设备的问题。</p>
+<p>Linuxx系统中，在udec守护经常运行前，通过提供与加载的设备驱动程序冷拔插机制，来解决设备节点文件没被创建的问题。</p>
+<p>当内核启动后，冷拔插机制启动udev守护进程，从/sys目录下读取事先注册好的设备信息，而后引发与各设备相对应的uevent,创建设备节点文件。Android也采用这种处理方式来创建设备节点文件，不同的是使用init进程来扮演udev守护进程的角色。</p>
+<h3 id="创建静态设备节点"><a href="#创建静态设备节点" class="headerlink" title="创建静态设备节点"></a>创建静态设备节点</h3><p>内核启动完毕后，init进程启动，对于像Binder驱动程序这样无法创建设备节点文件的驱动，将采用冷拔插方式进行处理。init进程事先获知等待冷拔插处理的驱动程序，并事先定义好各驱动程序的设备节点文件。在Android源代码的<a href="http://androidxref.com/2.2.3/xref/system/core/init/devices.c#86" target="_blank" rel="external">devices.c</a>文件中，列出了init进程创建的节点文件的目录。</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">struct</span> perms_ devperms<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token number">87</span>    <span class="token punctuation">{</span> <span class="token string">"/dev/null"</span><span class="token punctuation">,</span>          <span class="token number">0666</span><span class="token punctuation">,</span>   AID_ROOT<span class="token punctuation">,</span>       AID_ROOT<span class="token punctuation">,</span>       <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token number">88</span>    <span class="token punctuation">{</span> <span class="token string">"/dev/zero"</span><span class="token punctuation">,</span>          <span class="token number">0666</span><span class="token punctuation">,</span>   AID_ROOT<span class="token punctuation">,</span>       AID_ROOT<span class="token punctuation">,</span>       <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token number">89</span>    <span class="token punctuation">{</span> <span class="token string">"/dev/full"</span><span class="token punctuation">,</span>          <span class="token number">0666</span><span class="token punctuation">,</span>   AID_ROOT<span class="token punctuation">,</span>       AID_ROOT<span class="token punctuation">,</span>       <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token number">90</span>    <span class="token punctuation">{</span> <span class="token string">"/dev/ptmx"</span><span class="token punctuation">,</span>          <span class="token number">0666</span><span class="token punctuation">,</span>   AID_ROOT<span class="token punctuation">,</span>       AID_ROOT<span class="token punctuation">,</span>       <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token number">91</span>    <span class="token punctuation">{</span> <span class="token string">"/dev/tty"</span><span class="token punctuation">,</span>           <span class="token number">0666</span><span class="token punctuation">,</span>   AID_ROOT<span class="token punctuation">,</span>       AID_ROOT<span class="token punctuation">,</span>       <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>在冷拔插处理时，init进程会引起devperms结构体，在/dev 目录下创建设备节点文件。devperms结构体中，分别列出了等待冷拔插处理的设备节点文件的名称、访问权限、用户ID、组ID。若想为用户定义的新设备创建设备节点文件，需要将相关驱动信息添加到devperms结构体中。</p>
+<p>init经常进行冷拔插处理的步骤。<br>init进程调用<a href="http://androidxref.com/2.2.3/xref/system/core/init/devices.c#671" target="_blank" rel="external">device_init()</a>函数</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">device_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+     fd <span class="token operator">=</span> <span class="token function">open_uevent_socket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    t0 <span class="token operator">=</span> <span class="token function">get_usecs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">coldboot</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> <span class="token string">"/sys/class"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">coldboot</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> <span class="token string">"/sys/block"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">coldboot</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> <span class="token string">"/sys/devices"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    t1 <span class="token operator">=</span> <span class="token function">get_usecs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">log_event_print</span><span class="token punctuation">(</span><span class="token string">"coldboot %ld uS\n"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>t1 <span class="token operator">-</span> t0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>deviice_init()函数先创建一个套接字，用来接收uevenr。再通过coldboot()函数调用do_coldboot()函数，对内核启动时注册到/sys，目录下的驱动程序，进行冷拔插处理。<br><a href="http://androidxref.com/2.2.3/xref/system/core/init/devices.c#628" target="_blank" rel="external">do_coldboot</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">do_coldboot</span><span class="token punctuation">(</span><span class="token keyword">int</span> event_fd<span class="token punctuation">,</span> DIR <span class="token operator">*</span>d<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+     fd <span class="token operator">=</span> <span class="token function">openat</span><span class="token punctuation">(</span>dfd<span class="token punctuation">,</span> <span class="token string">"uevent"</span><span class="token punctuation">,</span> O_WRONLY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>fd <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">write</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> <span class="token string">"add\n"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">handle_device_fd</span><span class="token punctuation">(</span>event_fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>do_coldboot()函数接收参数传递过来的目录路径，通过该路径查找到保存的uevent文件，向相关文件写入“add”信息，而后强制引起uevent。然后在handler_ddevice_fd()函数中接收相关的uevent，获取uevent的信息</p>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/devices.c#574" target="_blank" rel="external">handle_device_fd</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">handle_device_fd</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">;</span><span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">struct</span> uevent uevent<span class="token punctuation">;</span>
+    <span class="token function">parse_event</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> <span class="token operator">&amp;</span>uevent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">handle_device_event</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>uevent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>handle_device_fd()函数在收到uevent时，调用parse_event()函数，将uevent信息希尔uevent结构体。<br><a href="http://androidxref.com/2.2.3/xref/system/core/init/devices.c#43" target="_blank" rel="external">uevent</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> uevent <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>action<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>path<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>subsystem<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>firmware<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> major<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> minor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>向uevent结构体写完信息后，调用handle_device_event()函数，创建节点文件。</p>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/devices.c#382" target="_blank" rel="external">handle_device_event</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">handle_device_event</span><span class="token punctuation">(</span><span class="token keyword">struct</span> uevent <span class="token operator">*</span>uevent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">strncmp</span><span class="token punctuation">(</span>uevent<span class="token operator">-></span>subsystem<span class="token punctuation">,</span> <span class="token string">"block"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    block <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    base <span class="token operator">=</span> <span class="token string">"/dev/block/"</span><span class="token punctuation">;</span>
+    <span class="token function">mkdir</span><span class="token punctuation">(</span>base<span class="token punctuation">,</span> <span class="token number">0755</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">strcmp</span><span class="token punctuation">(</span>uevent<span class="token operator">-></span>action<span class="token punctuation">,</span> <span class="token string">"add"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">make_device</span><span class="token punctuation">(</span>devpath<span class="token punctuation">,</span> block<span class="token punctuation">,</span> uevent<span class="token operator">-></span>major<span class="token punctuation">,</span> uevent<span class="token operator">-></span>minor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>handle_device_event()先检查uevent结构体的subsystem变量，而后在/dev目录下创建子目录。subsystem根据硬件用途的不同而表示不同的组。若硬件是存储设备，则subsystem是block，创建的目录为/dev/block。</p>
+<p>在创建完所有下层目录后，调用make_device()函数，创建设备节点文件</p>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/devices.c#300" target="_blank" rel="external">make_device()</a></p>
+<pre><code>static void make_device(const char *path, int block, int major, int minor)
+301{
+    ...
+    mode = get_device_perm(path, &amp;uid, &amp;gid) | (block ? S_IFBLK : S_IFCHR);
+    dev = (major &lt;&lt; 8) | minor;
+    setegid(gid);
+    mknod(path, mode, dev);
+    chown(path, uid, -1);
+    setegid(AID_ROOT);
+
+}
+</code></pre><p>make_device（）函数从设备节点文件列表中获取用户ID、组ID信息。而后调用mknod函数，创建设备节点文件。</p>
+<h3 id="创建动态设备节点"><a href="#创建动态设备节点" class="headerlink" title="创建动态设备节点"></a>创建动态设备节点</h3><p>init经常支持热拔插处理，在系统运行中为新的设备创建节点文件。热插拔由init进程的事件处理循环来完成<br><a href="http://androidxref.com/2.2.3/xref/system/core/init/init.c#999" target="_blank" rel="external">init.c</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">;</span><span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+     nr <span class="token operator">=</span> <span class="token function">poll</span><span class="token punctuation">(</span>ufds<span class="token punctuation">,</span> fd_count<span class="token punctuation">,</span> timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>ufds<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>revents <span class="token operator">==</span> POLLIN<span class="token punctuation">)</span>
+        <span class="token function">handle_device_fd</span><span class="token punctuation">(</span>device_fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+     <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>init经常的事件处理循环循环调用poll()函数监听来自驱动程序的uevent，而后调用handle_device_fd()函数，创建设备节点文件。</p>
+<h2 id="处理子进程终止"><a href="#处理子进程终止" class="headerlink" title="处理子进程终止"></a>处理子进程终止</h2><p>若init启动的某个进程终止，则会对系统的运行产生影响。比如“服务管理器”，它是应用程序使用系统服务必须运行的进程。如果该进程出现意外终止，那么进程间的通讯、图像输出、音频输出等功能将无法使用。因此，在init启动的进程中，除了一小部分外，其他大部分进程出现意外终止时，init进程要重新启动它们。</p>
+<p>当init的子进程意外终止时，会向父进程init进程传递SIGCHLD信号，init进程接收该信号，检查进程选项是否设置为oneshot,若设置oneshot，init进程将放弃重启进程，否则重启进程。</p>
+<p>init进程中的事件处理循环，当其子进程终止时，init会接收传递过来的SIGCHLD信号，并调用与之相对应的处理函数<a href="http://androidxref.com/2.2.3/xref/system/core/init/init.c#436" target="_blank" rel="external">sigchld_handler()</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sigchld_handler</span><span class="token punctuation">(</span><span class="token keyword">int</span> s<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">write</span><span class="token punctuation">(</span>signal_fd<span class="token punctuation">,</span> <span class="token operator">&amp;</span>s<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>signal_fd记录信号标号，由套接字对创建，信号编号被传递至接收端套接字描述符signal_recv_fd中。由于接收信号编号的signal_recv_fd已被注册至POLL,wait_for_one_process()就会被调用执行</p>
+<pre class=" language-c"><code class="language-c">    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">;</span><span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        <span class="token comment" spellcheck="true">//当发生SIGCHLD信号时，程序就会从事件监听状态中跳出，而后执行poll()函数</span>
+        nr <span class="token operator">=</span> <span class="token function">poll</span><span class="token punctuation">(</span>ufds<span class="token punctuation">,</span> fd_count<span class="token punctuation">,</span> timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>nr <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">continue</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ufds<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>revents <span class="token operator">==</span> POLLIN<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">read</span><span class="token punctuation">(</span>signal_recv_fd<span class="token punctuation">,</span> tmp<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">wait_for_one_process</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">continue</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p>当ufds[2]被注册进数据，即触发数据输出事件时，signal_recv_fd即调用并执行wait_for_one_process()函数。wait_for_one_process()函数在产生SIGCHLD信号的进程的服务列表中，检查进程的设置选项。若选项非oneshot，则添加重启选项(SVC_RESTARTING).oneshot选项被定义在init.rc文件的service部分中，若进程带有oneshot选项。进程终止时不会被重启</p>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/init.c#334" target="_blank" rel="external">wait_for_one_process</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">wait_for_one_process</span><span class="token punctuation">(</span><span class="token keyword">int</span> block<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span> <span class="token punctuation">(</span>pid <span class="token operator">=</span> <span class="token function">waitpid</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>status<span class="token punctuation">,</span> block <span class="token operator">?</span> <span class="token number">0</span> <span class="token punctuation">:</span> WNOHANG<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> errno <span class="token operator">==</span> EINTR <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    svc <span class="token operator">=</span> <span class="token function">service_find_by_pid</span><span class="token punctuation">(</span>pid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>svc<span class="token operator">-></span>flags <span class="token operator">&amp;</span> SVC_ONESHOT<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">kill</span><span class="token punctuation">(</span><span class="token operator">-</span>pid<span class="token punctuation">,</span> SIGKILL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//删除进程持有的所有socketDescriptor</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>si <span class="token operator">=</span> svc<span class="token operator">-></span>sockets<span class="token punctuation">;</span> si<span class="token punctuation">;</span> si <span class="token operator">=</span> si<span class="token operator">-></span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        <span class="token function">unlink</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//删除SVC_RUNNING</span>
+    svc<span class="token operator">-></span>pid <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    svc<span class="token operator">-></span>flags <span class="token operator">&amp;</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">~</span>SVC_RUNNING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//将已设置进程标记为SVC_DISABLED，并从wait_for_one_process()函数中跳出，相关进程将不被重新启动</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>svc<span class="token operator">-></span>flags <span class="token operator">&amp;</span> SVC_ONESHOT<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        svc<span class="token operator">-></span>flags <span class="token operator">|</span><span class="token operator">=</span> SVC_DISABLED<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>svc<span class="token operator">-></span>flags <span class="token operator">&amp;</span> SVC_DISABLED<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">notify_service_state</span><span class="token punctuation">(</span>svc<span class="token operator">-></span>name<span class="token punctuation">,</span> <span class="token string">"stopped"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token comment" spellcheck="true">//向当前服务项的标记中添加SVC_RESTART。</span>
+    svc<span class="token operator">-></span>flags <span class="token operator">|</span><span class="token operator">=</span> SVC_RESTARTING<span class="token punctuation">;</span>
+
+     <span class="token comment" spellcheck="true">//检查待重启的进程在init.rc文件中是否带有onrestart选项</span>
+    <span class="token function">list_for_each</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> <span class="token operator">&amp;</span>svc<span class="token operator">-></span>onrestart<span class="token punctuation">.</span>commands<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cmd <span class="token operator">=</span> <span class="token function">node_to_item</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> <span class="token keyword">struct</span> command<span class="token punctuation">,</span> clist<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cmd<span class="token operator">-></span><span class="token function">func</span><span class="token punctuation">(</span>cmd<span class="token operator">-></span>nargs<span class="token punctuation">,</span> cmd<span class="token operator">-></span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>当产生信号的进程被终止时，waitpid()函数用来回收进程所占用的资源，它带有三个参数。其中，第一个参数pid为欲等待的子进程的识别码，设置为-1,表示查看所有子进程是否发出SIGCHLD信号,第二个参数status,用于返回子进程的结束状态，第三个参数决定waitpid()函数是否应用阻塞处理方式。waitpid()函数返回pid值，返回值即是产生SIGCHLD信号的进程的pid号</li>
+<li>service_find_by_pid()函数用来取出与服务列表中终止经常相关的服务项目</li>
+<li>在取出的服务项目选项中，检查SVC_ONESHOT是否已设置。SVC_ONESHOT表示经常仅运行一次，带有此选项的进程在运行一次后，不会被重新启动，由kill(-pid,SIGKILL)函数终止</li>
+</ul>
+<p>当wait_for_one_process()函数 执行完毕后，事件处理循环中的<a href="http://androidxref.com/2.2.3/xref/system/core/init/init.c#427" target="_blank" rel="external">restart_process()</a>函数就会被调用执行。</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">restart_processes</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    process_needs_restart <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token function">service_for_each_flags</span><span class="token punctuation">(</span>SVC_RESTARTING<span class="token punctuation">,</span>restart_service_if_needed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>restart_processes()函数运行服务列表中带有SVC_RESTART标记的进程。当一个带有此标记的进程被终止，产生SIGCHLD信号时，restart_processes()函数将重新启动它。</p>
+<h2 id="属性服务"><a href="#属性服务" class="headerlink" title="属性服务"></a>属性服务</h2><p>属性变更请求是init事件处理循环处理的另一个事件。在Android平台中，为了让运行中的所有进程共享系统运行时所需要的各种设置值，系统开辟了属性存储区域，并提供了访问该区域的API.属性由键与值构造，其表现形式为“键=值”</p>
+<p>在Android平台中，访问属性值时，添加了访问权限控制，增强了访问的安全性。</p>
+<p>系统中所有运行的进程都可以访问属性值，但仅有init进程才能修改属性值。</p>
+<p>在其他进程修改属性值时，必须向init进程提出请求，最终由init进程负责修改属性值。在此过程中，init进程会先检查各属性的访问权限，而后再修改属性值</p>
+<p><strong>当属性值更改后，若定义在init.rc文件中的某个特定条件得到满足，则与此条件相匹配的动作就会发生</strong></p>
+<p>init经常的<a href="http://androidxref.com/2.2.3/xref/system/core/init/init.c#806" target="_blank" rel="external">main()</a>函数中，调用property_init()函数，用来初始化属性域</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token function">property_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/property_service.c#490" target="_blank" rel="external">property_init</a></p>
+<pre><code>void property_init(void)
+{
+    init_property_area();
+    load_properties_from_file(PROP_PATH_RAMDISK_DEFAULT);
+}
+</code></pre><p>property_init()函数首先在内存中开辟一块共享区域，而后将其作用在ashmen(Android Shared Menory)。外部进程可以访问这块共享内存域，获取属性值，但它们不能通过直接访问共享内存域的方法来更改属性值。一个进程若想更改属性值，必须先向init进程提交属性变更请求，由init进程更改共享内存中的属性值</p>
+<p>init_property_area()函数被调用执行后，所创建的属性域被初始化。</p>
+<p>属性域的起始1024个字节作为属性域头，用来保存管理属性表所需要的一些数值。其余31616个字节空间被划分成247块，每块大小为128字节，用来保存属性值。</p>
+<p>访问属性值使用property_get()<br>修改属性值使用property_set()</p>
+<p>在属性域完成初始化之后，就会从指定的文件中读取初始值，并设置为属性值<br>init的<a href="http://androidxref.com/2.2.3/xref/system/core/init/init.c#939" target="_blank" rel="external">main()</a>函数中调用了start_property_service()函数，用来创建启动属性服务所需要的Unix域套接字，并保存套接字描述符。</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    property_set_fd <span class="token operator">=</span> <span class="token function">start_property_service</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/property_service.c#496" target="_blank" rel="external">start_property_service</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">start_property_service</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> fd<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//读取存储在各文件中的基本设置值，将它们设置为属性值</span>
+    <span class="token function">load_properties_from_file</span><span class="token punctuation">(</span>PROP_PATH_SYSTEM_BUILD<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">load_properties_from_file</span><span class="token punctuation">(</span>PROP_PATH_SYSTEM_DEFAULT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">load_properties_from_file</span><span class="token punctuation">(</span>PROP_PATH_LOCAL_OVERRIDE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//读取保存在/data/property目录中的属性值</span>
+    <span class="token function">load_persistent_properties</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//创建名称为/dev/socket/property_service的Unix域套接字</span>
+    fd <span class="token operator">=</span> <span class="token function">create_socket</span><span class="token punctuation">(</span>PROP_SERVICE_NAME<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0666</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>fd <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token function">fcntl</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> F_SETFD<span class="token punctuation">,</span> FD_CLOEXEC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">fcntl</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> F_SETFL<span class="token punctuation">,</span> O_NONBLOCK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">listen</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> fd<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>/data/property目录中保存着系统运行中其他进程新生成的属性值或更改的属性值，属性的key被用作文件名，value被保存在文件中。</p>
+<p>通过上面创建的Unix域套接字，接收到属性变更请求后，init进程就会调用<a href="http://androidxref.com/2.2.3/xref/system/core/init/property_service.c#347" target="_blank" rel="external">handle_property_set_fd()</a>函数</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">handle_property_set_fd</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">struct</span> ucred cr<span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token comment" spellcheck="true">//从套接字获取SO_PEERCRED值，以便检查传递信息的进程的访问权限</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getsockopt</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> SOL_SOCKET<span class="token punctuation">,</span> SO_PEERCRED<span class="token punctuation">,</span> <span class="token operator">&amp;</span>cr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>cr_size<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>     <span class="token punctuation">{</span>
+        <span class="token function">close</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">ERROR</span><span class="token punctuation">(</span><span class="token string">"Unable to recieve socket options\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">switch</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>cmd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> PROP_MSG_SETPROP<span class="token punctuation">:</span>
+        msg<span class="token punctuation">.</span>name<span class="token punctuation">[</span>PROP_NAME_MAX<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        msg<span class="token punctuation">.</span>value<span class="token punctuation">[</span>PROP_VALUE_MAX<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">memcmp</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>name<span class="token punctuation">,</span><span class="token string">"ctl."</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//检查访问权限，仅有system server、root以及相关进程才能使用ctl消息，终止或启动进程</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">check_control_perms</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>value<span class="token punctuation">,</span> cr<span class="token punctuation">.</span>uid<span class="token punctuation">,</span> cr<span class="token punctuation">.</span>gid<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">handle_control_message</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span> msg<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span> msg<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> 
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">check_perms</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>name<span class="token punctuation">,</span> cr<span class="token punctuation">.</span>uid<span class="token punctuation">,</span> cr<span class="token punctuation">.</span>gid<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">property_set</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span> msg<span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span> msg<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> 
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>在struct ucred结构体,存储着传递次那个系的进程的uid、pid与gid值。通过此结构体中的值，以及消息的类型，检查进程的访问权限。</p>
+<p>在属性消息中，以“ctl”开头的消息并非请求更改系统属性值的消息，而是请求进程启动与终止的消息。除此之外，其他消息都被用来更改系统的属性值，<br>check_perms()函数检查访问权限。各属性的访问权限采用Linux的uid进行区分，其定义如下<br><a href="http://androidxref.com/2.2.3/xref/system/core/init/property_service.c#52" target="_blank" rel="external">property_perms</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>prefix<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> uid<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> gid<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> property_perms<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">{</span> <span class="token string">"net.rmnet0."</span><span class="token punctuation">,</span>      AID_RADIO<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"net.gprs."</span><span class="token punctuation">,</span>        AID_RADIO<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"net.ppp"</span><span class="token punctuation">,</span>          AID_RADIO<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"ril."</span><span class="token punctuation">,</span>             AID_RADIO<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"gsm."</span><span class="token punctuation">,</span>             AID_RADIO<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"persist.radio"</span><span class="token punctuation">,</span>    AID_RADIO<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"net.dns"</span><span class="token punctuation">,</span>          AID_RADIO<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"net."</span><span class="token punctuation">,</span>             AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"dev."</span><span class="token punctuation">,</span>             AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"runtime."</span><span class="token punctuation">,</span>         AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"hw."</span><span class="token punctuation">,</span>              AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"sys."</span><span class="token punctuation">,</span>             AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"service."</span><span class="token punctuation">,</span>         AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"wlan."</span><span class="token punctuation">,</span>            AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"dhcp."</span><span class="token punctuation">,</span>            AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"dhcp."</span><span class="token punctuation">,</span>            AID_DHCP<span class="token punctuation">,</span>     <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"vpn."</span><span class="token punctuation">,</span>             AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"vpn."</span><span class="token punctuation">,</span>             AID_VPN<span class="token punctuation">,</span>      <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"debug."</span><span class="token punctuation">,</span>           AID_SHELL<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"log."</span><span class="token punctuation">,</span>             AID_SHELL<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"service.adb.root"</span><span class="token punctuation">,</span> AID_SHELL<span class="token punctuation">,</span>    <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"persist.sys."</span><span class="token punctuation">,</span>     AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"persist.service."</span><span class="token punctuation">,</span> AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"persist.security."</span><span class="token punctuation">,</span> AID_SYSTEM<span class="token punctuation">,</span>   <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>若要在系统运行中biang属性设置，应充分考虑各属性的访问权限。<br> <a href="http://androidxref.com/2.2.3/xref/system/core/init/property_service.c#271" target="_blank" rel="external">property_set()</a>函数会接着调用property_changed()函数</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">property_set</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>value<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+     <span class="token function">property_changed</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><a href="http://androidxref.com/2.2.3/xref/system/core/init/init.c#323" target="_blank" rel="external">property_changed</a></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">property_changed</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>value<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>property_triggers_enabled<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">queue_property_triggers</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">drain_action_queue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>在init.rc脚本文件中，记录着某个属性改变后要采取的动作，动作执行的条件以“<code>on property:&lt;key&gt;=&lt;value&gt;</code>”形式给出。当某个条件相关的键值被设定后，与该条件相关的触发其就会被触发。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://book.douban.com/subject/10570841/" target="_blank" rel="external">Amdroid框架揭秘</a><br><a href="http://blog.csdn.net/mr_raptor/article/details/7666906" target="_blank" rel="external">Android init进程启动</a><br><a href="http://www.cnblogs.com/mr-raptor/archive/2012/07/12/2588920.html" target="_blank" rel="external">Android init进程启动</a><br><a href="http://blog.csdn.net/chaoy1116/article/details/44751443" target="_blank" rel="external">Android启动流程分析(十) action的执行和service的启动</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://luoweiguang.github.io/2016/09/25/init进程/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://luoweiguang.github.io/2016/09/25/init进程/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//https-luoweiguang-github-io.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/09/26/JNI(在Java中调用C函数)/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/09/22/Android命名规范/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/head.jpg" alt="罗炜光's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        luo_weiguang@foxmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=luo_weiguang@foxmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">五月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">四月 2016<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/03/">三月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaWeb/">JavaWeb<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tool/">Tool<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/UML/">UML<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/luoweiguang" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>星家|不会搬砖的码农
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            ADB命令总结 | 
+        
+        星家|不会搬砖的码农
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="罗炜光">
+    <meta name="description" itemprop="description" content="adb与shell命令来源/frameworks/base/cmds
+/system/core/toolbox
+">
+    <meta name="keywords" content="null,Android,ADB">
+
+    <!-- Site Verification -->
+    
+    <meta name="baidu-site-verification" content="9KipFitrC9" />
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicons.pngg">
+    <link rel="icon" sizes="192x192" href="/img/favicons.png">
+    <link rel="apple-touch-icon" href="/img/favicons.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="星家|不会搬砖的码农">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://luoweiguang.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="ADB命令总结 | 星家|不会搬砖的码农">
+    <meta property="og:image" content="/img/favicons.png" />
+    <meta property="og:description" content="adb与shell命令来源/frameworks/base/cmds
+/system/core/toolbox
+">
+    <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="ADB"> 
+
+    
+        <meta property="article:published_time" content="Sun Jul 24 2016 22:00:00 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Nov 15 2017 14:34:51 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="ADB命令总结 | 星家|不会搬砖的码农">
+    <meta name="twitter:description" content="adb与shell命令来源/frameworks/base/cmds
+/system/core/toolbox
+">
+    <meta name="twitter:image" content="/img/favicons.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://luoweiguang.github.io" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://luoweiguang.github.io/2016/07/24/ADB命令总结/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "星家|不会搬砖的码农",
+        "logo": "/img/favicons.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "罗炜光",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicons.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "ADB命令总结",
+    "url": "https://luoweiguang.github.io/2016/07/24/ADB命令总结/index.html",
+    "datePublished": "Sun Jul 24 2016 22:00:00 GMT+0800",
+    "dateModified": "Wed Nov 15 2017 14:34:51 GMT+0800",
+    "description": "adb与shell命令来源/frameworks/base/cmds
+/system/core/toolbox
+",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://luoweiguang.github.io"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+            <style>
+    
+    
+    
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    
+</style>
+
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#adb与shell命令来源"><span class="post-toc-number">1.</span> <span class="post-toc-text">adb与shell命令来源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#adb简介"><span class="post-toc-number">2.</span> <span class="post-toc-text">adb简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#adb命令"><span class="post-toc-number">3.</span> <span class="post-toc-text">adb命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#管理多台设备"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">管理多台设备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#adb-常用命令"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">adb 常用命令</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#adb-shell-常用命令"><span class="post-toc-number">4.</span> <span class="post-toc-text">adb shell 常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件操作命令"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">文件操作命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他文件命令"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">其他文件命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他命令"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">其他命令</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#pm"><span class="post-toc-number">5.</span> <span class="post-toc-text">pm</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#am"><span class="post-toc-number">6.</span> <span class="post-toc-text">am</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#input"><span class="post-toc-number">7.</span> <span class="post-toc-text">input</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#dumpsys"><span class="post-toc-number">8.</span> <span class="post-toc-text">dumpsys</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#包信息查询"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">包信息查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#activity信息查询"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">activity信息查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网络信息查询"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">网络信息查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他常用服务信息查询"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">其他常用服务信息查询</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">9.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/20160724999999.png)">
+    
+            <p class="article-headline-p">
+                ADB命令总结
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>罗炜光</strong>
+        <span>7月 24, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=https://luoweiguang.github.io/2016/07/24/ADB命令总结/">
+    
+</ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/ADB/">ADB</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Android/">Android</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=ADB命令总结&url=https://luoweiguang.github.io/2016/07/24/ADB命令总结/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=ADB命令总结&url=https://luoweiguang.github.io/2016/07/24/ADB命令总结/index.html&via=罗炜光" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://luoweiguang.github.io/2016/07/24/ADB命令总结/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://luoweiguang.github.io/2016/07/24/ADB命令总结/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="adb与shell命令来源"><a href="#adb与shell命令来源" class="headerlink" title="adb与shell命令来源"></a>adb与shell命令来源</h2><pre><code>/frameworks/base/cmds
+</code></pre><pre><code>/system/core/toolbox
+</code></pre><a id="more"></a>
+<h2 id="adb简介"><a href="#adb简介" class="headerlink" title="adb简介"></a>adb简介</h2><p>adb 其实就是 Android Debug Bridge, Android 调试桥的缩写，adb 是一个 C/S 架构的命令行工具，主要由 3 部分组成：</p>
+<ul>
+<li>运行在 PC 端的 Client : 可以通过它对 Android 应用进行安装、卸载及调试</li>
+<li>运行在 PC 端的 Service : 其管理客户端到 Android 设备上 adb 后台进程的连接adb 服务启动后，Windows 可以在任务管理器中找到 adb.exe 这个进程</li>
+<li>运行在 Android 设备上的 adb 后台进程</li>
+</ul>
+<h2 id="adb命令"><a href="#adb命令" class="headerlink" title="adb命令"></a>adb命令</h2><h3 id="管理多台设备"><a href="#管理多台设备" class="headerlink" title="管理多台设备"></a>管理多台设备</h3><pre><code>adb [-e | -d | -s &lt;设备序列号&gt;] &lt;子命令&gt;
+</code></pre><p>　　　　　　<br><code>-d</code> 发送命令给usb连接的设备<br><code>-e</code> 发送命令到模拟器设备<br><code>-s &lt;设备序列号&gt;</code> 发送命令到指定设备</p>
+<h3 id="adb-常用命令"><a href="#adb-常用命令" class="headerlink" title="adb 常用命令"></a>adb 常用命令</h3><ul>
+<li><figcaption>devices</code> , 获取设备列表及设备状态</p></figcaption><pre class=" language-adb"><code class="language-adb"><pre><code>H:\androidDemo\Test>adb devices
+List of devices attached
+192.168.56.101:5555     device
+</code></pre></li>
+<li><p><code>adb get-state</code> , 获取设备的状态</p>
+<pre><code>H:\androidDemo\Test&gt;adb get-state
+device
+</code></pre><blockquote>
+<p>设备的状态有 3 钟，device , offline , unknown</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>device：设备正常连接</li>
+<li>offline：连接出现异常，设备无响应</li>
+<li>unknown：没有连接设备</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>adb kill-server</code> , 结束 adb 服务</li>
+<li><code>adb start-server</code> , 启动 adb 服务</li>
+<li><code>adb logcat</code> , 打印 Android 的系统日志</li>
+<li><p><code>adb bugreport</code> 打印dumpsys、dumpstate、logcat的输出，也是用于分析错误</p>
+<blockquote>
+<p>输出比较多，建议重定向到一个文件中</p>
+<pre><code>H:\androidDemo\Test&gt;adb bugreport &gt; E:\\a.txt
+</code></pre></blockquote>
+</li>
+<li><p><code>adb install [-l   -r   -t   -s -d]&lt; file &gt;</code> , 安装应用</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-l</td>
+<td>表示应用为受限应用</td>
+</tr>
+<tr>
+<td>-r:</td>
+<td>替换已经存在的应用</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>运行安装测试包</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>安装到SD卡中</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>允许安装到sd卡中</td>
+</tr>
+</tbody>
+</table>
+<p>安装部分软件需要对应的CPU版本才行，不然会报错误。</p>
+<ul>
+<li><p><code>adb uninstall [-k]&lt; package &gt;</code> , 卸载应用</p>
+<blockquote>
+<p>-k:保持data和cache下的文件</p>
+</blockquote>
+</li>
+<li><p><code>adb pull &lt;remote&gt; &lt;local&gt;</code> , 将 Android 设备上的文件或者文件夹复制到本地</p>
+</li>
+</ul>
+<blockquote>
+<p>注意权限，复制系统权限的目录下的文件，需要 root ，并且一般的 Android 机 root 之后并不能使用命令去复制，而需要在手机上使用类似于 RE 的文件浏览器，先对系统的文件系统进行挂载为可读写后，才能在手机上复制移动系统文件，这里推荐使用小米手机的开发版本，IUNI 也是不错滴</p>
+</blockquote>
+<ul>
+<li><p><code>adb push &lt;local&gt; &lt;remote&gt;</code> , 推送本地文件至Android设备</p>
+<blockquote>
+<p>sdcard 后面的斜杠不能少</p>
+</blockquote>
+</li>
+<li><p><code>adb root</code> , <code>adb remount</code>, 只针对类似小米开发版的手机有用，可以直接已这两个命令获取 root 权限，并挂载系统文件系统为可读写状态</p>
+</li>
+<li><p><code>adb reboot</code> , 重启 Android 设备</p>
+<blockquote>
+<p>bootloader , 重启设备，进入 fastboot 模式，同 adb reboot-bootloader 命令<br>recovery , 重启设备，进入 recovery 模式，经常刷机的同学比较熟悉这个模式</p>
+</blockquote>
+</li>
+<li><p><code>adb forward</code> , 将 宿主机上的某个端口重定向到设备的某个端口</p>
+<blockquote>
+<p>adb forward tcp:1314 tcp :8888<br>执行该命令后所有发往宿主机 1314 端口的消息、数据都会转发到 Android 设备的 8888 端口上，因此可以通过远程的方式控制 Android 设备。</p>
+</blockquote>
+</li>
+<li><p><code>adb connect</code> 远程连接 Android 设备</p>
+<blockquote>
+<p>手机、PC处于相同的网络下，手机 root ，安装应用 adbWireless ，启动应用后点击界面中间的按钮：接着运行 adb connect 192.168.1.102 , 即可通过无线的方式连接手机，缺点是速度比较慢</p>
+</blockquote>
+</li>
+<li><p><code>adb get-serialno</code> 获取SN号</p>
+</li>
+<li><p><code>adb get-devpath</code> 获取device-path</p>
+</li>
+<li><p><code>adb backup</code></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无</td>
+<td>将应用的数据文件写入到指定的文件，在不指定-f输出目录的情况下，保持在当前目录的”backup.ab”</td>
+</tr>
+<tr>
+<td><code>[-f &lt; file &gt;]</code></td>
+<td>指定备份目录</td>
+</tr>
+<tr>
+<td>``[-apk \</td>
+<td>-noapk]``</td>
+<td>是否备份apk文件，默认是noapk</td>
+</tr>
+<tr>
+<td>``[-obb \</td>
+<td>-noobb]``</td>
+<td>是否备份obb数据包，默认是noobb</td>
+</tr>
+<tr>
+<td>``[-shared \</td>
+<td>-noshared]``</td>
+<td>是否备份SD卡共享内容，默认是noshared</td>
+</tr>
+<tr>
+<td><code>[-all]</code></td>
+<td>备份所有已安装的应用</td>
+</tr>
+<tr>
+<td>``[-system \</td>
+<td>-nosystem]``</td>
+<td>是否备份系统应用，-all默认是包括系统应用</td>
+</tr>
+<tr>
+<td><code>&lt; packages... &gt;</code></td>
+<td>备份指定的应用列表</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>adb restore <file> 将备份文件恢复到手机中</file></li>
+</ul>
+<h2 id="adb-shell-常用命令"><a href="#adb-shell-常用命令" class="headerlink" title="adb shell 常用命令"></a>adb shell 常用命令</h2><h3 id="文件操作命令"><a href="#文件操作命令" class="headerlink" title="文件操作命令"></a>文件操作命令</h3><ul>
+<li><code>cd</code> 进入目录</li>
+<li><code>cat [-beflnstuv] [-B bsize] [file...]</code> 查看文件内容</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-b</td>
+<td>显示行号，但会忽略空行</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>每一行后面加一个$符号</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>显示行号，连续空行标记为一行</td>
+</tr>
+</tbody>
+</table>
+<p>例如：</p>
+<pre><code>H:\androidDemo\Test&gt;adb shell cat -e -B 1  /data/misc/wifi/*.conf
+</code></pre><ul>
+<li><code>df</code>    列出分区列表</li>
+<li><code>du  [-H] [-L] [-P] [-a] [-d depth] [-s] [-cghikmnrx] [file...]</code>    查询文件或目录的磁盘使用空间</li>
+<li><code>ls  [-a] [-i] [-l] [-n] [-s]</code>  列出目录内容<ul>
+<li><code>-a</code>：列出所有文件，包括隐藏文件</li>
+<li><code>-i</code>：输出文件的i节点的索引信息</li>
+<li><code>-l</code> :列出文件的详细信息</li>
+<li><code>-n</code>：用数字的GUID代替名称</li>
+<li><code>-s</code>：输出该文件的大小</li>
+</ul>
+</li>
+<li><code>grep [file...]</code> 指定文件中搜索特定的内容，并将含有这些内容的行标准输出(windows 请使用findstr替代grep)</li>
+<li><code>mkdir   -p，-parents</code>   创建目录</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p，–parents</td>
+<td>递归创建目录</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>touch   touch [-alm] [-t YYYYMMDD [.HHMMSS]] &lt; file &gt;</code> 创建文件</li>
+<li><code>rm  [-f\|-i][-dPRrvWx]file</code>    删除文件</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-f</td>
+<td>强制删除文件，系统不提示</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>交互式删除，删除前提示</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>改变硬连接数据删成0，删除该文件</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>强制删除文件夹包括里面的文件</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>mv [-fiv]source target</code>    移动文件（相当于剪切）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-f</td>
+<td>强制移动，若文件已经存在目标则直接覆盖</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>若目标文件已经存在，会询问是否覆盖</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>rmdir [-p] directory</code> 删除目录</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p</td>
+<td>递归删除目录，只能删除空目录</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>dd[operand...]</code></li>
+<li><code>dd if =source of=targe</code> 复制文件</li>
+</ul>
+<h3 id="其他文件命令"><a href="#其他文件命令" class="headerlink" title="其他文件命令"></a>其他文件命令</h3><ul>
+<li><p><code>chomd [OPTION] &lt;MODE&gt; &lt;FILE&gt;</code>  文件权限修改<br>|参数|说明|<br>|–|–|<br>|-R|递归改变文件和目录|<br>|-h|不遵循符号连接|</p>
+</li>
+<li><p><code>md5 file...</code>   查询文件的MD5值</p>
+</li>
+<li><code>mount [-r] [-w] [-o options] [-t type] device directory</code>   挂载设备信息</li>
+<li><code>umount &lt;path&gt;</code> 卸载分区挂载</li>
+<li><code>cmp[-b][-l][-n count] file1 file2</code> 要指出两个文件是否存在差异</li>
+</ul>
+<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><ul>
+<li><code>wm size</code>   获取屏幕分辨率</li>
+<li><code>dmesg</code> 输出内核信息</li>
+<li><code>wipe wipe system | data | all</code> 擦除分区，恢复出厂设置</li>
+<li><code>adb shell svc wifi [enable|disable]</code><br>|参数|说明|<br>|–|–|<br>|enable|打开wifi|<br>|disable|关闭wifi|</li>
+</ul>
+<ul>
+<li><code>screenrecord &lt;文件保存路径&gt;</code> 屏幕录像(只支持android4.4以上的设备,)使用ctrl+c停止录像</li>
+<li><p><code>screencap -p 文件保存路径</code>   屏幕截图</p>
+</li>
+<li><p><code>ping [option] ipv4</code> 因特网包探测器，用于测试网络连接量的程序</p>
+</li>
+</ul>
+<h2 id="pm"><a href="#pm" class="headerlink" title="pm"></a>pm</h2><blockquote>
+<p>Package Manager , 可以用获取到一些安装在 Android 设备上得应用信息,直接运行 adb shell pm 可以获取到该命令的帮助信息</p>
+</blockquote>
+<ul>
+<li><code>pm list packages [参数] [过滤器]</code> 列出安装在设备上的应用</li>
+</ul>
+<blockquote>
+<p>不带任何选项：列出所有的应用的包名（不知道怎么找应用的包名的同学看这里）<br>adb shell pm list package</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s</td>
+<td>列出系统应用</td>
+</tr>
+<tr>
+<td>-3</td>
+<td>列出第三方应用</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>列出应用包名及对应的apk名及存放位置</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>列出应用包名及其安装来源</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>列出禁用的应用的包名</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>列出可用的应用的包名</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>命令最后增加 FILTER：过滤关键字，可以很方便地查找自己想要的应用<br>参数组合使用，例如，查找三方应用中知乎的包名、apk存放位置、安装来源：<br>[xuxu:~]$ <code>adb shell pm list package -f -3 -i zhihu</code><br>package:/data/app/com.zhihu.android-1.apk=com.zhihu.android  installer=com.xiaomi.market</p>
+</blockquote>
+<ul>
+<li><p><code>pm path</code> 列出对应包名的 .apk 位置</p>
+<blockquote>
+<p>[xuxu:~]$ <code>adb shell pm path com.tencent.mobileqq</code><br>package:/data/app/com.tencent.mobileqq-1.apk</p>
+</blockquote>
+</li>
+<li><p>pm list instrumentation , 列出含有单元测试 case 的应用，后面可跟参数 -f （与 pm list package 中一样），以及 [TARGET-PACKAGE]</p>
+</li>
+<li><p>pm dump , 后跟包名，列出指定应用的 dump 信息，里面有各种信息</p>
+<blockquote>
+<p><code>adb shell pm dump com.tencent.mobileqq</code></pre>
+</blockquote>
+</li>
+<li><p>pm install [-lrtsfd] [-i PACKAGE] [PATH] , 安装应用</p>
+</li>
+</ul>
+<blockquote>
+<p>目标 apk 存放于 PC 端，请用 adb install 安装<br>目标 apk 存放于 Android 设备上，请用 pm install 安装</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-l</td>
+<td>锁定应用程序</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>重新安装应用，且保留应用数据</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>允许测试apk被安装</td>
+</tr>
+<tr>
+<td><code>-i &lt;INSTALLER_PACKAGE_NAME&gt;</code></td>
+<td>指定安装包的包名</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>安装到sd卡</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>安装到系统内置存储中（默认安装位置）</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>允许降级安装（同一应用低级换高级）</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>授予应用程序清单中列出的所有权限（只有6.0系统可用）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>pm uninstall [options] &lt;包名&gt; , 卸载应用，同 adb uninstall</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-k</td>
+<td>卸载应用且保留数据与缓存（如果不加-k则全部删除）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>pm clear , 清除应用数据</li>
+<li>pm set-install-location , pm get-install-location , 设置应用安装位置，获取应用安装位置</li>
+</ul>
+<blockquote>
+<p>[0/auto]：默认为自动<br>[1/internal]：默认为安装在手机内部<br>[2/external]：默认安装在外部存储</p>
+</blockquote>
+<ul>
+<li>pm list permission-groups 察看已知的权限组</li>
+<li>pm list permissions [参数] [权限组]<br>察看所有已知的权限</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-g</td>
+<td>按组进行列出权限</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>打印所有信息</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>简短的摘要</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>只有危险的权限列表</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>只有权限的用户将看到列表，用户自定义权限</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>pm grant &lt;包名&gt; &lt;权限名&gt; 授予应用权限许可。必需android6.0（API级别23）以上的设备</li>
+<li><p>pm revoke &lt;包名&gt; &lt;权限名&gt;  撤销应用权限。必需android6.0（API级别23）以上的设备</p>
+</li>
+<li><p>pm list features 列出所有硬件相关信息</p>
+</li>
+<li>pm list libraries ：当前设备支持的libs</li>
+<li>pm list users ：系统上所有的users</li>
+</ul>
+<h2 id="am"><a href="#am" class="headerlink" title="am"></a>am</h2><ul>
+<li><code>am start [参数] &lt;INTENT&gt;</code> , 启动一个 Activity，已启动系统相机应用为例</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-D</td>
+<td>开启调试模式</td>
+</tr>
+<tr>
+<td>-W</td>
+<td>等待启动完成</td>
+</tr>
+<tr>
+<td><code>--start-profile &lt;file&gt;</code></td>
+<td>开始分析器和发送结果（文件）</td>
+</tr>
+<tr>
+<td>–sampling INTERVAL</td>
+<td>使用样本分析 间隔：微秒,样品（使用—start-profiler）之间</td>
+</tr>
+<tr>
+<td><code>-P &lt;FILE&gt;</code></td>
+<td>应用空闲下来后，停止profile</td>
+</tr>
+<tr>
+<td>-R COUNT</td>
+<td>重复活动推出&lt;统计&gt;次。每个重复之前，活动将会结束</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>组织目标应用开始前的活动</td>
+</tr>
+<tr>
+<td>–opengl-trace</td>
+<td>启用跟踪OpenGL函数</td>
+</tr>
+<tr>
+<td><code>[—user &lt;USER_ID&gt;</code></td>
+<td>current]</td>
+<td>指定哪些用户运行，如果不指定则使用当前用户</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>am instrument</code> , 启动一个 instrumentation , 单元测试或者 Robotium 会用到</li>
+<li><code>am monitor</code> , 监控 crash 与 ANR</li>
+</ul>
+<blockquote>
+<p>[xuxu:~]$ <code>adb shell am monitor</code><br>Monitoring activity manager…  available commands:<br>(q)uit: finish monitoring<br>** Activity starting: com.android.camera</p>
+</blockquote>
+<ul>
+<li><code>am force-stop</code> , 后跟包名，结束应用</li>
+<li><code>adb shell am kill [参数] &lt;process&gt;</code>,停止后台单个进程</li>
+<li><code>adb shell am kill-all</code>,停止后台所进程</li>
+<li><code>adb shell am startservice [参数] &lt;INTENT&gt;</code> , 启动一个服务</li>
+<li><code>adb shell am stopservice [参数] &lt;INTENT&gt;</code>,停止一个服务</li>
+<li><code>adb shell am broadcast [参数] &lt;INTENT&gt;</code> , 发送一个广播</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Intent</th>
+<th>说明</th>
+<th>Am参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>component</td>
+<td>组件名称  格式为：包名/类名</td>
+<td>-n</td>
+</tr>
+<tr>
+<td>action</td>
+<td>指定Intent的执行动作，比如调用拨打电话组件</td>
+<td>-a</td>
+</tr>
+<tr>
+<td>data_url</td>
+<td>表示与动作要操纵的数据</td>
+<td>-d</td>
+</tr>
+<tr>
+<td>category</td>
+<td>categary是一个字符串，提供了额外的信息，有关于能够处理这个Intent对象的组件种类</td>
+<td>-c</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>传递给Intent的额外数据，以Bundle的形式定义，就是一些键值对</td>
+<td>-e</td>
+</tr>
+<tr>
+<td>mime_type</td>
+<td>MIME类型</td>
+<td>-t</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>各种类型的flag，很多是用来指定Android系统如何启动activity，还有启动了activity后如何对待他</td>
+<td>-f</td>
+</tr>
+<tr>
+<td>package</td>
+<td>包名</td>
+<td>-p</td>
+</tr>
+</tbody>
+</table>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><ul>
+<li><p><code>input text</code>, 发送文本内容，不能发送中文</p>
+<pre><code>adb shell input text asd
+</code></pre></li>
+<li><p><code>input keyevent</code>, 发送按键事件</p>
+<pre><code>adb shell input keyevent 3
+</code></pre><p>常用的键<br>1 –&gt;  “KEYCODE_MENU”<br>3 –&gt;  “KEYCODE_HOME”<br>4 –&gt;  “KEYCODE_BACK”</p>
+</li>
+<li><p><code>input tap</code>, 对屏幕发送一个触摸事件 前一个为宽，后一个为高</p>
+<pre><code>adb shell input tap 1000 800
+</code></pre></li>
+<li><p><code>input swipe</code>, 滑动事件</p>
+<pre><code>adb shell input swipe 1000 800 100 800
+</code></pre><p>如果版本不低于 4.4 , 可以模拟长按事件</p>
+<pre><code>adb shell input tap 1000 800 1000 800 2000
+</code></pre></li>
+</ul>
+<h2 id="dumpsys"><a href="#dumpsys" class="headerlink" title="dumpsys"></a>dumpsys</h2><blockquote>
+<p>Dumpsys用户系统诊断，它运行在设备上，并提供系统服务状态信息</p>
+</blockquote>
+<ul>
+<li><code>adb shell dumpsys [system serbices]</code></li>
+</ul>
+<h3 id="包信息查询"><a href="#包信息查询" class="headerlink" title="包信息查询"></a>包信息查询</h3><ul>
+<li><code>adb shell dumpsys package [-h] [-f] [—checkin] [cmd]…</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-h</td>
+<td>打印帮助信息</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>打印intent filter的信息</td>
+</tr>
+<tr>
+<td>–checkin</td>
+<td>打印出已经登记的库、系统功能、安装包</td>
+</tr>
+<tr>
+<td>cmd</td>
+<td>子命令（可以在-h帮助文档中查看有哪些子命令）</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>cmd子命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prov[iders]</td>
+<td>获取content providers</td>
+</tr>
+<tr>
+<td>p[ackages]</td>
+<td>获取安装包基本信息</td>
+</tr>
+<tr>
+<td>s[hared-user]</td>
+<td>获取共享用户ID的应用</td>
+</tr>
+<tr>
+<td>m[essages]</td>
+<td>打印运行时收集的信息</td>
+</tr>
+<tr>
+<td>v[erifiers]</td>
+<td>打印包校验信息</td>
+</tr>
+<tr>
+<td>version</td>
+<td>打印数据库版本信息</td>
+</tr>
+<tr>
+<td>write</td>
+<td>写当前位置</td>
+</tr>
+<tr>
+<td><code>&lt;package.name&gt;</code></td>
+<td>输出给定包的信息</td>
+</tr>
+<tr>
+<td>installs</td>
+<td>安装会话的详细信息</td>
+</tr>
+<tr>
+<td>l[ibraries]</td>
+<td>列出已知的共享库</td>
+</tr>
+<tr>
+<td>f[ibraries]</td>
+<td>列出手机的功能</td>
+</tr>
+<tr>
+<td>k[eysets]</td>
+<td>列出各个包的Signing KeySets</td>
+</tr>
+<tr>
+<td>r[esolvers]</td>
+<td>获取intent filter</td>
+</tr>
+<tr>
+<td>perm[issions]</td>
+<td>获取权限</td>
+</tr>
+<tr>
+<td>pref[erred]</td>
+<td>打印包首选项</td>
+</tr>
+<tr>
+<td>preferred-xml [—full]</td>
+<td>打印包首选项，xml格式打印</td>
+</tr>
+</tbody>
+</table>
+<h3 id="activity信息查询"><a href="#activity信息查询" class="headerlink" title="activity信息查询"></a>activity信息查询</h3><ul>
+<li><code>adb shell dumpsys activity [-a] [-c]…</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>包括所有可用的服务器状态</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>包括客户端状态</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>限制输出为给定的包，例如： <code>adb shell dumpsys activity -p com.android.browser</code></td>
+</tr>
+<tr>
+<td>-h</td>
+<td>打印帮助信息</td>
+</tr>
+<tr>
+<td>cmd</td>
+<td>子命令</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>cmd子命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a[ctivities]</td>
+<td>activity堆栈状态</td>
+</tr>
+<tr>
+<td>r[recents]</td>
+<td>最近activity的状态</td>
+</tr>
+<tr>
+<td>b[rodacasts] [package_name] [histpry [-s]]</td>
+<td>广播状态</td>
+</tr>
+<tr>
+<td>i[ntents] [package_name]</td>
+<td>挂起的intent状态</td>
+</tr>
+<tr>
+<td>p[rocesses] [package_name]</td>
+<td>进程状态</td>
+</tr>
+<tr>
+<td>o[om]</td>
+<td>oom管理</td>
+</tr>
+<tr>
+<td>perm[issions]</td>
+<td>url权限授权状态</td>
+</tr>
+<tr>
+<td>prov[iders] [comp_spec…]</td>
+<td>content provider状态</td>
+</tr>
+<tr>
+<td>provider [comp_spec]</td>
+<td>provider客户端状态</td>
+</tr>
+<tr>
+<td>s[ervices] [comp_spec…]</td>
+<td>服务状态</td>
+</tr>
+<tr>
+<td>as[sociations]</td>
+<td>跟踪应用程序的关联</td>
+</tr>
+<tr>
+<td>service [comp_spec]</td>
+<td>服务客户端状态</td>
+</tr>
+<tr>
+<td>package [package_name]</td>
+<td>给的包的所有状态</td>
+</tr>
+<tr>
+<td>all</td>
+<td>转储所有的activityes</td>
+</tr>
+<tr>
+<td>top</td>
+<td>转储栈顶的activity</td>
+</tr>
+<tr>
+<td>write</td>
+<td>写入所有挂起状态存储</td>
+</tr>
+<tr>
+<td>track-associations</td>
+<td>允许会话跟踪</td>
+</tr>
+<tr>
+<td>untrack-associations</td>
+<td>禁用和明确会话跟踪，命令参数可能也是一个comp_spec 转储的activity</td>
+</tr>
+</tbody>
+</table>
+<h3 id="网络信息查询"><a href="#网络信息查询" class="headerlink" title="网络信息查询"></a>网络信息查询</h3><table>
+<thead>
+<tr>
+<th>子命令</th>
+<th>说明</th>
+<th>命令格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>connectivity</td>
+<td>网络连接</td>
+<td>adb shell dumpsys connectivity</td>
+</tr>
+<tr>
+<td>netpolicy</td>
+<td>网络策略</td>
+<td>adb shell dumpsys netpolicy</td>
+</tr>
+<tr>
+<td>netstats</td>
+<td>网络状态</td>
+<td>adb shell dumpsys netstats</td>
+</tr>
+<tr>
+<td>network_management</td>
+<td>网络管理</td>
+<td>adb shell dumpsys network_management</td>
+</tr>
+</tbody>
+</table>
+<h3 id="其他常用服务信息查询"><a href="#其他常用服务信息查询" class="headerlink" title="其他常用服务信息查询"></a>其他常用服务信息查询</h3><ul>
+<li><code>adb shell dumpsys | findstr DUMP</code>列出所有服务</li>
+<li><code>adb shell dumpsys window w | findstr \/ | findstr name=</code>获取当前应用的component</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>子命令</th>
+<th>说明</th>
+<th>命令格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>meminfo</td>
+<td>内存</td>
+<td>adb shell dumpsys meminfo</td>
+</tr>
+<tr>
+<td>cpuinfo</td>
+<td>CPU</td>
+<td>adb shell dumpsys cpuinfo</td>
+</tr>
+<tr>
+<td>gfxinfo</td>
+<td>帧率</td>
+<td>adb shell dumpsys gfxinfo</td>
+</tr>
+<tr>
+<td>display</td>
+<td>显示</td>
+<td>adb shell dumpsys display</td>
+</tr>
+<tr>
+<td>power</td>
+<td>电源</td>
+<td>adb shell dumpsys power</td>
+</tr>
+<tr>
+<td>batterystats</td>
+<td>电池状态</td>
+<td>adb shell dumpsys batterystats</td>
+</tr>
+<tr>
+<td>battery</td>
+<td>电池</td>
+<td>adb shell dumpsys battery</td>
+</tr>
+<tr>
+<td>alarm</td>
+<td>闹钟</td>
+<td>adb shell dumpsys alarm</td>
+</tr>
+<tr>
+<td>location</td>
+<td>位置</td>
+<td>adb shell dumpsys location</td>
+</tr>
+<tr>
+<td>telephony.registry</td>
+<td>电话信息</td>
+<td>adb shell dumpsys telephony.registry</td>
+</tr>
+<tr>
+<td>wifi</td>
+<td>wifi信息</td>
+<td>adb shell dumpsys wifi</td>
+</tr>
+<tr>
+<td>notification</td>
+<td>通知信息</td>
+<td>adb shell dumpsys notification</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://book.douban.com/subject/26599539/" target="_blank" rel="external">Android群英传</a><br><a href="http://blog.csdn.net/gb112211/article/details/45873727" target="_blank" rel="external">Android常用adb命令总结</a><br><a href="http://www.cnblogs.com/JianXu/category/782865.html" target="_blank" rel="external">Jian_Android命令篇</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://luoweiguang.github.io/2016/07/24/ADB命令总结/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://luoweiguang.github.io/2016/07/24/ADB命令总结/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//https-luoweiguang-github-io.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/07/26/TextView及其子类的使用/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/07/21/Android中的值文件/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/head.jpg" alt="罗炜光's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        luo_weiguang@foxmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=luo_weiguang@foxmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">五月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">四月 2016<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/03/">三月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaWeb/">JavaWeb<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tool/">Tool<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/UML/">UML<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/luoweiguang" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>星家|不会搬砖的码农
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

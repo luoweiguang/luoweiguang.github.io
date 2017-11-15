@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.4.0 -->
+    <script>window.materialVersion = "1.4.0"</script>
+
+    <!-- Title -->
+    
+    <title>
+        
+            资源详解 | 
+        
+        星家|不会搬砖的码农
+    </title>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+    
+    
+    
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="罗炜光">
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content="null,Android,Android基础">
+
+    <!-- Site Verification -->
+    
+    <meta name="baidu-site-verification" content="9KipFitrC9" />
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicons.pngg">
+    <link rel="icon" sizes="192x192" href="/img/favicons.png">
+    <link rel="apple-touch-icon" href="/img/favicons.png">
+
+    <!--iOS -->
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="星家|不会搬砖的码农">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://luoweiguang.github.io">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="资源详解 | 星家|不会搬砖的码农">
+    <meta property="og:image" content="/img/favicons.png" />
+    <meta property="og:description" content="">
+    <meta property="og:article:tag" content="Android"> <meta property="og:article:tag" content="Android基础"> 
+
+    
+        <meta property="article:published_time" content="Mon Aug 01 2016 22:00:00 GMT+0800" />
+        <meta property="article:modified_time" content="Wed Nov 15 2017 02:07:17 GMT+0800" />
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:title" content="资源详解 | 星家|不会搬砖的码农">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="/img/favicons.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://luoweiguang.github.io" />
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="https://luoweiguang.github.io/2016/08/01/资源详解/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "星家|不会搬砖的码农",
+        "logo": "/img/favicons.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "罗炜光",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicons.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "headline": "资源详解",
+    "url": "https://luoweiguang.github.io/2016/08/01/资源详解/index.html",
+    "datePublished": "Mon Aug 01 2016 22:00:00 GMT+0800",
+    "dateModified": "Wed Nov 15 2017 02:07:17 GMT+0800",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://luoweiguang.github.io"
+    }
+}
+</script>
+
+
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(key){try{localStorage.removeItem(key)}catch(e){}};lsloader.setLS=function(key,val){try{localStorage.setItem(key,val)}catch(e){}};lsloader.getLS=function(key){var val="";try{val=localStorage.getItem(key)}catch(e){val=""}return val};versionString="/*"+materialVersion+"*/";lsloader.clean=function(){try{var keys=[];for(var i=0;i<localStorage.length;i++){keys.push(localStorage.key(i))}keys.forEach(function(key){var data=lsloader.getLS(key);if(data&&data.indexOf(versionString)===-1){lsloader.removeLS(key)}})}catch(e){}};lsloader.clean();lsloader.load=function(jsname,jspath,cssonload){cssonload=cssonload||function(){};var code;code=this.getLS(jsname);if(code&&code.indexOf(versionString)===-1){this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}if(code){var versionNumber=code.split(versionString)[0];if(versionNumber!=jspath){console.log("reload:"+jspath);this.removeLS(jsname);this.requestResource(jsname,jspath,cssonload);return}code=code.split(versionString)[1];if(/\.js?.+$/.test(versionNumber)){this.jsRunSequence.push({name:jsname,code:code});this.runjs(jspath,jsname,code)}else{document.getElementById(jsname).appendChild(document.createTextNode(code));cssonload()}}else{this.requestResource(jsname,jspath,cssonload)}};lsloader.requestResource=function(name,path,cssonload){var that=this;if(/\.js?.+$/.test(path)){this.iojs(path,name,function(path,name,code){that.setLS(name,path+versionString+code);that.runjs(path,name,code)})}else if(/\.css?.+$/.test(path)){this.iocss(path,name,function(code){document.getElementById(name).appendChild(document.createTextNode(code));that.setLS(name,path+versionString+code)},cssonload)}};lsloader.iojs=function(path,jsname,callback){var that=this;that.jsRunSequence.push({name:jsname,code:""});try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(path,jsname,xhr.response);return}}that.jsfallback(path,jsname)}};xhr.send(null)}catch(e){that.jsfallback(path,jsname)}};lsloader.iocss=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.iofonts=function(path,jsname,callback,cssonload){var that=this;try{var xhr=new XMLHttpRequest;xhr.open("get",path,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){callback(xhr.response);cssonload();return}}that.cssfallback(path,jsname,cssonload)}};xhr.send(null)}catch(e){that.cssfallback(path,jsname,cssonload)}};lsloader.runjs=function(path,name,code){if(!!name&&!!code){for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code=code}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var script=document.createElement("script");script.appendChild(document.createTextNode(this.jsRunSequence[0].code));script.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(script);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var that=this;var script=document.createElement("script");script.src=this.jsRunSequence[0].path;script.type="text/javascript";this.jsRunSequence[0].status="loading";script.onload=function(){that.jsRunSequence.shift();if(that.jsRunSequence.length>0){that.runjs()}};document.body.appendChild(script)}};lsloader.tagLoad=function(path,name){this.jsRunSequence.push({name:name,code:"",path:path,status:"failed"});this.runjs()};lsloader.jsfallback=function(path,name){if(!!this.jsnamemap[name]){return}else{this.jsnamemap[name]=name}for(var k in this.jsRunSequence){if(this.jsRunSequence[k].name==name){this.jsRunSequence[k].code="";this.jsRunSequence[k].status="failed";this.jsRunSequence[k].path=path}}this.runjs()};lsloader.cssfallback=function(path,name,cssonload){if(!!this.cssnamemap[name]){return}else{this.cssnamemap[name]=1}var link=document.createElement("link");link.type="text/css";link.href=path;link.rel="stylesheet";link.onload=link.onerror=cssonload;var root=document.getElementsByTagName("script")[0];root.parentNode.insertBefore(link,root)};lsloader.runInlineScript=function(scriptId,codeId){var code=document.getElementById(codeId).innerText;this.jsRunSequence.push({name:scriptId,code:code});this.runjs()};lsloader.loadCombo=function(jslist){var updateList="";var requestingModules={};for(var k in jslist){var LS=this.getLS(jslist[k].name);if(!!LS){var version=LS.split(versionString)[0];var code=LS.split(versionString)[1]}else{var version=""}if(version==jslist[k].path){this.jsRunSequence.push({name:jslist[k].name,code:code,path:jslist[k].path})}else{this.jsRunSequence.push({name:jslist[k].name,code:null,path:jslist[k].path,status:"comboloading"});requestingModules[jslist[k].name]=true;updateList+=(updateList==""?"":";")+jslist[k].path}}var that=this;if(!!updateList){var xhr=new XMLHttpRequest;xhr.open("get",combo+updateList,true);xhr.onreadystatechange=function(){if(xhr.readyState==4){if(xhr.status>=200&&xhr.status<300||xhr.status==304){if(xhr.response!=""){that.runCombo(xhr.response,requestingModules);return}}else{for(var i in that.jsRunSequence){if(requestingModules[that.jsRunSequence[i].name]){that.jsRunSequence[i].status="failed"}}that.runjs()}}};xhr.send(null)}this.runjs()};lsloader.runCombo=function(comboCode,requestingModules){comboCode=comboCode.split("/*combojs*/");comboCode.shift();for(var k in this.jsRunSequence){if(!!requestingModules[this.jsRunSequence[k].name]&&!!comboCode[0]){this.jsRunSequence[k].status="comboJS";this.jsRunSequence[k].code=comboCode[0];this.setLS(this.jsRunSequence[k].name,this.jsRunSequence[k].path+versionString+comboCode[0]);comboCode.shift()}}this.runjs()}})();</script>
+
+    <!-- Import CSS & jQuery -->
+    
+        <style id="css/material.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/material.min.css","/css/material.min.css?fJTiM/K1J3dWIruo3pxtAw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        <style id="css/style.min.css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("css/style.min.css","/css/style.min.css?oCSEO3ST+aEypEwttTDI9g==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";})</script>
+        
+        
+            <style>
+    
+    
+    
+    
+    
+    
+    
+    .footer-sns-github {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgY2xhc3M9Imljb24iIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxwYXRoIGQ9Ik0xMzguNCA3OGMtNi40IDEuNC0yNi40IDE0LjItMzYgMjIuOC04IDcuMi0yMiAyOS44LTI0LjQgMzkuMi0xLjYgNi40LTIgMTEzLjItMS42IDM2OCAuNiAyOTkuNCAxIDM1OS44IDMuNCAzNjQgMTEgMjAuMiAyMS42IDMyLjQgMzcuMiA0MyAxNS42IDEwLjYgMTcuMiAxMS4yIDM0LjIgMTMuMiAxMC42IDEuMiA2My40IDEuNiAxMjcuNiAxLjRsMTA5LjYtLjYgNi02LjggNi4yLTYuOC0xLjItMjUuMmMtLjgtMTUuOC0uMi0zMy40IDEuNC00Ny4yIDMtMjUuNCAxLjQtMzYuMi02LTQzLjItNS00LjYtNi4yLTQuOC0zMC42LTQuMi0yNy42LjgtMjQgMS42LTY4LjgtMTYtOC42LTMuNC0yMi42LTE4LTI4LjQtMjkuOC0xMS40LTIyLjgtMjctNDUtMzkuMi01NS42LTE0LTEyLjItMTkuOC0yMC44LTE5LjgtMjguNiAwLTExLjYgMTMuNi0xMi42IDMzLjItMi40IDE2LjYgOC44IDIwLjggMTIuNCA0MC44IDM2LjIgMjQuMiAyOC42IDMxIDMzLjYgNTQgMzkuNiAxNS4yIDQgNDIuMiAzIDUxLjQtMS44IDktNC42IDE4LTE1LjIgMjQuNC0yOS4yIDExLjQtMjQuMiA3LjQtMzEuMi0yMC42LTM2LjgtOS44LTItMjkuMi04LTQzLjQtMTMuNC00MC40LTE1LjgtNjQuNi0zNy40LTg1LjQtNzYuMi0xMS42LTIxLjgtMTUuNC0zMy0xOC4yLTUzLjYtNC4yLTMyLjItNC44LTYwLjItMS40LTg0IDMuNC0yMy44IDYuOC0zMi44IDIwLjItNTQgNC02IDguOC0xNS42IDExLTIxLjQgMy44LTEwIDMuOC0xMS42IDEtMzAtNS4yLTM0LjItMy4yLTUyLjQgNy42LTcwLjIgNy4yLTEyLjIgMTUtMTcuMiAyNC4yLTE1LjggMTIuOCAyLjIgNTIgMTcuNCA2Ni44IDI2LjIgMjYgMTUgMjkgMTUuNCA4Mi40IDcuMiAyNC42LTMuOCAzMy44LTQuMiA2MC0zLjIgMTcgLjYgNDEuNCAzIDU0IDUuMiAzOC40IDYuNiA0OS42IDUuMiA3My0xMCA2LjYtNC4yIDE3LjQtOS40IDI0LTExLjYgNi42LTIuMiAxNi01LjggMjEtOC4yIDEzLTYgMjgtNS42IDM1LjYuOCAxMi40IDEwLjQgMTguNiA0MS40IDE0LjQgNzEuNi00LjQgMzAuNi0zIDM5LjQgOC40IDUzLjggMy40IDQuNCAxMS4yIDE5LjIgMTcuNCAzMy4yTDc3NSA0NDN2NzhsLTEwIDI4Yy0xNS4yIDQzLjItMzYuOCA3My4yLTY2LjIgOTIuOC0xMy40IDguOC01NyAyNS40LTc2LjggMjktMjguMiA1LjItMzMuMiAxMi42LTIyIDMyLjIgMTEuMiAxOS40IDEyLjQgMzIuOCAxMS42IDEyOS42bC0uNiA4NS44IDUuNCA0LjZjMy42IDMgOS4yIDUuMiAxNiA2IDUuOC44IDYwLjIgMSAxMjAuNi42IDEwOC40LS42IDExMC4yLS42IDExOS01IDI0LTExLjYgNDAtMjcuNCA1MS42LTUwLjZsNS40LTExIC42LTM0N2MuNC0yMjMtLjItMzUzLjQtMS40LTM2NS0yLTE3LTIuNi0xOC42LTEzLTM0LTEwLjYtMTUuNC0yMi44LTI2LjItNDMuMi0zNy4yLTQuMi0yLjQtNjQuNi0yLjgtMzY2LTMuMi0xOTguNiAwLTM2NCAuNC0zNjcuNiAxLjR6Ii8+PC9zdmc+);
+    }
+    
+    
+    
+    
+    
+</style>
+
+        
+        <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+
+        <script>lsloader.load("js/jquery.min.js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==")</script>
+    
+    
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Analytics -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Android-中的长度单位"><span class="post-toc-number">1.</span> <span class="post-toc-text">Android 中的长度单位</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其他值"><span class="post-toc-number">2.</span> <span class="post-toc-text">其他值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#像素密度"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">像素密度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PPI-DPI"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">PPI(DPI)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#屏幕尺寸"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">屏幕尺寸</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#res-目录内支持的资源目录"><span class="post-toc-number">3.</span> <span class="post-toc-text">res/ 目录内支持的资源目录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#限定符"><span class="post-toc-number">4.</span> <span class="post-toc-text">限定符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按照优先级排序"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">按照优先级排序:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MCC和MNC"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">MCC和MNC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#语言和地区-Language-and-region"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">语言和地区(Language and region)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-1"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-1"><span class="post-toc-number">4.3.2.</span> <span class="post-toc-text">说明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#具体值"><span class="post-toc-number">4.3.3.</span> <span class="post-toc-text">具体值</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#布局方向-Layout-Direction"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">布局方向(Layout Direction)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-2"><span class="post-toc-number">4.4.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-2"><span class="post-toc-number">4.4.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最小宽度-smallestWidth"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">最小宽度(smallestWidth)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-3"><span class="post-toc-number">4.5.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-3"><span class="post-toc-number">4.5.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可用宽度-Available-width"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">可用宽度(Available width)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-4"><span class="post-toc-number">4.6.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-4"><span class="post-toc-number">4.6.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可用高度-Available-height"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">可用高度(Available height)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-5"><span class="post-toc-number">4.7.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-5"><span class="post-toc-number">4.7.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#屏幕尺寸-Screen-size"><span class="post-toc-number">4.8.</span> <span class="post-toc-text">屏幕尺寸(Screen size)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-6"><span class="post-toc-number">4.8.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-6"><span class="post-toc-number">4.8.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#屏幕纵横比-Screen-aspect"><span class="post-toc-number">4.9.</span> <span class="post-toc-text">屏幕纵横比(Screen aspect)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-7"><span class="post-toc-number">4.9.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-7"><span class="post-toc-number">4.9.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#圆形屏幕-Round-screen"><span class="post-toc-number">4.10.</span> <span class="post-toc-text">圆形屏幕(Round screen)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-8"><span class="post-toc-number">4.10.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-8"><span class="post-toc-number">4.10.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#屏幕方向-Screen-orientation"><span class="post-toc-number">4.11.</span> <span class="post-toc-text">屏幕方向(Screen orientation)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-9"><span class="post-toc-number">4.11.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-9"><span class="post-toc-number">4.11.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UI模式-UI-mode"><span class="post-toc-number">4.12.</span> <span class="post-toc-text">UI模式(UI mode)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-10"><span class="post-toc-number">4.12.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-10"><span class="post-toc-number">4.12.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#夜间模式-Night-mode"><span class="post-toc-number">4.13.</span> <span class="post-toc-text">夜间模式(Night mode)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-11"><span class="post-toc-number">4.13.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-11"><span class="post-toc-number">4.13.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#屏幕像素密度-Screen-pixel-density"><span class="post-toc-number">4.14.</span> <span class="post-toc-text">屏幕像素密度(Screen pixel density)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-12"><span class="post-toc-number">4.14.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-12"><span class="post-toc-number">4.14.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#触屏类型-Touchscreen-type"><span class="post-toc-number">4.15.</span> <span class="post-toc-text">触屏类型(Touchscreen type)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-13"><span class="post-toc-number">4.15.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-13"><span class="post-toc-number">4.15.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#键盘可用性-Keyboard-availability"><span class="post-toc-number">4.16.</span> <span class="post-toc-text">键盘可用性(Keyboard availability)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-14"><span class="post-toc-number">4.16.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-14"><span class="post-toc-number">4.16.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主要文本输入法-Primary-text-input-method"><span class="post-toc-number">4.17.</span> <span class="post-toc-text">主要文本输入法(Primary text input method)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-15"><span class="post-toc-number">4.17.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-15"><span class="post-toc-number">4.17.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#导航键的有效性-Navigation-key-availability"><span class="post-toc-number">4.18.</span> <span class="post-toc-text">导航键的有效性(Navigation key availability)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-16"><span class="post-toc-number">4.18.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-16"><span class="post-toc-number">4.18.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主要的非触屏导航方法-Primary-non-touch-navigation-method"><span class="post-toc-number">4.19.</span> <span class="post-toc-text">主要的非触屏导航方法(Primary non-touch navigation method)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-17"><span class="post-toc-number">4.19.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-17"><span class="post-toc-number">4.19.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#平台版本（API-级别）-Platform-Version-API-level"><span class="post-toc-number">4.20.</span> <span class="post-toc-text">平台版本（API 级别）(Platform Version (API level))</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#限定符值-18"><span class="post-toc-number">4.20.1.</span> <span class="post-toc-text">限定符值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#说明-18"><span class="post-toc-number">4.20.2.</span> <span class="post-toc-text">说明</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#限定符命名规则"><span class="post-toc-number">5.</span> <span class="post-toc-text">限定符命名规则</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#利用资源提供最佳设备兼容性"><span class="post-toc-number">6.</span> <span class="post-toc-text">利用资源提供最佳设备兼容性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#寻找最匹配资源"><span class="post-toc-number">7.</span> <span class="post-toc-text">寻找最匹配资源</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注意事项"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">注意事项</span></a></li></ol></li></ol>
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+    
+
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        <!-- Custom Thumbnail -->
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/20160801999999.png)">
+    
+            <p class="article-headline-p">
+                资源详解
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/head.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>罗炜光</strong>
+        <span>8月 01, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="https://pan.baidu.com/share/qrcode?w=246&h=246&url=https://luoweiguang.github.io/2016/08/01/资源详解/">
+    
+</ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Android/">Android</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Android基础/">Android基础</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=资源详解&url=https://luoweiguang.github.io/2016/08/01/资源详解/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=资源详解&url=https://luoweiguang.github.io/2016/08/01/资源详解/index.html&via=罗炜光" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://luoweiguang.github.io/2016/08/01/资源详解/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://luoweiguang.github.io/2016/08/01/资源详解/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <a id="more"></a>
+<h2 id="Android-中的长度单位"><a href="#Android-中的长度单位" class="headerlink" title="Android 中的长度单位"></a>Android 中的长度单位</h2><ul>
+<li><figcaption></li></figcaption><pre class=" language-px</code>：像素，物理上的绝对单位</p>"><code class="language-px</code>：像素，物理上的绝对单位</p>"><li><p><code>dp或dip</code>：Density Independent Pixels（密度无关像素）的缩写。以160dpi为基准，1dp=1px</p>
+</li>
+<li><p><code>sp</code>: 等同于dp，但还会根据用户的字体大小偏好来缩放。使用12sp及以上，不要使用奇数和小数。否者放大缩小会导致精度缺失</p>
+</li>
+<li><p><code>in</code>：表示英寸，是屏幕的物理尺寸。每英寸等于 2.54 厘米。</p>
+</li>
+<li><p><code>pt</code>：表示点，是屏幕的物理尺寸。大小为 1 英寸的 1/72。</p>
+</li>
+<li><p><code>mm</code>：表示毫米，是屏幕的物理尺寸。 </p>
+</li>
+</ul>
+<h2 id="其他值"><a href="#其他值" class="headerlink" title="其他值"></a>其他值</h2><h3 id="像素密度"><a href="#像素密度" class="headerlink" title="像素密度"></a>像素密度</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>像素密度范围</th>
+<th>比值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mdpi</td>
+<td>120dp~160dp</td>
+<td>2</td>
+</tr>
+<tr>
+<td>hdpi</td>
+<td>160dp~240dp</td>
+<td>3</td>
+</tr>
+<tr>
+<td>xhdpi</td>
+<td>240dp~320dp</td>
+<td>4</td>
+</tr>
+<tr>
+<td>xxhdpi</td>
+<td>320dp~480dp</td>
+<td>6</td>
+</tr>
+<tr>
+<td>xxxhdpi</td>
+<td>480dp~640dp</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="PPI-DPI"><a href="#PPI-DPI" class="headerlink" title="PPI(DPI)"></a>PPI(DPI)</h3><p><img src="/img/20160801000001.png" alt=""></p>
+<ul>
+<li>PPI和DPI虽然是两种概念，但在android中把它们已经混用了，所以指同一概念</li>
+<li><code>安卓对界面元素进行缩放的比例依据的是系统定义的dpi值，而不是实际计算出来的dpi。</code></li>
+</ul>
+<h3 id="屏幕尺寸"><a href="#屏幕尺寸" class="headerlink" title="屏幕尺寸"></a>屏幕尺寸</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>small</td>
+<td>小于3.55英寸</td>
+</tr>
+<tr>
+<td>normal</td>
+<td>小于5英寸</td>
+</tr>
+<tr>
+<td>large</td>
+<td>小于7.5英寸</td>
+</tr>
+<tr>
+<td>xlarge</td>
+<td>剩余</td>
+</tr>
+</tbody>
+</table>
+<p>设置设备支持请看<a href="/2016/07/16/AndroidManifest.xml文件详解/#supports-screens">supports-screens</a></p>
+<h2 id="res-目录内支持的资源目录"><a href="#res-目录内支持的资源目录" class="headerlink" title="res/ 目录内支持的资源目录"></a>res/ 目录内支持的资源目录</h2><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>资源类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>animator/</code></td>
+<td>用于定义属性动画的 XML 文件。</td>
+</tr>
+<tr>
+<td><code>anim/</code></td>
+<td>定义渐变动画的 XML文件。（属性动画也可以保存在此目录中，但是为了区分这两种类型，属性动画首选 animator/ 目录。）</td>
+</tr>
+<tr>
+<td><code>color/</code></td>
+<td>用于定义颜色状态列表的 XML 文件。请参阅颜色状态列表资源</td>
+</tr>
+<tr>
+<td><code>drawable/</code></td>
+<td>位图文件（.png、.9.png、.jpg、.gif）或编译为Drawable 资源子类型的 XML 文件,详见<a href="/2016/07/19/Android的Drawable/">Android的Drawable</a></td>
+</tr>
+<tr>
+<td><code>mipmap/</code></td>
+<td>适用于不同启动器图标密度的 Drawable 文件。</td>
+</tr>
+<tr>
+<td><code>layout/</code></td>
+<td>用于定义用户界面布局的 XML 文件。 请参阅布局资源。</td>
+<td></td>
+</tr>
+<tr>
+<td><code>menu/</code></td>
+<td>用于定义应用菜单（如选项菜单、上下文菜单或子菜单）的 XML 文件。</td>
+</tr>
+<tr>
+<td><code>raw/</code></td>
+<td>要以原始形式保存的任意文件。要使用原始<code>InputStream</code> 打开这些资源，请使用资源 ID（即 <code>R.raw.filename</code>）调用 <code>Resources.openRawResource()</code>。但是，如需访问原始文件名和文件层次结构，则可以考虑将某些资源保存在 <code>assets/</code> 目录下（而不是 <code>res/raw/</code>）。<code>assets/</code> 中的文件没有资源 ID，因此您只能使用 AssetManager读取这些文件。</td>
+</tr>
+<tr>
+<td><code>values/</code></td>
+<td>包含字符串、整型数和颜色等简单值的 XML 文件。其他 res/ 子目录中的 XML 资源文件是根据 XML 文件名定义单个资源，而目录中的 values/ 文件可描述多个资源。对于此目录中的文件，<resources> 元素的每个子元素均定义一个资源由于每个资源均用其自己的 XML 元素定义，因此您可以根据自己的需要命名文件，并将不同的资源类型放在一个文件中。但是，为了清晰起见，您可能需要将独特的资源类型放在不同的文件中。 例如，对于可在此目录中创建的资源，下面给出了相应的文件名约定：arrays.xml，用于资源数组（类型化数组）。colors.xml：颜色值。dimens.xml：尺寸值。strings.xml：字符串值。styles.xml：样式。详见<a href="/2016/07/21/Android中的值文件/">Android中的值文件</a></resources></td>
+</tr>
+<tr>
+<td><code>xml/</code></td>
+<td>可以在运行时通过调用<code>Resources.getXML()</code>读取的任意 XML 文件。各种 XML 配置文件（如可搜索配置）都必须保存在此处。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h2><h3 id="按照优先级排序"><a href="#按照优先级排序" class="headerlink" title="按照优先级排序:"></a>按照优先级排序:</h3><ul>
+<li>MCC和MNC</li>
+<li>语言和地区(Language and region)</li>
+<li>布局方向(Layout Direction)</li>
+<li>最小宽度(smallestWidth)</li>
+<li>可用宽度(Available width)</li>
+<li>可用高度(Available height)</li>
+<li>屏幕尺寸(Screen size)</li>
+<li>屏幕纵横比(Screen aspect)</li>
+<li>圆形屏幕(Round screen)</li>
+<li>屏幕方向(Screen orientation)</li>
+<li>UI模式(UI mode)</li>
+<li>夜间模式(Night mode)</li>
+<li>屏幕像素密度(Screen pixel density)</li>
+<li>触屏类型(Touchscreen type)</li>
+<li>键盘可用性(Keyboard availability)</li>
+<li>主要文本输入法(Primary text input method)</li>
+<li>导航键的有效性(Primary non-touch navigation method)</li>
+<li>主要的非触屏导航方法(Primary non-touch navigation method)</li>
+<li>平台版本（API 级别）Platform Version (API level)()</li>
+</ul>
+<h3 id="MCC和MNC"><a href="#MCC和MNC" class="headerlink" title="MCC和MNC"></a>MCC和MNC</h3><h4 id="限定符值"><a href="#限定符值" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>MCC460-MCN01
+MCC460-MCN02
+MCC460-MCN03
+</code></pre><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>移动国家代码 (MCC)，（可选）后跟设备 SIM 卡中的移动网络代码 (MNC)。例如，mcc310 是指美国的任一运营商，mcc310-mnc004 是指美国的 Verizon 公司，mcc208-mnc00 是指法国的 Orange 公司。</p>
+<p>如果设备使用无线电连接（GSM 手机），则 MCC 和 MNC 值来自 SIM 卡。</p>
+<p>也可以单独使用 MCC（例如，将国家/地区特定的合法资源包括在应用中）。如果只需根据语言指定，则改用“语言和区域”限定符（稍后进行介绍）。 如果决定使用 MCC 和 MNC 限定符，请谨慎执行此操作并测试限定符是否按预期工作。</p>
+<p>另请参阅配置字段 mcc 和 mnc，这两个字段分别表示当前的移动国家代码和移动网络代码。</p>
+</blockquote>
+<h3 id="语言和地区-Language-and-region"><a href="#语言和地区-Language-and-region" class="headerlink" title="语言和地区(Language and region)"></a>语言和地区(Language and region)</h3><h4 id="限定符值-1"><a href="#限定符值-1" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>en
+zh-rch
+zh-rtw
+</code></pre><h4 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>语言通过由两个字母组成的 ISO 639-1 语言代码定义，（可选）后跟两个字母组成的 ISO 3166-1-alpha-2 区域码（前带小写字母“r”）。</p>
+<p>这些代码不区分大小写；r 前缀用于区分区域码。 不能单独指定区域。</p>
+<p>如果用户更改系统设置中的语言，它有可能在应用生命周期中发生改变。 如需了解这会在运行期间给应用带来哪些影响，请参阅处理运行时变更。</p>
+<p>有关针对其他语言本地化应用的完整指南，请参阅本地化。</p>
+<p>另请参阅 locale 配置字段，该字段表示当前的区域设置。</p>
+</blockquote>
+<h4 id="具体值"><a href="#具体值" class="headerlink" title="具体值"></a>具体值</h4><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中文（中国）</td>
+<td>zh-rCN</td>
+</tr>
+<tr>
+<td>中文（台湾）</td>
+<td>zh-rTW</td>
+</tr>
+<tr>
+<td>中文（香港）</td>
+<td>zh-rHK</td>
+</tr>
+<tr>
+<td>英语（美国）</td>
+<td>en-rUS</td>
+</tr>
+<tr>
+<td>英语（英国）</td>
+<td>en-rGB</td>
+</tr>
+<tr>
+<td>英文（澳大利亚）</td>
+<td>en-rAU</td>
+</tr>
+<tr>
+<td>英文（加拿大）</td>
+<td>en-rCA</td>
+</tr>
+<tr>
+<td>英文（爱尔兰）</td>
+<td>en-rIE</td>
+</tr>
+<tr>
+<td>英文（印度）</td>
+<td>en-rIN</td>
+</tr>
+<tr>
+<td>英文（新西兰）</td>
+<td>en-rNZ</td>
+</tr>
+<tr>
+<td>英文（新加坡）</td>
+<td>en-rSG</td>
+</tr>
+<tr>
+<td>英文（南非）</td>
+<td>en-rZA</td>
+</tr>
+<tr>
+<td>阿拉伯文（埃及）</td>
+<td>ar-rEG</td>
+</tr>
+<tr>
+<td>阿拉伯文（以色列）</td>
+<td>ar-rIL</td>
+</tr>
+<tr>
+<td>保加利亚文</td>
+<td>bg-rBG</td>
+</tr>
+<tr>
+<td>加泰罗尼亚文</td>
+<td>ca-rES</td>
+</tr>
+<tr>
+<td>捷克文</td>
+<td>cs-rCZ</td>
+</tr>
+<tr>
+<td>丹麦文</td>
+<td>da-rDK</td>
+</tr>
+<tr>
+<td>德文（奥地利）</td>
+<td>de-rAT</td>
+</tr>
+<tr>
+<td>德文（瑞士）</td>
+<td>de-rCH</td>
+</tr>
+<tr>
+<td>德文（德国）</td>
+<td>de-rDE</td>
+</tr>
+<tr>
+<td>德文（列支敦士登）</td>
+<td>de-rLI</td>
+</tr>
+<tr>
+<td>希腊文</td>
+<td>el-rGR</td>
+</tr>
+<tr>
+<td>西班牙文（西班牙）</td>
+<td>es-rES</td>
+</tr>
+<tr>
+<td>西班牙文（美国）</td>
+<td>es-rUS</td>
+</tr>
+<tr>
+<td>芬兰文（芬兰）</td>
+<td>fi-rFI</td>
+</tr>
+<tr>
+<td>法文（比利时）</td>
+<td>fr-rBE</td>
+</tr>
+<tr>
+<td>法文（加拿大）</td>
+<td>fr-rCA</td>
+</tr>
+<tr>
+<td>法文（瑞士）</td>
+<td>fr-rCH</td>
+</tr>
+<tr>
+<td>法文（法国）</td>
+<td>fr-rFR</td>
+</tr>
+<tr>
+<td>希伯来文</td>
+<td>iw-rIL</td>
+</tr>
+<tr>
+<td>印地文</td>
+<td>hi-rIN</td>
+</tr>
+<tr>
+<td>克罗里亚文</td>
+<td>hr-rHR</td>
+</tr>
+<tr>
+<td>匈牙利文</td>
+<td>hu-rHU</td>
+</tr>
+<tr>
+<td>印度尼西亚文</td>
+<td>in-rID</td>
+</tr>
+<tr>
+<td>意大利文（瑞士）</td>
+<td>it-rCH</td>
+</tr>
+<tr>
+<td>意大利文（意大利）</td>
+<td>it-rIT</td>
+</tr>
+<tr>
+<td>日文</td>
+<td>ja-rJP</td>
+</tr>
+<tr>
+<td>韩文</td>
+<td>ko-rKR</td>
+</tr>
+<tr>
+<td>立陶宛文</td>
+<td>lt-rLT</td>
+</tr>
+<tr>
+<td>拉脱维亚文</td>
+<td>lv-rLV</td>
+</tr>
+<tr>
+<td>挪威博克马尔文</td>
+<td>nb-rNO</td>
+</tr>
+<tr>
+<td>荷兰文(比利时)</td>
+<td>nl-BE</td>
+</tr>
+<tr>
+<td>荷兰文（荷兰）</td>
+<td>nl-rNL</td>
+</tr>
+<tr>
+<td>波兰文</td>
+<td>pl-rPL</td>
+</tr>
+<tr>
+<td>葡萄牙文（巴西）</td>
+<td>pt-rBR</td>
+</tr>
+<tr>
+<td>葡萄牙文（葡萄牙）</td>
+<td>pt-rPT</td>
+</tr>
+<tr>
+<td>罗马尼亚文</td>
+<td>ro-rRO</td>
+</tr>
+<tr>
+<td>俄文</td>
+<td>ru-rRU</td>
+</tr>
+<tr>
+<td>斯洛伐克文</td>
+<td>sk-rSK</td>
+</tr>
+<tr>
+<td>斯洛文尼亚文</td>
+<td>sl-rSI</td>
+</tr>
+<tr>
+<td>塞尔维亚文</td>
+<td>sr-rRS</td>
+</tr>
+<tr>
+<td>瑞典文</td>
+<td>sv-rSE</td>
+</tr>
+<tr>
+<td>泰文</td>
+<td>th-rTH</td>
+</tr>
+<tr>
+<td>塔加洛语</td>
+<td>tl-rPH</td>
+</tr>
+<tr>
+<td>土耳其文</td>
+<td>vr-rTR</td>
+</tr>
+<tr>
+<td>乌克兰文</td>
+<td>uk-rUA</td>
+</tr>
+<tr>
+<td>越南文</td>
+<td>vi-rVN</td>
+</tr>
+</tbody>
+</table>
+<h3 id="布局方向-Layout-Direction"><a href="#布局方向-Layout-Direction" class="headerlink" title="布局方向(Layout Direction)"></a>布局方向(Layout Direction)</h3><h4 id="限定符值-2"><a href="#限定符值-2" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>ldrtl
+ldltr
+</code></pre><h4 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>应用的布局方向。ldrtl 是指“布局方向从右到左”。ldltr 是指“布局方向从左到右”，这是默认的隐式值。</p>
+<p>它适用于布局、图片或值等任何资源。</p>
+<p>例如，若要针对阿拉伯语提供某种特定布局，并针对任何其他“从右到左”语言（如波斯语或希伯来语）提供某种通用布局，则可编码如下：</p>
+</blockquote>
+<pre><code>res/
+    layout/   
+        main.xml  (默认布局)
+    layout-ar/  
+        main.xml  (特定布局，如阿拉伯语)
+    layout-ldrtl/  
+        main.xml  (任何“从右至左”的语言，除阿拉伯语，因为语言限定具有更高的优先级。)
+</code></pre><blockquote>
+<p>注：要为应用启用从右到左的布局功能，必须将 supportsRtl 设置为 “true”，并将 targetSdkVersion 设置为 17 或更高。</p>
+<p><strong>此项为API 级别 17 中新增配置。</strong></p>
+</blockquote>
+<h3 id="最小宽度-smallestWidth"><a href="#最小宽度-smallestWidth" class="headerlink" title="最小宽度(smallestWidth)"></a>最小宽度(smallestWidth)</h3><h4 id="限定符值-3"><a href="#限定符值-3" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>w&lt;N&gt;dp
+示例：
+sw320dp
+sw600dp
+sw720dp
+</code></pre><h4 id="说明-3"><a href="#说明-3" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>屏幕的基本尺寸，由可用屏幕区域的最小尺寸指定。 具体来说，设备的 smallestWidth 是屏幕可用高度和宽度的最小尺寸（您也可以将其视为屏幕的“最小可能宽度”）。无论屏幕的当前方向如何，您均可使用此限定符确保应用 UI 的可用宽度至少为 <code>&lt;N&gt;</code>dp。</p>
+<p>例如，如果布局要求屏幕区域的最小尺寸始终至少为 600dp，则可使用此限定符创建布局资源 res/layout-sw600dp/。仅当可用屏幕的最小尺寸至少为 600dp 时，系统才会使用这些资源，而不考虑 600dp 所代表的边是用户所认为的高度还是宽度。smallestWidth 是设备的固定屏幕尺寸特性；<code>设备的 smallestWidth 不会随屏幕方向的变化而改变。</code></p>
+<p>设备的 smallestWidth 将屏幕装饰元素和系统 UI 考虑在内。例如，如果设备的屏幕上有一些永久性 UI 元素占据沿 smallestWidth 轴的空间，则系统会声明 smallestWidth 小于实际屏幕尺寸，因为这些屏幕像素不适用于您的 UI。因此，使用的值应该是布局所需要的实际最小尺寸（通常，无论屏幕的当前方向如何，此值都是布局支持的“最小宽度”）。</p>
+<p><code>应用为多个资源目录提供不同的 smallestWidth 限定符值时，系统会使用最接近（但未超出）设备 smallestWidth 的值。</code></p>
+<p><code>此项为 API 级别 13 中新增配置。</code></p>
+<p>另请参阅 android:requiresSmallestWidthDp 属性和 smallestScreenWidthDp 配置字段，前者声明与应用兼容的最小 smallestWidth；后者存放设备的 smallestWidth 值。</p>
+<p>如需了解有关设计不同屏幕和使用此限定符的详细信息，请参阅支持多个屏幕开发者指南。</p>
+</blockquote>
+<h3 id="可用宽度-Available-width"><a href="#可用宽度-Available-width" class="headerlink" title="可用宽度(Available width)"></a>可用宽度(Available width)</h3><h4 id="限定符值-4"><a href="#限定符值-4" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>w&lt;N&gt;dp
+示例：
+w720dp
+w1024dp
+等等
+</code></pre><h4 id="说明-4"><a href="#说明-4" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>指定资源应该使用的最小可用屏幕宽度，以 dp 为单位，由 <code>&lt;N&gt;</code> 值定义。在横向和纵向之间切换时，为了匹配当前实际宽度，此配置值也会随之发生变化。</p>
+<p>应用为多个资源目录提供不同的此配置值时，系统会使用最接近（但未超出）设备当前屏幕宽度的值。 此处的值考虑到了屏幕装饰元素，因此如果设备显示屏的左边缘或右边缘上有一些永久性 UI 元素，考虑到这些 UI 元素，它会使用小于实际屏幕尺寸的宽度值，这样会减少应用的可用空间。</p>
+<p><code>此项为 API 级别 13 中新增配置。</code></p>
+<p>另请参阅 screenWidthDp 配置字段，该字段存放当前屏幕宽度。</p>
+<p>如需了解有关设计不同屏幕和使用此限定符的详细信息，请参阅支持多个屏幕开发者指南。</p>
+</blockquote>
+<h3 id="可用高度-Available-height"><a href="#可用高度-Available-height" class="headerlink" title="可用高度(Available height)"></a>可用高度(Available height)</h3><h4 id="限定符值-5"><a href="#限定符值-5" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>h&lt;N&gt;dp
+示例：
+h720dp
+h1024dp
+等等
+</code></pre><h4 id="说明-5"><a href="#说明-5" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>指定资源应该使用的最小可用屏幕高度，以“dp”为单位，由 <code>&lt;N&gt;</code> 值定义。 在横向和纵向之间切换时，为了匹配当前实际高度，此配置值也会随之发生变化。</p>
+<p>应用为多个资源目录提供不同的此配置值时，系统会使用最接近（但未超出）设备当前屏幕高度的值。 此处的值考虑到了屏幕装饰元素，因此如果设备显示屏的上边缘或下边缘有一些永久性 UI 元素，考虑到这些 UI 元素，同时为减少应用的可用空间，它会使用小于实际屏幕尺寸的高度值。 非固定的屏幕装饰元素（例如，全屏时可隐藏的手机状态栏）并不在考虑范围内，标题栏或操作栏等窗口装饰也不在考虑范围内，因此应用必须准备好处理稍小于其所指定值的空间。</p>
+<p><code>此项为 API 级别 13 中新增配置。</code></p>
+<p>另请参阅 screenHeightDp 配置字段，该字段存放当前屏幕宽度。</p>
+<p>如需了解有关设计不同屏幕和使用此限定符的详细信息，请参阅支持多个屏幕开发者指南。</p>
+</blockquote>
+<h3 id="屏幕尺寸-Screen-size"><a href="#屏幕尺寸-Screen-size" class="headerlink" title="屏幕尺寸(Screen size)"></a>屏幕尺寸(Screen size)</h3><h4 id="限定符值-6"><a href="#限定符值-6" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>small
+normal
+large
+xlarge
+</code></pre><h4 id="说明-6"><a href="#说明-6" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>注：使用尺寸限定符并不表示资源仅适用于该尺寸的屏幕。 如果没有为备用资源提供最符合当前设备配置的限定符，则系统可能使用其中最匹配的资源。</p>
+<p>注意：如果所有资源均使用大于当前屏幕的尺寸限定符，则系统不会使用这些资源，并且应用在运行时将会崩溃（例如，如果所有布局资源均用 xlarge 限定符标记，但设备是标准尺寸的屏幕）。</p>
+</blockquote>
+<h3 id="屏幕纵横比-Screen-aspect"><a href="#屏幕纵横比-Screen-aspect" class="headerlink" title="屏幕纵横比(Screen aspect)"></a>屏幕纵横比(Screen aspect)</h3><h4 id="限定符值-7"><a href="#限定符值-7" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>long
+notlong
+</code></pre><h4 id="说明-7"><a href="#说明-7" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>long：宽屏，如 WQVGA、WVGA、FWVGA<br>notlong：非宽屏，如 QVGA、HVGA 和 VGA</p>
+<p>它完全基于屏幕的纵横比（宽屏较宽），而与屏幕方向无关。</p>
+<p>另请参阅 screenLayout 配置字段，该字段指示屏幕是否为宽屏。</p>
+</blockquote>
+<h3 id="圆形屏幕-Round-screen"><a href="#圆形屏幕-Round-screen" class="headerlink" title="圆形屏幕(Round screen)"></a>圆形屏幕(Round screen)</h3><h4 id="限定符值-8"><a href="#限定符值-8" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>round
+notround
+</code></pre><h4 id="说明-8"><a href="#说明-8" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>round：圆形的屏幕，如圆型穿戴设备<br>notround：矩形屏幕，如手机或平板电脑<br>此项为 API 级别 23 中新增配置</p>
+<p>另请参见isScreenRound()配置方法，从而指示屏幕是否是圆的。</p>
+</blockquote>
+<h3 id="屏幕方向-Screen-orientation"><a href="#屏幕方向-Screen-orientation" class="headerlink" title="屏幕方向(Screen orientation)"></a>屏幕方向(Screen orientation)</h3><h4 id="限定符值-9"><a href="#限定符值-9" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>port
+land
+</code></pre><h4 id="说明-9"><a href="#说明-9" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>port：设备处于纵向（垂直）<br>land：设备处于横向（水平）<br>如果用户旋转屏幕，它有可能在应用生命周期中发生改变。 如需了解这会在运行期间给应用带来哪些影响，请参阅处理运行时变更。</p>
+<p>另请参阅 orientation 配置字段，该字段指示当前的设备方向。</p>
+</blockquote>
+<h3 id="UI模式-UI-mode"><a href="#UI模式-UI-mode" class="headerlink" title="UI模式(UI mode)"></a>UI模式(UI mode)</h3><h4 id="限定符值-10"><a href="#限定符值-10" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>car
+desk
+television
+appliance watch
+</code></pre><h4 id="说明-10"><a href="#说明-10" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>car：设备正在车载手机座上显示<br>desk：设备正在桌面手机座上显示<br>television：设备正在电视上显示，为用户提供“十英尺”体验，其 UI 位于远离用户的大屏幕上，主要面向方向键或其他非指针式交互<br>appliance：设备用作不带显示屏的装置<br>watch：设备配有显示屏，戴在手腕上<br><code>此项为 API 级别 8 中新增配置，API 13 中新增电视配置，API 20 中新增手表配置。</code></pre>
+<p>如需了解应用在设备插入手机座或从中移除时的响应方式，请阅读确定并监控插接状态和类型。</p>
+<p>如果用户将设备放入手机座中，它有可能在应用生命周期中发生改变。 可以使用 UiModeManager 启用或禁用其中某些模式。如需了解这会在运行期间给应用带来哪些影响，请参阅处理运行时变更。</p>
+</blockquote>
+<h3 id="夜间模式-Night-mode"><a href="#夜间模式-Night-mode" class="headerlink" title="夜间模式(Night mode)"></a>夜间模式(Night mode)</h3><h4 id="限定符值-11"><a href="#限定符值-11" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>night
+notnight
+</code></pre><h4 id="说明-11"><a href="#说明-11" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>night：夜间<br>notnight：白天<br>此项为 API 级别 8 中新增配置。</p>
+<p>如果夜间模式停留在自动模式（默认），它有可能在应用生命周期中发生改变。在这种情况下，该模式会根据当天的时间进行调整。 可以使用 UiModeManager 启用或禁用此模式。如需了解这会在运行期间给应用带来哪些影响，请参阅处理运行时变更。</p>
+</blockquote>
+<h3 id="屏幕像素密度-Screen-pixel-density"><a href="#屏幕像素密度-Screen-pixel-density" class="headerlink" title="屏幕像素密度(Screen pixel density)"></a>屏幕像素密度(Screen pixel density)</h3><h4 id="限定符值-12"><a href="#限定符值-12" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>ldpi
+mdpi
+hdpi
+xhdpi
+xxhdpi
+xxxhdpi
+nodpi
+tvdpi
+</code></pre><h4 id="说明-12"><a href="#说明-12" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>ldpi：低密度屏幕；约为 120dpi。<br>mdpi：中等密度（传统 HVGA）屏幕；约为 160dpi。<br>hdpi：高密度屏幕；约为 240dpi。<br>xhdpi：超高密度屏幕；约为 320dpi。API 级别 8 中新增配置<br>xxhdpi：超超高密度屏幕；约为 480dpi。API 级别 16 中新增配置<br>xxxhdpi：超超超高密度屏幕使用（仅限启动器图标，请参阅“支持多个屏幕”中的注释）；约为 640dpi。 API 级别 18 中新增配置<br>nodpi：它可用于您不希望缩放以匹配设备密度的位图资源。<br>tvdpi：密度介于 mdpi 和 hdpi 之间的屏幕；约为 213dpi。它并不是“主要”密度组， &gt; 主要用于电视，而大多数应用都不需要它。对于大多数应用而言，提供 mdpi 和 hdpi 资源便已足够，系统将根据需要对其进行缩放。API 级别 13 中引入了此限定符。<br>六个主要密度之间的缩放比为 3:4:6:8:12:16（忽略 tvdpi 密度）。因此，9x9 (ldpi) 位图相当于 12x12 (mdpi)、18x18 (hdpi)、24x24 (xhdpi) 位图，依此类推。</p>
+<p>如果您认为图像资源在电视或其他某些设备上呈现的效果不够好，而想尝试使用 tvdpi 资源，则缩放比例为 1.33*mdpi。例如，mdpi 屏幕的 100px x 100px 图像应该相当于 tvdpi 的133px x 133px。</p>
+<p>注：使用密度限定符并不表示资源仅适用于该密度的屏幕。 如果没有为备用资源提供最符合当前设备配置的限定符，则系统可能使用其中最匹配的资源。</p>
+<p>如需了解有关如何处理不同屏幕密度以及 Android 如何缩放位图以适应当前密度的详细信息，请参阅支持多个屏幕。</p>
+</blockquote>
+<h3 id="触屏类型-Touchscreen-type"><a href="#触屏类型-Touchscreen-type" class="headerlink" title="触屏类型(Touchscreen type)"></a>触屏类型(Touchscreen type)</h3><h4 id="限定符值-13"><a href="#限定符值-13" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>notouch
+finger
+</code></pre><h4 id="说明-13"><a href="#说明-13" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>notouch：设备没有触摸屏。<br>finger：设备有一个专供用户通过手指直接与其交互的触摸屏。<br>另请参阅 touchscreen 配置字段，该字段指示设备上的触摸屏类型。</p>
+</blockquote>
+<h3 id="键盘可用性-Keyboard-availability"><a href="#键盘可用性-Keyboard-availability" class="headerlink" title="键盘可用性(Keyboard availability)"></a>键盘可用性(Keyboard availability)</h3><h4 id="限定符值-14"><a href="#限定符值-14" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>keysexposed
+keyshidden
+keyssoft
+</code></pre><h4 id="说明-14"><a href="#说明-14" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>keysexposed：设备具有可用的键盘。如果设备启用了软键盘（不无可能），那么即使硬键盘没有展示给用户，哪怕设备没有硬键盘，也可以使用此限定符。 如果没有提供或已经禁用软键盘，则只有在显示硬键盘时才会使用此限定符。<br>keyshidden：设备具有可用的硬键盘，但它处于隐藏状态，且设备没有启用软键盘。<br>keyssoft：设备已经启用软键盘（无论是否可见）。<br>如果提供了 keysexposed 资源，但未提供 keyssoft 资源，那么只要系统已经启用软键盘，就会使用 keysexposed 资源，而不考虑键盘是否可见。</p>
+<p>如果用户打开硬键盘，它有可能在应用生命周期中发生改变。 如需了解这会在运行期间给应用带来哪些影响，请参阅处理运行时变更。</p>
+<p>另请参阅配置字段 hardKeyboardHidden 和 keyboardHidden，这两个字段分别指示硬键盘的可见性和任何一种键盘（包括软键盘）的可见性。</p>
+</blockquote>
+<h3 id="主要文本输入法-Primary-text-input-method"><a href="#主要文本输入法-Primary-text-input-method" class="headerlink" title="主要文本输入法(Primary text input method)"></a>主要文本输入法(Primary text input method)</h3><h4 id="限定符值-15"><a href="#限定符值-15" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>nokeys
+qwerty
+12key
+</code></pre><h4 id="说明-15"><a href="#说明-15" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>nokeys：设备没有用于文本输入的硬按键。<br>qwerty：设备具有标准硬键盘（无论是否对用户可见）。<br>12key：设备具有 12 键硬键盘（无论是否对用户可见）。<br>另请参阅 keyboard 配置字段，该字段指示可用的主要文本输入法。</p>
+</blockquote>
+<h3 id="导航键的有效性-Navigation-key-availability"><a href="#导航键的有效性-Navigation-key-availability" class="headerlink" title="导航键的有效性(Navigation key availability)"></a>导航键的有效性(Navigation key availability)</h3><h4 id="限定符值-16"><a href="#限定符值-16" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>navexposed
+navhidden
+</code></pre><h4 id="说明-16"><a href="#说明-16" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>navexposed：导航键可供用户使用。<br>navhidden：导航键不可用（例如，位于密封盖子后面）。<br>如果用户显示导航键，它有可能在应用生命周期中发生改变。<br>如需了解这会在运行期间给应用带来哪些影响，请参阅处理运行时变更。</p>
+<p>另请参阅 navigationHidden配置字段，该字段指示导航键是否处于隐藏状态。</p>
+</blockquote>
+<h3 id="主要的非触屏导航方法-Primary-non-touch-navigation-method"><a href="#主要的非触屏导航方法-Primary-non-touch-navigation-method" class="headerlink" title="主要的非触屏导航方法(Primary non-touch navigation method)"></a>主要的非触屏导航方法(Primary non-touch navigation method)</h3><h4 id="限定符值-17"><a href="#限定符值-17" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>nonav
+dpad
+trackball
+wheel
+</code></pre><h4 id="说明-17"><a href="#说明-17" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>nonav：除了使用触摸屏以外，设备没有其他导航设施。<br>dpad：设备具有用于导航的方向键。<br>trackball：设备具有用于导航的轨迹球。<br>wheel：设备具有用于导航的方向盘（不常见）。<br>另请参阅 navigation 配置字段，该字段指示可用的导航方法类型。</p>
+</blockquote>
+<h3 id="平台版本（API-级别）-Platform-Version-API-level"><a href="#平台版本（API-级别）-Platform-Version-API-level" class="headerlink" title="平台版本（API 级别）(Platform Version (API level))"></a>平台版本（API 级别）(Platform Version (API level))</h3><h4 id="限定符值-18"><a href="#限定符值-18" class="headerlink" title="限定符值"></a>限定符值</h4><pre><code>示例：
+v3
+v4
+v7
+等等
+</code></pre><h4 id="说明-18"><a href="#说明-18" class="headerlink" title="说明"></a>说明</h4><blockquote>
+<p>设备支持的 API 级别。例如，v1 对应于 API 级别 1（带有 Android 1.0 或更高版本系统的设备），v4 对应于 API 级别 4（带有 Android 1.6 或更高版本系统的设备）。如需了解有关这些值的详细信息，请参阅 Android API 级别文档。</p>
+</blockquote>
+<h2 id="限定符命名规则"><a href="#限定符命名规则" class="headerlink" title="限定符命名规则"></a>限定符命名规则</h2><ul>
+<li>可以为单组资源指定多个限定符，并使用短划线分隔</li>
+<li>这些限定符必须遵循顺序命名</li>
+<li>不能嵌套备用资源目录</li>
+<li>值不区分大小写。在处理之前，资源编译器会将目录名称转换为小写，以避免不区分大小写的文件系统出现问题。 名称中使用的任何大写字母只是为了便于认读。</li>
+<li>对于每种限定符类型，仅支持一个值。</li>
+</ul>
+<h2 id="利用资源提供最佳设备兼容性"><a href="#利用资源提供最佳设备兼容性" class="headerlink" title="利用资源提供最佳设备兼容性"></a>利用资源提供最佳设备兼容性</h2><blockquote>
+<p>提供默认资源至关重要，这不仅仅因为应用可能在超出预期的配置上运行，也因为新版 Android 有时会添加旧版本不支持的配置限定符。若要使用新的资源限定符，又希望维持对旧版 Android 的代码兼容性，则当旧版 Android 运行应用时，如果不提供默认资源，应用将会崩溃，这是因为它无法使用以新限定符命名的资源。例如，如果将 minSdkVersion 设置为 4，并使用夜间模式（night 或 notnight，API 级别 8 中新增配置）限定所有 Drawable 资源，则 API 级别 4 设备无法访问 Drawable 资源，而且会崩溃。在这种情况下，您可能希望 notnight 成为默认资源，为此，您应排除该限定符，使 Drawable 资源位于 drawable/ 或 drawable-night/ 中。</p>
+</blockquote>
+<h2 id="寻找最匹配资源"><a href="#寻找最匹配资源" class="headerlink" title="寻找最匹配资源"></a>寻找最匹配资源</h2><p><img src="/img/20160801000002.png" alt=""></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><code>屏幕像素密度是唯一一个未因冲突而被淘汰的限定符。</code></li>
+<li>如果涉及的限定符是屏幕像素密度，则 Android 会选择最接近设备屏幕密度的选项。通常，Android 倾向于缩小大型原始图像，而不是放大小型原始图像</li>
+<li>尽管对所请求的每个资源均执行此程序，但是系统仍会对某些方面做进一步优化。 例如，系统一旦知道设备配置，即会淘汰可能永远无法匹配的备用资源。 比如说，如果配置语言是英语（“en”），则系统绝不会将语言限定符设置为非英语的任何资源目录包含在选中的资源池中</li>
+<li>根据屏幕尺寸限定符选择资源时，如果没有更好的匹配资源，则系统将使用专为小于当前屏幕的屏幕而设计的资源（例如，如有必要，大尺寸屏幕将使用标准尺寸的屏幕资源）。 但是，<code>如果唯一可用的资源大于当前屏幕，则系统不会使用这些资源，并且如果没有其他资源与设备配置匹配，应用将会崩溃</code>（例如，如果所有布局资源均用 xlarge 限定符标记，但设备是标准尺寸的屏幕）。</li>
+<li>限定符的优先顺序比与设备完全匹配的限定符数量更加重要</li>
+</ul>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #757575;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load"> 
+    <button class="disqus_click_btn">阅读评论（请确保 disqus 可以正常加载）</button>
+</div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://luoweiguang.github.io/2016/08/01/资源详解/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://luoweiguang.github.io/2016/08/01/资源详解/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/ls-javascript" id="disqus-lazy-load-script">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//https-luoweiguang-github-io.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+  	
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/08/04/系统属性/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/07/30/ProgressBar及其子类的使用/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/head.jpg" alt="罗炜光's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        luo_weiguang@foxmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=luo_weiguang@foxmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">11</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/05/">五月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/04/">四月 2016<span class="sidebar_archives-count">9</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/03/">三月 2016<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/02/">二月 2016<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Android/">Android<span class="sidebar_archives-count">26</span></a></li><li><a class="sidebar_archives-link" href="/categories/Java/">Java<span class="sidebar_archives-count">22</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaWeb/">JavaWeb<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Tool/">Tool<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/UML/">UML<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/设计模式/">设计模式<span class="sidebar_archives-count">2</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">bookmark</i>
+                
+                标签
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/luoweiguang" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;2016&nbsp;-<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>星家|不会搬砖的码农
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+
+    <script>lsloader.load("js/lazyload.min.js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==")</script>
+    <script>lsloader.load("js/js.min.js","/js/js.min.js?oAl/+lvaqTFV31JXTmbrNA==")</script>
+
+
+
+    <script>lsloader.load("js/nprogress.js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==")</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+   <!-- 使用 DISQUS js 代码 -->
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Window Load-->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Bing Background -->
+
+
+<script>
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.4.0 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
